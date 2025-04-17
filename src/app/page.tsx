@@ -2,8 +2,6 @@ import { DesktopNavigation } from "@/components/desktop-navigation";
 import MobileNavigation from "@/components/mobile-navigation";
 import { NavItems, TeamNavItems } from "@/components/navigations";
 import ThemeToggleTab from "@/components/themes";
-import { Leaf } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {

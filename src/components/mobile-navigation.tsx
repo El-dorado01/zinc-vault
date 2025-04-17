@@ -12,7 +12,6 @@ import { type ListComponent, type NavItem } from "@/types";
 import { Navigation } from "./nav-bar";
 import { NavigationMenu } from "./ui/navigation-menu";
 import ThemeToggleTab from "./themes";
-import { ScrollArea } from "./ui/scroll-area";
 
 const MobileNavigation = ({
   navItems,
