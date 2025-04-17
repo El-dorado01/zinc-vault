@@ -44,17 +44,27 @@ const skillsData: SkillItem[] = [
   {
     id: 1,
     icon: Youtube,
-    image: "/youtube.png",
+    image: "/ecommerce.png",
     title: "Youtube Automation and Monetization",
   },
-  { id: 2, icon: Gamepad2, image: "/game.png", title: "Steam Game Promotion" },
+  {
+    id: 2,
+    icon: Gamepad2,
+    image: "/ecommerce.png",
+    title: "Steam Game Promotion",
+  },
   {
     id: 3,
     icon: ShoppingCart,
     image: "/ecommerce.png",
     title: "Ecommerce Store Design and Promotion",
   },
-  { id: 4, icon: BookOpenText, image: "/writing.png", title: "Content Writing" },
+  {
+    id: 4,
+    icon: BookOpenText,
+    image: "/writing.png",
+    title: "Content Writing",
+  },
 ];
 
 export { NavItems, TeamNavItems, skillsData };
