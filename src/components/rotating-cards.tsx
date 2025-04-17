@@ -52,7 +52,7 @@ const RotatingCards = () => {
 
   return (
     <div
-      className="h-[90vh] min-h-fit w-[90vw] py-4 px-2 sm:w-[95vw] sm:p-4 sm:gap-3 md:w-[90vw] md:p-6 md:gap-4 lg:w-[85vw] lg:p-8 lg:gap-5 xl:w-[80vw] xl:p-10 xl:gap-6 grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-2 md:grid-rows-3"
+      className="h-[90vh] min-h-fit w-[90vw] p-0 gap-1 sm:w-[95vw] sm:p-4 sm:gap-3 md:w-[90vw] md:p-6 md:gap-4 lg:w-[85vw] lg:p-8 lg:gap-5 xl:w-[80vw] xl:p-10 xl:gap-6 grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-2 md:grid-rows-3"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
