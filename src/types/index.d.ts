@@ -1,4 +1,10 @@
-export interface NavItem { title: string; key: string; href: string };
+import { LucideIcon } from "lucide-react";
+
+export interface NavItem {
+  title: string;
+  key: string;
+  href: string;
+}
 
 export interface ListComponent {
   name: string;
@@ -6,4 +12,11 @@ export interface ListComponent {
   href: string;
   leader: boolean;
   role: string;
+}
+
+export interface SkillItem {
+  id: number;
+  icon: LucideIcon;
+  title: string;
+  image: string;
 }

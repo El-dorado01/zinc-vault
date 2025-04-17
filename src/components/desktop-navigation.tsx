@@ -8,12 +8,12 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import { type ListComponent, type NavItem } from "@/types";
-import { Navigation } from "./nav-bar";
+import { Navigation } from "./navigation";
 
 export function DesktopNavigation({
   navItems,
   teamNavItems,
-  isMobile
+  isMobile,
 }: {
   navItems: NavItem[];
   teamNavItems: ListComponent[];
@@ -21,7 +21,11 @@ export function DesktopNavigation({
 }) {
   return (
     <NavigationMenu className="hidden md:block">
-      <Navigation navItems={navItems} teamNavItems={teamNavItems} isMobile={isMobile} />
+      <Navigation
+        navItems={navItems}
+        teamNavItems={teamNavItems}
+        isMobile={isMobile}
+      />
     </NavigationMenu>
   );
 }

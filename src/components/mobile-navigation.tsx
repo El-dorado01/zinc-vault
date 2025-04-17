@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { type ListComponent, type NavItem } from "@/types";
-import { Navigation } from "./nav-bar";
+import { Navigation } from "./navigation";
 import { NavigationMenu } from "./ui/navigation-menu";
 import ThemeToggleTab from "./themes";
+import { ScrollArea } from "./ui/scroll-area";
 
 const MobileNavigation = ({
   navItems,
@@ -44,13 +45,12 @@ const MobileNavigation = ({
           </button>
         </DrawerTrigger>
         <DrawerContent>
-          {/* <ScrollArea className="w-full h-[60vh]">
-          </ScrollArea> */}
+          <ScrollArea className="overflow-y-auto">
             <div className="mx-auto w-full max-w-sm">
               <DrawerHeader className="mx-4">
                 <DrawerTitle className="text-2xl font-bold">ZV</DrawerTitle>
               </DrawerHeader>
-              <NavigationMenu className="md:hidden">
+              <NavigationMenu className="px-4 md:hidden">
                 <Navigation
                   navItems={navItems}
                   teamNavItems={teamNavItems}
@@ -64,6 +64,7 @@ const MobileNavigation = ({
                 </DrawerClose>
               </DrawerFooter>
             </div>
+          </ScrollArea>
         </DrawerContent>
       </Drawer>
     </>

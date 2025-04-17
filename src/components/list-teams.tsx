@@ -2,7 +2,7 @@ import { NavigationMenuLink } from "./ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import DisplayAvatar from "./display-avatar";
-import { ListComponent } from "@/types";
+import { type ListComponent } from "@/types";
 
 type ListTeamsProps = {
   className?: string;

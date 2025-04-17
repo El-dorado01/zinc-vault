@@ -1,81 +1,36 @@
-"use client";
-
+import React from 'react'
+import { DesktopNavigation } from "@/components/desktop-navigation";
+import MobileNavigation from "@/components/mobile-navigation";
+import { NavItems, TeamNavItems } from "@/components/items";
+import ThemeToggleTab from "@/components/themes";
 import Link from "next/link";
 
-import {
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { type ListComponent, type NavItem } from "@/types";
-import TeamMenuContent from "./team-menu-content";
-
-export function Navigation({
-  navItems,
-  teamNavItems,
-  isMobile,
-}: {
-  navItems: NavItem[];
-  teamNavItems: ListComponent[];
-  isMobile: boolean;
-}) {
+const NavBar = () => {
   return (
-    <NavigationMenuList className="flex flex-col md:flex-row">
-      {navItems.map((item) => (
-        <NavigationMenuItem key={item.key}>
-          {item.key === "teams" ? (
-            <>
-              {isMobile ? (
-                <>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        {item.title}
-                      </NavigationMenuLink>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      className="w-[90vw] max-w-[400px] rounded-lg overflow-hidden touch-auto pointer-events-auto"
-                      align="center"
-                      side="bottom"
-                      sideOffset={12}
-                      collisionPadding={16}
-                    >
-                      <ScrollArea className="h-[50vh] w-full py-2 px-4 overflow-y-auto touch-auto -webkit-overflow-scrolling-touch">
-                        <TeamMenuContent teamNavItems={teamNavItems} />
-                      </ScrollArea>
-                    </PopoverContent>
-                  </Popover>
-                </>
-              ) : (
-                <>
-                  <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <TeamMenuContent teamNavItems={teamNavItems} />
-                  </NavigationMenuContent>
-                </>
-              )}
-            </>
-          ) : (
-            <NavigationMenuLink
-              className={navigationMenuTriggerStyle()}
-              asChild
-            >
-              <Link href={item.href}>{item.title}</Link>
-            </NavigationMenuLink>
-          )}
-        </NavigationMenuItem>
-      ))}
-    </NavigationMenuList>
+    <header className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-sm shadow-sm text-foreground">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <Link
+          href="/"
+          className="text-2xl font-bold hover:text-blue-500 transition-colors"
+        >
+          ZV
+        </Link>
+        <div className="flex items-center justify-center space-x-2">
+          <MobileNavigation
+            navItems={NavItems}
+            teamNavItems={TeamNavItems}
+            isMobile={true}
+          />
+          <DesktopNavigation
+            navItems={NavItems}
+            teamNavItems={TeamNavItems}
+            isMobile={false}
+          />
+          <ThemeToggleTab className="hidden md:flex" />
+        </div>
+      </div>
+    </header>
   );
 }
+
+export default NavBar

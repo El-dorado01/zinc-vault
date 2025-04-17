@@ -1,3 +1,6 @@
+import { SkillItem } from "@/types";
+import { BookOpenText, Gamepad2, ShoppingCart, Youtube } from "lucide-react";
+
 const NavItems = [
   { title: "Home", key: "home", href: "/" },
   { title: "About", key: "about", href: "/about" },
@@ -37,4 +40,21 @@ const TeamNavItems = [
   },
 ];
 
-export { NavItems, TeamNavItems };
+const skillsData: SkillItem[] = [
+  {
+    id: 1,
+    icon: Youtube,
+    image: "/youtube.png",
+    title: "Youtube Automation and Monetization",
+  },
+  { id: 2, icon: Gamepad2, image: "/game.png", title: "Steam Game Promotion" },
+  {
+    id: 3,
+    icon: ShoppingCart,
+    image: "/ecommerce.png",
+    title: "Ecommerce Store Design and Promotion",
+  },
+  { id: 4, icon: BookOpenText, image: "/writing.png", title: "Content Writing" },
+];
+
+export { NavItems, TeamNavItems, skillsData };

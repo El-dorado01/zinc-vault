@@ -1,9 +1,10 @@
-import { ListComponent } from "@/types";
+import { type ListComponent } from "@/types";
 import React from "react";
 import { NavigationMenuLink } from "./ui/navigation-menu";
 import Link from "next/link";
 import Image from "next/image";
 import ListTeams from "./list-teams";
+import { getInitials } from "@/lib/getInitials";
 
 const TeamMenuContent = ({
   teamNavItems,
@@ -23,7 +24,7 @@ const TeamMenuContent = ({
                 >
                   <Image
                     src={teamMember.image}
-                    alt={teamMember.name}
+                    alt={getInitials(teamMember.name)}
                     width={100}
                     height={100}
                     className="object-cover w-24 h-24 rounded-full self-center flex-shrink-0"
