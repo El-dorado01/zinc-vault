@@ -1,0 +1,26 @@
+----------------------------------------
+| HEADER                               |
+| [Logo]          [Home | About | ...] |
+----------------------------------------
+| HERO SECTION                         |
+| Headline: "Crafting Digital Success" |
+| Subheading: "Hi, I'm [Name]..."      |
+| [Explore My Skills]                  |
+----------------------------------------
+| DYNAMIC GRID SECTION                 |
+| +-----------------+----------------+ |
+| | YouTube (Large) | Steam (Small)  | |
+| | [Thumbnail]     | [Thumbnail]    | |
+| | [Description]   | [Description]  | |
+| | [Learn More]    | [Learn More]   | |
+| +-----------------+----------------+ |
+| | E-Comm (Small)  | Writing (Small)| |
+| | [Thumbnail]     | [Thumbnail]    | |
+| | [Description]   | [Description]  | |
+| | [Learn More]    | [Learn More]   | |
+| +-----------------+----------------+ |
+| [◄] [●●●●] [►] (Animation Controls)  |
+----------------------------------------
+| FOOTER                               |
+| [Social Icons] [Contact] [© 2025]    |
+----------------------------------------
