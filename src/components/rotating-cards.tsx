@@ -72,7 +72,7 @@ const RotatingCards = () => {
             zIndex: isLarge ? 10 : stackOrder,
           }}
         >
-          <CardContent className="h-full p-2 sm:p-3 md:p-4 flex flex-col">
+          <CardContent className="h-full py-2 px-6 sm:py-3 md:py-4 flex flex-col">
             {isLarge ? (
               <div className="flex flex-col gap-2 h-full">
                 <div className="relative w-full flex-1">
