@@ -18,6 +18,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
+import { Contact, House, Info, Sparkles, Users } from "lucide-react";
 
 export function Navigation({
   navItems,
@@ -39,9 +40,20 @@ export function Navigation({
                   <Popover>
                     <PopoverTrigger asChild>
                       <NavigationMenuLink
-                        // className={navigationMenuTriggerStyle()}
+                      // className={navigationMenuTriggerStyle()}
                       >
-                        {item.title}
+                        <Link
+                          href={item.href}
+                          className="flex flex-row space-x-3 items-center justify-center"
+                        >
+                          {isMobile && (
+                            <div className="flex items-center justify-center px-1.5">
+                              <Users className="size-4" />
+                            </div>
+                          )}
+
+                          <span>{item.title}</span>
+                        </Link>
                       </NavigationMenuLink>
                     </PopoverTrigger>
                     <PopoverContent
@@ -72,11 +84,19 @@ export function Navigation({
                 href={item.href}
                 className="flex flex-row space-x-3 items-center justify-center"
               >
-                {/* {isMobile && (
+                {isMobile && (
                   <div className="flex items-center justify-center px-1.5">
-                    <House className="size-4" />
+                    {item.key === "home" ? (
+                      <House className="size-4" />
+                    ) : item.key === "about" ? (
+                      <Info className="size-4" />
+                    ) : item.key === "skills" ? (
+                      <Sparkles className="size-4" />
+                    ) : (
+                      <Contact className="size-4" />
+                    )}
                   </div>
-                )} */}
+                )}
 
                 <span>{item.title}</span>
               </Link>

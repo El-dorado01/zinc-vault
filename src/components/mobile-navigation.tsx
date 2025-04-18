@@ -8,6 +8,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { type ListComponent, type NavItem } from "@/types";
 import { Navigation } from "./navigation";
 import { NavigationMenu } from "./ui/navigation-menu";
@@ -59,6 +60,9 @@ const MobileNavigation = ({
                   isMobile={isMobile}
                 />
               </NavigationMenu>
+              <div className="mx-5">
+                <Separator className="my-4" />
+              </div>
               <div className="flex flex-col items-start justify-center space-y-2 my-3 mx-5">
                 <Link
                   href={""}
@@ -96,6 +100,9 @@ const MobileNavigation = ({
                   </div>
                   <span>LinkedIn</span>
                 </Link>
+              </div>
+              <div className="mx-5">
+                <Separator className="my-4" />
               </div>
               <div className="mx-5 mb-2">
                 <Link href={""} className="text-sm text-muted-foreground">
