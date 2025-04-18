@@ -40,20 +40,16 @@ export function Navigation({
                   <Popover>
                     <PopoverTrigger asChild>
                       <NavigationMenuLink
-                      // className={navigationMenuTriggerStyle()}
+                        // className={navigationMenuTriggerStyle()}
+                        className="flex flex-row space-x-3 items-center justify-center"
                       >
-                        <Link
-                          href={item.href}
-                          className="flex flex-row space-x-3 items-center justify-center"
-                        >
-                          {isMobile && (
-                            <div className="flex items-center justify-center px-1.5">
-                              <Users className="size-4" />
-                            </div>
-                          )}
+                        {isMobile && (
+                          <div className="flex items-center justify-center px-1.5">
+                            <Users className="size-4" />
+                          </div>
+                        )}
 
-                          <span>{item.title}</span>
-                        </Link>
+                        <span>{item.title}</span>
                       </NavigationMenuLink>
                     </PopoverTrigger>
                     <PopoverContent
