@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import { ArrowBigRightDash, LeafyGreen } from "lucide-react";
+// import Image from "next/image";
+import { ArrowBigRightDash } from "lucide-react";
 import { skillsData } from "@/components/items";
 
 const RotatingCards = () => {
