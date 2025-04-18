@@ -18,7 +18,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
-// import { House } from "lucide-react";
 
 export function Navigation({
   navItems,

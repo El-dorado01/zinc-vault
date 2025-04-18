@@ -7,7 +7,7 @@ import { skillsData } from "@/components/items";
 const RotatingCards = () => {
   return (
     <div className="min-h-fit w-[90vw] grid grid-cols-1 md:grid-rows-2 md:grid-cols-2 gap-3">
-      {skillsData.map(({ id, icon: Icon, image, title }) => (
+      {skillsData.map(({ id, icon: Icon, title }) => (
         <div className="relative p-1" key={id}>
           <Card className="relative min-h-[175px] bg-background border border-muted shadow-sm glowing-border">
             <CardContent className="h-full py-2 px-4 flex flex-col">
