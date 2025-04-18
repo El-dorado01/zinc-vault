@@ -13,6 +13,8 @@ import { Navigation } from "./navigation";
 import { NavigationMenu } from "./ui/navigation-menu";
 import ThemeToggleTab from "./themes";
 import { ScrollArea } from "./ui/scroll-area";
+import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import Link from "next/link";
 
 const MobileNavigation = ({
   navItems,
@@ -57,6 +59,61 @@ const MobileNavigation = ({
                   isMobile={isMobile}
                 />
               </NavigationMenu>
+              <div className="flex flex-col items-start justify-center space-y-2 my-3 mx-5">
+                <Link
+                  href={""}
+                  className="flex space-x-3 items-center justify-center"
+                >
+                  <div className="flex items-center justify-center p-2">
+                    <Twitter className="size-4" />
+                  </div>
+                  <span>Twitter</span>
+                </Link>
+                <Link
+                  href={""}
+                  className="flex space-x-3 items-center justify-center"
+                >
+                  <div className="flex items-center justify-center p-2">
+                    <Facebook className="size-4" />
+                  </div>
+                  <span>Facebook</span>
+                </Link>
+                <Link
+                  href={""}
+                  className="flex space-x-3 items-center justify-center"
+                >
+                  <div className="flex items-center justify-center p-2">
+                    <Youtube className="size-4" />
+                  </div>
+                  <span>Youtube</span>
+                </Link>
+                <Link
+                  href={""}
+                  className="flex space-x-3 items-center justify-center"
+                >
+                  <div className="flex items-center justify-center p-2">
+                    <Linkedin className="size-4" />
+                  </div>
+                  <span>LinkedIn</span>
+                </Link>
+              </div>
+              <div className="mx-5 mb-2">
+                <Link href={""} className="text-sm text-muted-foreground">
+                  Terms of Services
+                </Link>
+                <span className="text-muted-foreground mx-1">&bull;</span>
+                <Link href={""} className="text-sm text-muted-foreground">
+                  Cookies
+                </Link>
+                <span className="text-muted-foreground mx-1">&bull;</span>
+                <Link href={""} className="text-sm text-muted-foreground">
+                  Privacy and Security
+                </Link>
+                <span className="text-muted-foreground mx-1">&bull;</span>
+                <Link href={""} className="text-sm text-muted-foreground">
+                  Change Language
+                </Link>
+              </div>
               <ThemeToggleTab className="mx-4 my-2" />
               <DrawerFooter>
                 <DrawerClose asChild>

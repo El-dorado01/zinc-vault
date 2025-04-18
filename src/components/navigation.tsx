@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
+  // navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
   Popover,
@@ -18,6 +18,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
+// import { House } from "lucide-react";
 
 export function Navigation({
   navItems,
@@ -39,7 +40,7 @@ export function Navigation({
                   <Popover>
                     <PopoverTrigger asChild>
                       <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
+                        // className={navigationMenuTriggerStyle()}
                       >
                         {item.title}
                       </NavigationMenuLink>
@@ -67,11 +68,19 @@ export function Navigation({
               )}
             </>
           ) : (
-            <NavigationMenuLink
-              className={navigationMenuTriggerStyle()}
-              asChild
-            >
-              <Link href={item.href}>{item.title}</Link>
+            <NavigationMenuLink asChild>
+              <Link
+                href={item.href}
+                className="flex flex-row space-x-3 items-center justify-center"
+              >
+                {/* {isMobile && (
+                  <div className="flex items-center justify-center px-1.5">
+                    <House className="size-4" />
+                  </div>
+                )} */}
+
+                <span>{item.title}</span>
+              </Link>
             </NavigationMenuLink>
           )}
         </NavigationMenuItem>
