@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-figtree-sans);
+  /* --font-mono: var(--font-geist-mono); */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,7 +51,8 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.65 0.18 172.73 / 0.5);
+  /* --primary: oklch(0.21 0.006 285.885); */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -85,7 +86,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
+  /* --primary: oklch(0.92 0.004 286.32); */
+  --primary: oklch(0.852 0.159 172.73 / 0.4);
   --primary-foreground: oklch(0.21 0.006 285.885);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
@@ -124,6 +126,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  /* font-family: var(--font-sans); */
 }
 
 .glowing-border {
@@ -142,9 +145,9 @@ html, body {
   border-radius: 8px; /* Matches card */
   background: linear-gradient(
     45deg,
-    rgba(247, 120, 186, 0.9), /* Green from reference */
+    rgba(0, 255, 153, 0.4), /* Green from reference */
     rgba(255, 255, 255, 0.8), /* White to match card */
-    rgba(247, 120, 186, 0.9),
+    rgba(0, 255, 153, 0.4),
     rgba(255, 255, 255, 0.8)
   );
   background-size: 400% 400%; /* Smooth transitions */
@@ -181,5 +184,29 @@ html, body {
   }
   100% { /* ~4s pause at top-left */
     background-position: 400% 50%;
+  }
+}
+
+
+.green-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px; /* Larger size */
+  height: 400px; /* Larger size */
+  background: radial-gradient(circle, rgba(0, 255, 153, 0.4) 0%, rgba(0, 255, 153, 0) 70%); /* Increased opacity for radiance */
+  animation: moveLight 10s linear infinite; /* Slightly slower animation */
+  filter: blur(80px); /* Increased blur for more radiance */
+}
+
+@keyframes moveLight {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(100vw, 100vh);
+  }
+  100% {
+    transform: translate(-50%, -50%);
   }
 }
