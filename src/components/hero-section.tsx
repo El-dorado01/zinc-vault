@@ -75,7 +75,7 @@ export default function HeroSection() {
       {/* Hero Content */}
       <div className="relative z-10 max-w-6xl mx-auto p-8 flex flex-col md:flex-row items-center justify-between space-x-3 min-h-[80vh]">
         {/* Text Content */}
-        <div className="md:w-1/2 mb-8 md:mb-0 min-h-[50vh] flex flex-col justify-between space-y-4">
+        <div className="md:w-1/2 mb-8 md:mb-0 min-h-[50vh] flex flex-col space-y-4">
           <div className="flex flex-col gap-6">
             <h1 className="hero-title text-4xl md:text-5xl font-bold text-foreground mb-4 leading-loose">
               Build the Future
