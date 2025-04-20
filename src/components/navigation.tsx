@@ -15,12 +15,6 @@ import {
   NavigationMenuTrigger,
   // navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
 import {
@@ -29,7 +23,6 @@ import {
   Info,
   Sparkles,
   Users,
-  ChevronsUpDown,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -75,18 +68,6 @@ export function Navigation({
                       <TeamMenuContent teamNavItems={teamNavItems} />
                     </CollapsibleContent>
                   </Collapsible>
-                  {/* <Popover>
-                    <PopoverTrigger asChild></PopoverTrigger>
-                    <PopoverContent
-                      className="w-[90vw] max-w-[400px] rounded-lg overflow-hidden touch-auto pointer-events-auto"
-                      align="center"
-                      side="bottom"
-                      sideOffset={12}
-                      collisionPadding={16}
-                    >
-                      <ScrollArea className="h-[50vh] w-full py-2 px-4 overflow-y-auto touch-auto -webkit-overflow-scrolling-touch"></ScrollArea>
-                    </PopoverContent>
-                  </Popover> */}
                 </>
               ) : (
                 <>
