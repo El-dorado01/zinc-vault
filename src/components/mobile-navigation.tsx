@@ -23,7 +23,7 @@ const MobileNavigation = ({
   isMobile,
 }: {
   navItems: NavItem[];
-  teamNavItems: ListComponent[];
+  teamNavItems?: ListComponent[];
   isMobile: boolean;
 }) => {
   return (

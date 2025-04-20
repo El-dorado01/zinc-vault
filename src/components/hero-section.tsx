@@ -81,7 +81,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 w-[100vw] md:px-3">
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 w-[100vw] md:w-[90vw] md:px-3">
       {/* Green Light Background Effect */}
       <div className="absolute inset-0 z-0">
         <div className="green-light"></div>

@@ -9,6 +9,15 @@ const NavItems = [
   { title: "Contact", key: "contact", href: "/contact" },
 ];
 
+const GameNavItems = [
+  { title: "Home", key: "home", href: "/" },
+  { title: "About", key: "about", href: "/about" },
+  { title: "Services", key: "services", href: "/" },
+  { title: "Portfolio", key: "portfolio", href: "/" },
+  { title: "Blog", key: "blog", href: "/" },
+  { title: "Contact", key: "contact", href: "/contact" },
+];
+
 const TeamNavItems = [
   {
     name: "Jonathan Zhang",
@@ -67,4 +76,4 @@ const skillsData: SkillItem[] = [
   },
 ];
 
-export { NavItems, TeamNavItems, skillsData };
+export { NavItems, TeamNavItems, skillsData, GameNavItems };

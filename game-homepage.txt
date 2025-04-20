@@ -1,0 +1,44 @@
+COLOR: e.g., electric blue #00C4FF, neon green #00FF66) to reflect Steam’s branding and gaming energy.
+
+--------------------------------------------------
+| HEADER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+--------------------------------------------------
+| HERO SECTION                                   |
+| Background: [Cinematic Indie Game Montage]    |
+| Headline: "Revive Your Steam Game with Smart Marketing" |
+| Subheading: "We turn struggling indie games into Steam success stories with small budgets and big results." |
+| [See Our Case Studies (Neon Green)]  [Get a Free Consultation (Neon Blue)] |
+| [▼ Scroll Indicator]                           |
+--------------------------------------------------
+| TRUST SIGNALS SECTION                          |
+| +------------------+------------------+------------------+ |
+| | [Game X Logo]    | [Game Y Logo]    | [Game Z Logo]    | |
+| | "Sales +300%"    | "Wishlists +500%"| "'Saved our launch!'" | |
+| +------------------+------------------+------------------+ |
+--------------------------------------------------
+| SERVICES OVERVIEW SECTION                      |
+| Headline: "How We Help Your Game Succeed"      |
+| +------------------+------------------+------------------+ |
+| | [Rocket Icon]    | [Piggy Bank Icon]| [Phoenix Icon]   | |
+| | Post-Launch      | Small Budget,    | Reviving         | |
+| | Marketing Rescue | Big Results      | Struggling Games | |
+| | "We analyze why..." | "We maximize ROI..." | "We identify issues..." | |
+| +------------------+------------------+------------------+ |
+| [Explore Our Services (Neon Green)]            |
+--------------------------------------------------
+| FEATURED CASE STUDY SECTION                    |
+| Headline: "Success Story: CyberSmith’s BattleForge" |
+| +------------------+------------------+          |
+| | [Game Artwork]   | [Line Chart: Wishlist Growth] | |
+| | "Struggling with only 300 units sold, we optimized..." | |
+| |                  | "Wishlists: 400 → 6,000 (8 weeks)" | |
+| +------------------+------------------+          |
+| Testimonial: "'Your team turned our game around!' – CyberSmith Studios" |
+| [View Full Case Study (Neon Green)]            |
+--------------------------------------------------
+| FOOTER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+| [X Icon] [LinkedIn Icon] [Discord Icon]        |
+| [Contact Us] [© 2025 Your Company Name]        |
+--------------------------------------------------

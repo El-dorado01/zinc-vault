@@ -1,4 +1,5 @@
 
+import { NavItems, TeamNavItems } from "@/components/items";
 import NavBar from "@/components/nav-bar";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
@@ -6,7 +7,7 @@ import { PropsWithChildren } from "react";
 const AppLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <NavBar />
+      <NavBar navItems={NavItems} teamNavItems={TeamNavItems} />
       {children}
       <div className="border-t border-dashed flex flex-col md:flex-row space-y-3.5 flex-1 py-7 px-10 w-full items-center justify-between">
         <Link

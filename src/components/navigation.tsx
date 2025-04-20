@@ -17,13 +17,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
-import {
-  Contact,
-  House,
-  Info,
-  Sparkles,
-  Users,
-} from "lucide-react";
+import { Contact, House, Info, Sparkles, Users } from "lucide-react";
 import { useState } from "react";
 
 export function Navigation({
@@ -32,7 +26,7 @@ export function Navigation({
   isMobile,
 }: {
   navItems: NavItem[];
-  teamNavItems: ListComponent[];
+  teamNavItems?: ListComponent[];
   isMobile: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +35,7 @@ export function Navigation({
     <NavigationMenuList className="flex flex-col items-start justify-start md:flex-row">
       {navItems.map((item) => (
         <NavigationMenuItem key={item.key}>
-          {item.key === "teams" ? (
+          {teamNavItems && item.key === "teams" ? (
             <>
               {isMobile ? (
                 <>

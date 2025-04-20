@@ -1,29 +1,38 @@
-import React from 'react'
+import React from "react";
 import { DesktopNavigation } from "@/components/desktop-navigation";
 import MobileNavigation from "@/components/mobile-navigation";
-import { NavItems, TeamNavItems } from "@/components/items";
+
 import ThemeToggleTab from "@/components/themes";
 import Link from "next/link";
+import { ListComponent, NavItem } from "@/types";
+import { LucideIcon } from "lucide-react";
 
-const NavBar = () => {
+type NavBarProps = {
+  navItems: NavItem[];
+  teamNavItems?: ListComponent[];
+  icon?: LucideIcon;
+};
+
+const NavBar = ({ navItems, teamNavItems, icon: Icon }: NavBarProps) => {
   return (
     <header className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-sm shadow-sm text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className="text-2xl font-bold hover:text-blue-500 transition-colors"
+          className="text-2xl font-bold hover:text-blue-500 transition-colors flex items-center justify-center space-x-3"
         >
-          ZV
+          <span>ZV</span>
+          {Icon && <Icon className="-ml-1 h-6 w-6" />}
         </Link>
         <div className="flex items-center justify-center space-x-2">
           <MobileNavigation
-            navItems={NavItems}
-            teamNavItems={TeamNavItems}
+            navItems={navItems}
+            teamNavItems={teamNavItems}
             isMobile={true}
           />
           <DesktopNavigation
-            navItems={NavItems}
-            teamNavItems={TeamNavItems}
+            navItems={navItems}
+            teamNavItems={teamNavItems}
             isMobile={false}
           />
           <ThemeToggleTab className="hidden md:flex" />
@@ -31,6 +40,6 @@ const NavBar = () => {
       </div>
     </header>
   );
-}
+};
 
-export default NavBar
+export default NavBar;
