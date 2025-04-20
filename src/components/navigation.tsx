@@ -3,6 +3,11 @@
 import Link from "next/link";
 
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
@@ -18,7 +23,15 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
-import { Contact, House, Info, Sparkles, Users } from "lucide-react";
+import {
+  Contact,
+  House,
+  Info,
+  Sparkles,
+  Users,
+  ChevronsUpDown,
+} from "lucide-react";
+import { useState } from "react";
 
 export function Navigation({
   navItems,
@@ -29,6 +42,8 @@ export function Navigation({
   teamNavItems: ListComponent[];
   isMobile: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <NavigationMenuList className="flex flex-col items-start justify-start md:flex-row">
       {navItems.map((item) => (
@@ -37,11 +52,15 @@ export function Navigation({
             <>
               {isMobile ? (
                 <>
-                  <Popover>
-                    <PopoverTrigger asChild>
+                  <Collapsible
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                    className="w-full space-y-2"
+                  >
+                    <CollapsibleTrigger asChild>
                       <NavigationMenuLink
                         // className={navigationMenuTriggerStyle()}
-                        className="flex flex-row space-x-3 items-center justify-center"
+                        className="flex flex-row space-x-3 items-center justify-start"
                       >
                         {isMobile && (
                           <div className="flex items-center justify-center px-1.5">
@@ -51,7 +70,13 @@ export function Navigation({
 
                         <span>{item.title}</span>
                       </NavigationMenuLink>
-                    </PopoverTrigger>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <TeamMenuContent teamNavItems={teamNavItems} />
+                    </CollapsibleContent>
+                  </Collapsible>
+                  {/* <Popover>
+                    <PopoverTrigger asChild></PopoverTrigger>
                     <PopoverContent
                       className="w-[90vw] max-w-[400px] rounded-lg overflow-hidden touch-auto pointer-events-auto"
                       align="center"
@@ -59,11 +84,9 @@ export function Navigation({
                       sideOffset={12}
                       collisionPadding={16}
                     >
-                      <ScrollArea className="h-[50vh] w-full py-2 px-4 overflow-y-auto touch-auto -webkit-overflow-scrolling-touch">
-                        <TeamMenuContent teamNavItems={teamNavItems} />
-                      </ScrollArea>
+                      <ScrollArea className="h-[50vh] w-full py-2 px-4 overflow-y-auto touch-auto -webkit-overflow-scrolling-touch"></ScrollArea>
                     </PopoverContent>
-                  </Popover>
+                  </Popover> */}
                 </>
               ) : (
                 <>

@@ -19,33 +19,31 @@ const ListTeams = ({
   ...props
 }: ListTeamsProps) => {
   return (
-    <li key={teamMember.name}>
-      <NavigationMenuLink asChild>
-        <Link
-          href={teamMember.href}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="flex space-x-2 items-start justify-center">
-            <DisplayAvatar
-              avatarProps={{
-                image: teamMember.image,
-                name: teamMember.name,
-              }}
-            />
-            <div className="flex flex-col space-y-1">
-              <div className="text-sm font-medium leading-none">{title}</div>
-              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                {children}
-              </p>
-            </div>
+    <NavigationMenuLink asChild>
+      <Link
+        href={teamMember.href}
+        className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+          className
+        )}
+        {...props}
+      >
+        <div className="flex space-x-2 items-start justify-center">
+          <DisplayAvatar
+            avatarProps={{
+              image: teamMember.image,
+              name: teamMember.name,
+            }}
+          />
+          <div className="flex flex-col space-y-1">
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </p>
           </div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+        </div>
+      </Link>
+    </NavigationMenuLink>
   );
 };
 

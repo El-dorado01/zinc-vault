@@ -210,3 +210,42 @@ html, body {
     transform: translate(-50%, -50%);
   }
 }
+
+/* Glow effect for cards */
+.glow-effect {
+  position: absolute;
+  width: 350px; /* Wider glow */
+  height: 350px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  transition: opacity 0.2s ease;
+  filter: blur(20px); /* Increased blur for softer effect */
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 80%); /* Fallback */
+}
+
+/* Dark mode */
+:root .dark .glow-effect,
+html[data-theme='dark'] .glow-effect,
+@media (prefers-color-scheme: dark) {
+  .glow-effect {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 80%);
+  }
+}
+
+/* Light mode */
+:root:not(.dark) .glow-effect,
+html[data-theme='light'] .glow-effect,
+@media (prefers-color-scheme: light) {
+  .glow-effect {
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, transparent 80%);
+  }
+}
+
+/* Placeholder glowing-border (replace with your original) */
+.glowing-border {
+  border: 1px solid oklch(0.65 0.18 172.73 / 0.5); /* Example green border */
+  box-shadow: 0 0 10px oklch(0.65 0.18 172.73 / 0.3);
+}

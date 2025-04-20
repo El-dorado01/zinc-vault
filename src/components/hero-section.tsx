@@ -63,10 +63,25 @@ export default function HeroSection() {
       yoyo: true,
       ease: "power1.inOut",
     });
+
+    // Hero section fade-out and sink
+    gsap.to('.hero-section', {
+      opacity: 0,
+      y: 100,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.rotating-cards-grid',
+        start: 'top 80%', // Start later for gradual coverage
+        end: 'top -20%', // Extend animation
+        scrub: 2, // Slower animation
+        toggleActions: 'play none none reverse',
+      },
+    });
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6">
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 w-[100vw] md:px-3">
       {/* Green Light Background Effect */}
       <div className="absolute inset-0 z-0">
         <div className="green-light"></div>
@@ -75,26 +90,25 @@ export default function HeroSection() {
       {/* Hero Content */}
       <div className="relative z-10 max-w-6xl mx-auto p-8 flex flex-col md:flex-row items-center justify-between space-x-3 min-h-[80vh]">
         {/* Text Content */}
-        <div className="md:w-1/2 mb-8 md:mb-0 min-h-[50vh] flex flex-col space-y-4">
-          <div className="flex flex-col gap-6">
-            <h1 className="hero-title text-4xl md:text-5xl font-bold text-foreground mb-4 leading-loose">
-              Build the Future
+        <div className="md:w-1/2 mb-8 md:mb-0 min-h-[50vh] flex flex-col space-y-2">
+          <div className="flex flex-col gap-3">
+            <h1 className="hero-title text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+              Expert Solutions for Creators and Businesses
             </h1>
             <p className="hero-subtext text-lg md:text-xl text-muted-foreground mb-6">
-              Transform your ideas into reality with innovative solutions and
-              cutting-edge technology.
+              Crafting engaging content, growing YouTube channels and promoting Steam games.
             </p>
           </div>
           <Link
-            href="/get-started"
+            href="/contact"
             className="hero-subtext inline-block text-center px-6 py-3 bg-primary text-black font-semibold rounded-md hover:bg-primary/90 transition-colors w-[200px] dark:text-white"
           >
-            Get Started
+            Contact Me
           </Link>
         </div>
 
         {/* Image Content */}
-        <div className="md:w-1/2 flex justify-center min-h-[50vh]">
+        <div className="md:w-1/2 flex justify-center min-h-[50vh] md:min-h-[75vh] lg:min-h-[50vh]">
           <div className="hero-image relative w-full max-w-md">
             <Image
               src="/teams/person3.jpg" // Replace with your image path
@@ -109,13 +123,15 @@ export default function HeroSection() {
       </div>
 
       {/* Bouncing Arrow Button */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <Link href="#next-section" className="bounce-arrow inline-block">
-          <ArrowDown
-            className="w-8 h-8 text-foreground hover:text-primary transition-colors"
-            aria-label="Scroll down"
-          />
-        </Link>
+      <div className="w-full flex items-center justify-center">
+        <div className="transform -translate-x-1/2 z-20 ml-4">
+          <Link href="#next-section" className="bounce-arrow inline-block">
+            <ArrowDown
+              className="w-8 h-8 text-foreground hover:text-primary transition-colors"
+              aria-label="Scroll down"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );
