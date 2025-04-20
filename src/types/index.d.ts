@@ -19,4 +19,5 @@ export interface SkillItem {
   icon: LucideIcon;
   title: string;
   image: string;
+  href: string;
 }

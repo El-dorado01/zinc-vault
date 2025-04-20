@@ -78,7 +78,7 @@ const RotatingCards = () => {
         className="rotating-cards-grid grid grid-cols-1 md:grid-cols-2 md:grid-rows-4 w-[90vw] gap-5 mx-auto"
         style={{ marginBottom: "-300px" }}
       >
-        {skillsData.map(({ id, icon: Icon, title }, index) => (
+        {skillsData.map(({ id, icon: Icon, title, href }, index) => (
           <div
             key={id}
             className={`relative overflow-hidden ${
@@ -109,7 +109,7 @@ const RotatingCards = () => {
                 facilis?
               </p>
               <Link
-                href=""
+                href={href}
                 className="flex items-center justify-center space-x-1 text-center py-2 px-4 rounded-full border border-primary mt-3"
               >
                 <span>Visit</span>

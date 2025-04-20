@@ -55,25 +55,36 @@ const skillsData: SkillItem[] = [
     icon: Youtube,
     image: "/ecommerce.png",
     title: "Youtube Automation and Monetization",
+    href: "/youtube-automation"
   },
   {
     id: 2,
     icon: Gamepad2,
     image: "/ecommerce.png",
     title: "Steam Game Promotion",
+    href: "/steam-game-promotion"
   },
   {
     id: 3,
     icon: ShoppingCart,
     image: "/ecommerce.png",
     title: "Ecommerce Store Design and Promotion",
+    href: "ecommerce-store-design"
   },
   {
     id: 4,
     icon: BookOpenText,
     image: "/writing.png",
     title: "Content Writing",
+    href: "/content-writing"
   },
 ];
 
-export { NavItems, TeamNavItems, skillsData, GameNavItems };
+const gameBgImages = [
+  "/game-bg/watchdogs.jpg",
+  "/game-bg/warzone.jpg",
+  "/game-bg/arcane.jpg",
+  "/game-bg/unnamed.jpg",
+];
+
+export { NavItems, TeamNavItems, skillsData, GameNavItems, gameBgImages };
