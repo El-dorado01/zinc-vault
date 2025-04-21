@@ -21,3 +21,16 @@ export interface SkillItem {
   image: string;
   href: string;
 }
+
+export interface TrustSignal {
+  name: string;
+  image: string;
+  alt: string;
+  comment?: string;
+}
+
+export interface ServiceOverview {
+  name: string;
+  text: string;
+  icon: LucideIcon;
+}

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { gameBgImages } from "./items";
+import Link from "next/link";
 
 
 export default function GameHero() {
@@ -28,9 +29,12 @@ export default function GameHero() {
           We turn struggling indie games into Steam success stories with small
           budgets and big results.
         </p>
-        <button className="mt-6 px-6 py-3 bg-[#00C4FF] text-black rounded-full hover:bg-primary/90">
+        <Link
+          href={"/steam-game-promotion/about"}
+          className="mt-6 px-6 py-3 bg-[#00C4FF] text-black rounded-full hover:bg-[#00C4FF]/60"
+        >
           Learn More
-        </button>
+        </Link>
       </div>
 
       {/* Carousel for Background gameBgImages */}

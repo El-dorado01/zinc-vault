@@ -1,5 +1,5 @@
-import { SkillItem } from "@/types";
-import { BookOpenText, Gamepad2, ShoppingCart, Youtube } from "lucide-react";
+import { ServiceOverview, SkillItem, TrustSignal } from "@/types";
+import { BatteryCharging, BookOpenText, Gamepad2, PiggyBank, Rocket, ShoppingCart, Youtube } from "lucide-react";
 
 const NavItems = [
   { title: "Home", key: "home", href: "/" },
@@ -82,9 +82,54 @@ const skillsData: SkillItem[] = [
 
 const gameBgImages = [
   "/game-bg/watchdogs.jpg",
-  "/game-bg/warzone.jpg",
-  "/game-bg/arcane.jpg",
+  "/game-bg/arcane1.jpg",
   "/game-bg/unnamed.jpg",
 ];
 
-export { NavItems, TeamNavItems, skillsData, GameNavItems, gameBgImages };
+const TrustSignals: TrustSignal[] = [
+  {
+    name: "Mortal Kombat 11",
+    image: "/game-bg/mortal-kombat.svg",
+    alt: "MK",
+    comment: "Sales +300%",
+  },
+  {
+    name: "Call of Duty",
+    image: "/game-bg/call-of-duty.svg",
+    alt: "CoD",
+    comment: "WishLists +300%",
+  },
+  {
+    name: "Spider Man - Mile Morales",
+    image: "/game-bg/spider-man.png",
+    alt: "SM",
+  },
+];
+
+const ServicesOverview: ServiceOverview[] = [
+  {
+    name: "Post-Launch Market Rescue",
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    icon: Rocket,
+  },
+  {
+    name: "Small Budget, Big Results",
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    icon: PiggyBank,
+  },
+  {
+    name: "Reviving Struggling Games",
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    icon: BatteryCharging,
+  },
+];
+
+export {
+  NavItems,
+  TeamNavItems,
+  skillsData,
+  GameNavItems,
+  gameBgImages,
+  TrustSignals,
+  ServicesOverview,
+};

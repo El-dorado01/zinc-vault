@@ -1,47 +1,17 @@
 import GameHero from "@/components/game-hero";
-import Image from "next/image";
+import ServicesOverviewComponent from "@/components/services-overview";
+import { TrustSignalsComponent } from "@/components/trust-signals";
 
 const SteamGamePage = () => {
   return (
     <>
       <GameHero />
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-12 px-5 py-16 border w-full">
-        <div className="flex flex-col space-y-2 items-center justify-center">
-          <Image
-            src={"/game-bg/mortal-kombat.svg"}
-            alt={"MK"}
-            width={48}
-            height={48}
-            className="h-12 w-12"
-          />
-          <div className="font-semibold text-md text-green-500">
-            Sales +300%
-          </div>
-        </div>
-        <div className="flex flex-col space-y-2 items-center justify-center">
-          <Image
-            src={"/game-bg/call-of-duty.svg"}
-            alt={"MK"}
-            width={48}
-            height={48}
-            className="h-12 w-12"
-          />
-          <div className="font-semibold text-md text-green-500">
-            Wishlists +480%
-          </div>
-        </div>
-        <div className="flex flex-col space-y-2 items-center justify-center">
-          <Image
-            src={"/game-bg/call-of-duty.svg"}
-            alt={"MK"}
-            width={48}
-            height={48}
-            className="h-12 w-12"
-          />
-          <div className="font-semibold text-md text-green-500">
-            Sales +300%
-          </div>
-        </div>
+      <TrustSignalsComponent />
+      <ServicesOverviewComponent />
+      <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-3">
+        <h1 className="font-bold text-3xl mb-13">
+          Success Story: CyberSmith’s BattleForge
+        </h1>
       </div>
     </>
   );
