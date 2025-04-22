@@ -167,16 +167,19 @@ const GameTeams: ListComponent[] = [
   {
     name: "Karen McMillan",
     image: "/teams/person1.jpg",
+    href: "",
     role: "Led campaigns for 10+ indie titles.",
   },
   {
     name: "Bukayo Saka",
     image: "/teams/person2.jpg",
+    href: "",
     role: "Expert in Steam algorithm optimization.",
   },
   {
     name: "Ademola Lookman",
     image: "/teams/person3.jpg",
+    href: "",
     role: "Backend Developer with a focus on building scalable and efficient systems.",
   },
 ];
