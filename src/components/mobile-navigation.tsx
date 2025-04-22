@@ -7,6 +7,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { type ListComponent, type NavItem } from "@/types";
@@ -14,7 +22,7 @@ import { Navigation } from "./navigation";
 import { NavigationMenu } from "./ui/navigation-menu";
 import ThemeToggleTab from "./themes";
 import { ScrollArea } from "./ui/scroll-area";
-import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import { ChevronsUpDown, Facebook, Linkedin, Sparkles, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
 const MobileNavigation = ({
@@ -28,6 +36,30 @@ const MobileNavigation = ({
 }) => {
   return (
     <>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <div className="flex md:hidden items-center justify-center space-x-1 text-muted-foreground rounded-md p-1.5">
+            <Sparkles className="size-4" />
+            <ChevronsUpDown className="size-3" />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Skills</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link href="/youtube-automation">Youtube Automation</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/steam-game-promotion">Steam Game Promotion</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/ecommerce-store-design">Ecommerce Store Design</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/content-writing">Content Writing</Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <Drawer>
         <DrawerTrigger asChild>
           <button className="block md:hidden p-2 rounded-md hover:bg-zinc-500/10 focus:outline-none focus:ring-2 focus:ring-zinc-500">
