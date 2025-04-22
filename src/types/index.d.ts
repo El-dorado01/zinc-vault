@@ -33,6 +33,14 @@ export interface ServiceOverview {
   name: string;
   text: string;
   icon: LucideIcon;
+  process?: {
+    key: string;
+    text: string;
+  };
+  extraText: {
+    key: string;
+    text: string;
+  };
 }
 
 export interface Testimonial {

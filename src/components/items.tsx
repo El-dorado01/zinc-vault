@@ -1,5 +1,19 @@
-import { ListComponent, ServiceOverview, SkillItem, Testimonial, TrustSignal } from "@/types";
-import { BatteryCharging, BookOpenText, Gamepad2, PiggyBank, Rocket, ShoppingCart, Youtube } from "lucide-react";
+import {
+  ListComponent,
+  ServiceOverview,
+  SkillItem,
+  Testimonial,
+  TrustSignal,
+} from "@/types";
+import {
+  BatteryCharging,
+  BookOpenText,
+  Gamepad2,
+  PiggyBank,
+  Rocket,
+  ShoppingCart,
+  Youtube,
+} from "lucide-react";
 
 const NavItems = [
   { title: "Home", key: "home", href: "/" },
@@ -63,28 +77,28 @@ const skillsData: SkillItem[] = [
     icon: Youtube,
     image: "/ecommerce.png",
     title: "Youtube Automation and Monetization",
-    href: "/youtube-automation"
+    href: "/youtube-automation",
   },
   {
     id: 2,
     icon: Gamepad2,
     image: "/ecommerce.png",
     title: "Steam Game Promotion",
-    href: "/steam-game-promotion"
+    href: "/steam-game-promotion",
   },
   {
     id: 3,
     icon: ShoppingCart,
     image: "/ecommerce.png",
     title: "Ecommerce Store Design and Promotion",
-    href: "ecommerce-store-design"
+    href: "ecommerce-store-design",
   },
   {
     id: 4,
     icon: BookOpenText,
     image: "/writing.png",
     title: "Content Writing",
-    href: "/content-writing"
+    href: "/content-writing",
   },
 ];
 
@@ -117,18 +131,34 @@ const TrustSignals: TrustSignal[] = [
 const ServicesOverview: ServiceOverview[] = [
   {
     name: "Post-Launch Market Rescue",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    text: "We analyze why your game isn’t performing and deploy targeted campaigns to boost visibility and sales.",
     icon: Rocket,
+    process: {
+      key: "Process",
+      text: "Data analysis, audience targeting, campaign execution, performance tracking.",
+    },
+    extraText: {
+      key: "Tools",
+      text: "Steam analytics, social media ads, influencers.",
+    },
   },
   {
     name: "Small Budget, Big Results",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    text: "We maximize ROI with high-impact, low-cost strategies like community engagement and organic growth.",
     icon: PiggyBank,
+    extraText: {
+      key: "Examples",
+      text: "Discord community building, Reddit campaigns, cross-promotions.",
+    },
   },
   {
     name: "Reviving Struggling Games",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero soluta ducimus magni quibusdam delectus dignissimos.",
+    text: "We identify core issues (e.g., poor discoverability, negative reviews) and implement tailored solutions.",
     icon: BatteryCharging,
+    extraText: {
+      key: "Approach",
+      text: "Review management, Steam page optimization, relaunch campaigns.",
+    },
   },
 ];
 
