@@ -1,4 +1,4 @@
-import { ServiceOverview, SkillItem, TrustSignal } from "@/types";
+import { ServiceOverview, SkillItem, Testimonial, TrustSignal } from "@/types";
 import { BatteryCharging, BookOpenText, Gamepad2, PiggyBank, Rocket, ShoppingCart, Youtube } from "lucide-react";
 
 const NavItems = [
@@ -82,7 +82,7 @@ const skillsData: SkillItem[] = [
 
 const gameBgImages = [
   "/game-bg/watchdogs.jpg",
-  "/game-bg/arcane1.jpg",
+  "/game-bg/arcane.jpg",
   "/game-bg/unnamed.jpg",
 ];
 
@@ -124,6 +124,37 @@ const ServicesOverview: ServiceOverview[] = [
   },
 ];
 
+const SuccessStoryImages: string[] = [
+  "/game-bg/success-one.jpg",
+  "/game-bg/success-two.jpg",
+  "/game-bg/arcane.jpg",
+];
+
+const Testimonials: Testimonial[] = [
+  {
+    name: "CyberSmith Studios",
+    image: "/teams/person1.jpg",
+    message: "Your team turned our game around!",
+  },
+  {
+    name: "Arcane Inc.",
+    image: "/teams/person3.jpg",
+    message:
+      "They increased our sales in just two months, I highly recommend them!",
+  },
+  {
+    name: "Marvel Studios",
+    image: "/teams/person2.jpg",
+    message: "Your team turned our game around!",
+  },
+  {
+    name: "Davies Films",
+    image: "/teams/person2.jpg",
+    message:
+      "They increased our sales in just two months, I highly recommend them!",
+  },
+];
+
 export {
   NavItems,
   TeamNavItems,
@@ -132,4 +163,6 @@ export {
   gameBgImages,
   TrustSignals,
   ServicesOverview,
+  SuccessStoryImages,
+  Testimonials,
 };

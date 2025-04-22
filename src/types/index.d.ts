@@ -34,3 +34,9 @@ export interface ServiceOverview {
   text: string;
   icon: LucideIcon;
 }
+
+export interface Testimonial {
+  name: string;
+  image: string;
+  message: string;
+}

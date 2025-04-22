@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const ServicesOverviewComponent = () => {
   return (
-    <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-20 space-y-3 border-dashed border-t border-b border-r-0 border-l-0">
+    <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-15 space-y-3">
       <h1 className="font-bold text-3xl mb-13">
         How We Help Your Game Succeed
       </h1>
