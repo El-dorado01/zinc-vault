@@ -9,8 +9,8 @@ export interface NavItem {
 export interface ListComponent {
   name: string;
   image: string;
-  href: string;
-  leader: boolean;
+  href?: string;
+  leader?: boolean;
   role: string;
 }
 

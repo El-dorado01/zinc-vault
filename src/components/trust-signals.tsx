@@ -19,7 +19,7 @@ export const TrustSignalsComponent = () => {
         {TrustSignals.map((signal, index) => (
           <div
             key={index}
-            className="flex flex-col flex-1 md:flex-1/3 space-y-2 items-center justify-center border border-foreground dark:border-sidebar-border rounded-sm hover:shadow-sm shadow-foreground p-4 my-3 w-full"
+            className="flex flex-col flex-1 md:flex-1/3 space-y-2 items-center justify-center border border-foreground dark:border-sidebar-border rounded-sm hover:shadow-sm shadow-foreground p-4 my-3 w-full transition-transform duration-300 ease-in-out transform hover:scale-105"
           >
             <h2 className="font-semibold text-xl mb-2">{signal.name}</h2>
             <Image

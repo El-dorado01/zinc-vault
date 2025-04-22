@@ -42,3 +42,146 @@ COLOR: e.g., electric blue #00C4FF, neon green #00FF66) to reflect Steam’s bra
 | [X Icon] [LinkedIn Icon] [Discord Icon]        |
 | [Contact Us] [© 2025 Your Company Name]        |
 --------------------------------------------------
+
+
+
+
+
+--------------------------------------------------
+| HEADER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+--------------------------------------------------
+| HERO SECTION                                   |
+| Background: [Subtle Gaming Grid Pattern]       |
+| Headline: "Empowering Indie Games with Expertise" |
+| Subheading: "We’re passionate about helping Steam games succeed." |
+--------------------------------------------------
+| OUR STORY SECTION                              |
+| +------------------+------------------+          |
+| | [Team Photo or Gaming Illustration] |          |
+| | "We started with a mission to help indie developers overcome marketing challenges on Steam. With years of experience in gaming and analytics, we specialize in turning struggling games into success stories." | |
+| +------------------+------------------+          |
+--------------------------------------------------
+| TEAM SECTION                                   |
+| Headline: "Meet the Team"                      |
+| +------------------+------------------+          |
+| | [Photo: Member 1] | [Photo: Member 2] |          |
+| | Name: [Name]     | Name: [Name]     |          |
+| | Role: Marketing  | Role: Analytics  |          |
+| | "Led campaigns for 10+ indie titles." | "Expert in Steam algorithm optimization." | |
+| +------------------+------------------+          |
+--------------------------------------------------
+| MISSION SECTION                                |
+| Headline: "Our Mission"                        |
+| "We empower indie developers to succeed on Steam by solving marketing challenges with creativity and data." |
+| [Learn More About Our Services (Neon Green)]   |
+--------------------------------------------------
+| FOOTER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+| [X Icon] [LinkedIn Icon] [Discord Icon]        |
+| [Contact Us] [© 2025 Your Company Name]        |
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+--------------------------------------------------
+| HEADER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+--------------------------------------------------
+| HERO SECTION                                   |
+| Background: [Dark Gradient with Game Texture]  |
+| Headline: "Tailored Solutions for Steam Success" |
+| Subheading: "Our services are designed to rescue and revive your game." |
+--------------------------------------------------
+| SERVICE 1: POST-LAUNCH MARKETING RESCUE        |
+| +------------------+------------------+          |
+| | [Rocket Icon (Neon Blue)] |                     |
+| | "We analyze why your game isn’t performing and deploy targeted campaigns to boost visibility and sales." | |
+| | Process: Data analysis, audience targeting, campaign execution, performance tracking. | |
+| | Tools: Steam analytics, social media ads, influencers. | |
+| +------------------+------------------+          |
+--------------------------------------------------
+| SERVICE 2: SMALL BUDGET, BIG RESULTS           |
+| +------------------+------------------+          |
+| | [Piggy Bank Icon (Neon Green)] |                |
+| | "We maximize ROI with high-impact, low-cost strategies like community engagement and organic growth." | |
+| | Examples: Discord community building, Reddit campaigns, cross-promotions. | |
+| +------------------+------------------+          |
+--------------------------------------------------
+| SERVICE 3: REVIVING STRUGGLING GAMES           |
+| +------------------+------------------+          |
+| | [Phoenix Icon (Neon Blue)] |                    |
+| | "We identify core issues (e.g., poor discoverability, negative reviews) and implement tailored solutions." | |
+| | Approach: Review management, Steam page optimization, relaunch campaigns. | |
+| +------------------+------------------+          |
+| [Contact Us to Discuss Your Needs (Neon Green)] |
+--------------------------------------------------
+| FOOTER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+| [X Icon] [LinkedIn Icon] [Discord Icon]        |
+| [Contact Us] [© 2025 Your Company Name]        |
+--------------------------------------------------
+
+
+
+
+
+
+
+
+--------------------------------------------------
+| HEADER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+--------------------------------------------------
+| HERO SECTION                                   |
+| Background: [Dark Grid with Game UI Elements]  |
+| Headline: "Our Success Stories"                |
+| Subheading: "See how we’ve transformed struggling Steam games." |
+--------------------------------------------------
+| FILTERS SECTION                                |
+| [Genre: All | RPG | Strategy] [Budget: All | Small | Medium] [Problem: All | Low Sales | Poor Reviews] |
+--------------------------------------------------
+| CASE STUDY 1: CYBERSMITH’S BATTLEFORGE         |
+| +------------------+------------------+          |
+| | [Game Artwork]   | [Line Chart: Sales Growth] | |
+| | Problem: "Only 300 units sold in first month." | |
+| | Approach: "Optimized Steam page, ran $3,000 influencer campaign, hosted Discord tournament." | |
+| | Results: "Sales +400% (1,200 units), Wishlists: 400 → 6,000." | |
+| +------------------+------------------+          |
+| Testimonial: "'Turned our game around!' – CyberSmith Studios" |
+| [View Details (Neon Green)]                    |
+--------------------------------------------------
+| CASE STUDY 2: STARHOPPER                       |
+| +------------------+------------------+          |
+| | [Game Artwork]   | [Bar Chart: Pre/Post Metrics] | |
+| | Problem: "Low wishlists despite good reviews." | |
+| | Approach: "Updated Steam tags, ran Reddit campaign." | |
+| | Results: "Wishlists +500%, Daily Active Users: 100 → 1,000." | |
+| +------------------+------------------+          |
+| Testimonial: "'A game-changer for us!' – StarHopper Team" |
+| [View Details (Neon Green)]                    |
+--------------------------------------------------
+| CASE STUDY 3: DINORUSH                         |
+| +------------------+------------------+          |
+| | [Game Artwork]   | [Pie Chart: Budget Allocation] | |
+| | Problem: "Negative reviews hurt sales."       | |
+| | Approach: "Managed reviews, relaunched with new trailer." | |
+| | Results: "Review score improved 20%, Sales +200%." | |
+| +------------------+------------------+          |
+| Testimonial: "'Brought our game back to life!' – DinoRush Devs" |
+| [View Details (Neon Green)]                    |
+--------------------------------------------------
+| PAGINATION                                     |
+| [◄] [1 ● 2 3 4] [►]                           |
+--------------------------------------------------
+| FOOTER                                         |
+| [Your Logo]      [Home | About | Services | Portfolio | Blog | Contact] |
+| [X Icon] [LinkedIn Icon] [Discord Icon]        |
+| [Contact Us] [© 2025 Your Company Name]        |
+--------------------------------------------------

@@ -12,14 +12,21 @@ type NavBarProps = {
   teamNavItems?: ListComponent[];
   icon?: LucideIcon;
   iconColor?: string;
+  mainHref?: string;
 };
 
-const NavBar = ({ navItems, teamNavItems, icon: Icon, iconColor }: NavBarProps) => {
+const NavBar = ({
+  navItems,
+  teamNavItems,
+  icon: Icon,
+  iconColor,
+  mainHref = "/",
+}: NavBarProps) => {
   return (
     <header className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-sm shadow-sm text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link
-          href="/"
+          href={mainHref}
           className="text-2xl font-bold hover:text-blue-500 transition-colors flex items-center justify-center space-x-3"
         >
           <span>ZV</span>

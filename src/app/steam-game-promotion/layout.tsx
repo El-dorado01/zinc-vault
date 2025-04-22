@@ -6,7 +6,12 @@ import { PropsWithChildren } from "react";
 const SteamGameLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <NavBar navItems={GameNavItems} icon={Gamepad2} iconColor="#00C4FF" />
+      <NavBar
+        navItems={GameNavItems}
+        icon={Gamepad2}
+        iconColor="#00C4FF"
+        mainHref="/steam-game-promotion"
+      />
       {children}
     </div>
   );

@@ -1,4 +1,4 @@
-import { ServiceOverview, SkillItem, Testimonial, TrustSignal } from "@/types";
+import { ListComponent, ServiceOverview, SkillItem, Testimonial, TrustSignal } from "@/types";
 import { BatteryCharging, BookOpenText, Gamepad2, PiggyBank, Rocket, ShoppingCart, Youtube } from "lucide-react";
 
 const NavItems = [
@@ -10,12 +10,20 @@ const NavItems = [
 ];
 
 const GameNavItems = [
-  { title: "Home", key: "home", href: "/" },
-  { title: "About", key: "about", href: "/about" },
-  { title: "Services", key: "services", href: "/" },
-  { title: "Portfolio", key: "portfolio", href: "/" },
-  { title: "Blog", key: "blog", href: "/" },
-  { title: "Contact", key: "contact", href: "/contact" },
+  { title: "Home", key: "home", href: "//steam-game-promotion" },
+  { title: "About", key: "about", href: "/steam-game-promotion/about" },
+  {
+    title: "Services",
+    key: "services",
+    href: "/steam-game-promotion/services",
+  },
+  {
+    title: "Portfolio",
+    key: "portfolio",
+    href: "/steam-game-promotion/portfolio",
+  },
+  // { title: "Blog", key: "blog", href: "/" },
+  { title: "Contact", key: "contact", href: "/steam-game-promotion/contact" },
 ];
 
 const TeamNavItems = [
@@ -155,6 +163,24 @@ const Testimonials: Testimonial[] = [
   },
 ];
 
+const GameTeams: ListComponent[] = [
+  {
+    name: "Karen McMillan",
+    image: "/teams/person1.jpg",
+    role: "Led campaigns for 10+ indie titles.",
+  },
+  {
+    name: "Bukayo Saka",
+    image: "/teams/person2.jpg",
+    role: "Expert in Steam algorithm optimization.",
+  },
+  {
+    name: "Ademola Lookman",
+    image: "/teams/person3.jpg",
+    role: "Backend Developer with a focus on building scalable and efficient systems.",
+  },
+];
+
 export {
   NavItems,
   TeamNavItems,
@@ -165,4 +191,5 @@ export {
   ServicesOverview,
   SuccessStoryImages,
   Testimonials,
+  GameTeams,
 };
