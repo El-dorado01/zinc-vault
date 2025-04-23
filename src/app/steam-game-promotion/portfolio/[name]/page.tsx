@@ -35,8 +35,8 @@ const SingleGamePage = () => {
                     target="_blank"
                     className="flex items-center justify-center space-x-2 text-sm mt-2 italic font-bold text-[#00C4FF] hover:underline hover:text-[#00C4FF]/50 transition-colors duration-300 ease-in-out"
                   >
-                    <User className="size-4 italic" />
-                    <span>CyberSmith's Studio</span>
+                    <User className="size-4" />
+                    <span>CyberSmith Studio</span>
                   </a>
                 </div>
               </div>
