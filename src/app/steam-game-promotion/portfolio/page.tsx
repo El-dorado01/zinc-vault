@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { Games, PortfolioGames } from "@/components/items";
 import Link from "next/link";
-import { getInitials } from "@/lib/getInitials";
+import { getInitials, splitAndJoin } from "@/lib/getInitials";
 
 const PortfolioPage = () => {
   return (
@@ -25,7 +25,9 @@ const PortfolioPage = () => {
                 className="sm:basis-1/2 lg:basis-1/3 h-50 pl-2"
               >
                 <Link
-                  href={`/steam-game-promotion/portfolio/${game.name}`}
+                  href={`/steam-game-promotion/portfolio/${splitAndJoin(
+                    game.name
+                  )}`}
                   className="w-full h-full rounded-lg relative overflow-hidden group"
                 >
                   {/* Gradient background with hover effect */}
@@ -77,7 +79,9 @@ const PortfolioPage = () => {
           {Games.map((game, index) => (
             <div key={index} className="border w-full h-full rounded-md">
               <Link
-                href={`/steam-game-promotion/portfolio/${game.name}`}
+                href={`/steam-game-promotion/portfolio/${splitAndJoin(
+                  game.name
+                )}`}
                 className="rounded-md relative group"
               >
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent transition-all duration-300 ease-in-out group-hover:h-3/4 z-0 rounded-bl-md rounded-br-md"></div>

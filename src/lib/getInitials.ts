@@ -20,3 +20,7 @@ export function getInitials(name: string): string {
 
   return initials;
 }
+
+export function splitAndJoin(name: string): string {
+  return name.split(" ").join("-");
+}

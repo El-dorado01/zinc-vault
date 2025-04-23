@@ -13,6 +13,7 @@ export const TrustSignalsComponent = () => {
           alt="Steam Logo"
           width={100}
           height={100}
+          unoptimized
         />
       </div>
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
