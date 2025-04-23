@@ -43,7 +43,7 @@ const SingleGamePage = () => {
             </CardContent>
           </Card>
           <SingleGameCarousel />
-          <ScrollArea className="flex-1 lg:flex-1/3 flex flex-col items-center justify-start lg:max-h-[80vh] overflow-y-auto mr-2">
+          <ScrollArea className="flex-1 lg:flex-1/3 flex flex-col items-center justify-start lg:max-h-[80vh] overflow-y-auto lg:mr-2">
             <GameDetails />
             <GameProblem />
             <GameApproach />
