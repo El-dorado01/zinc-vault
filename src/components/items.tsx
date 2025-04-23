@@ -1,5 +1,7 @@
 import {
+  GameItem,
   ListComponent,
+  PortfolioGame,
   ServiceOverview,
   SkillItem,
   Testimonial,
@@ -214,6 +216,107 @@ const GameTeams: ListComponent[] = [
   },
 ];
 
+const PortfolioGames: PortfolioGame[] = [
+  {
+    name: "Game Title 1",
+    image: "/games/image2.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    firstIcon: "Art Blast",
+    secondIcon: "Ad",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image1.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    firstIcon: "Art Blast",
+    secondIcon: "Ad",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image3.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image4.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    firstIcon: "Art Blast",
+    secondIcon: "Ad",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image5.png",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image6.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    name: "Game Title 1",
+    image: "/games/image7.png",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    firstIcon: "Art Blast",
+    secondIcon: "Ad",
+  },
+];
+
+const Games: GameItem[] = [
+  {
+    thumbnail: "/games/thumbnail1.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail2.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail3.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail4.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail5.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail6.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail7.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail8.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail9.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail10.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail11.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail12.jpg",
+    name: "Game One",
+  },
+  {
+    thumbnail: "/games/thumbnail13.png",
+    name: "Game One",
+  },
+];
+
 export {
   NavItems,
   TeamNavItems,
@@ -225,4 +328,6 @@ export {
   SuccessStoryImages,
   Testimonials,
   GameTeams,
+  PortfolioGames,
+  Games,
 };

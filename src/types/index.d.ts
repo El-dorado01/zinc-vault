@@ -48,3 +48,16 @@ export interface Testimonial {
   image: string;
   message: string;
 }
+
+export interface PortfolioGame {
+  name: string;
+  image: string;
+  description?: string;
+  firstIcon?: string;
+  secondIcon?: string;
+}
+
+export interface GameItem {
+  thumbnail: string;
+  name: string;
+}

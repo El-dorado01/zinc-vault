@@ -9,7 +9,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
     <div className="flex flex-col items-center justify-center">
       <NavBar navItems={NavItems} teamNavItems={TeamNavItems} />
       {children}
-      <div className="border-t border-dashed flex flex-col md:flex-row space-y-3.5 flex-1 py-7 px-10 w-full items-center justify-between">
+      <div className="border-t border-dashed flex flex-col md:flex-row space-y-3.5 flex-1 py-7 px-4 md:px-8 xl:px-35 w-full items-center justify-between">
         <Link
           href="/"
           className="text-2xl font-bold hover:text-blue-500 transition-colors"

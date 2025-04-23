@@ -29,34 +29,34 @@ const ServicesPage = () => {
       {/* Our Story */}
       {ServicesOverview.map(
         ({ name, icon: Icon, text, process, extraText }, index) => (
-          <>
-            <div
-              key={index}
-              className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10"
-            >
-              <h1 className="font-bold text-3xl">{name}</h1>
-              <div className="flex flex-col md:flex-row space-y-5 items-center justify-start space-x-7 w-full">
-                <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
-                  <div className="flex items-center justify-center space-x-5 mb-2">
-                    <div className="rounded-full p-2 flex items-center justify-center h-12 w-12 self-start">
-                      <Icon className="size-8" />
-                    </div>
-                    <p className="leading-snug">{text}</p>
+          <div
+            key={index}
+            className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10"
+          >
+            <h1 className="font-bold text-3xl">{name}</h1>
+            <div className="flex flex-col md:flex-row space-y-5 items-center justify-start space-x-7 w-full">
+              <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
+                <div className="flex items-center justify-center space-x-5">
+                  <div className="rounded-full p-2 flex items-center justify-center h-12 w-12 self-start">
+                    <Icon className="size-8" />
                   </div>
-                  {process && (
-                    <>
-                      <h2 className="text-2xl font-semibold">{process.key}</h2>
-                      <p className="leading-snug">{process.text}</p>
-                    </>
-                  )}
+                  <p className="leading-snug">{text}</p>
                 </div>
-                <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
-                  <h2 className="text-2xl font-semibold">{extraText.key}</h2>
-                  <p className="leading-snug">{extraText.text}</p>
-                </div>
+                {process && (
+                  <>
+                    <h2 className="text-2xl font-semibold mt-4 md:mt-0">
+                      {process.key}
+                    </h2>
+                    <p className="leading-snug">{process.text}</p>
+                  </>
+                )}
+              </div>
+              <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
+                <h2 className="text-2xl font-semibold">{extraText.key}</h2>
+                <p className="leading-snug">{extraText.text}</p>
               </div>
             </div>
-          </>
+          </div>
         )
       )}
     </>
