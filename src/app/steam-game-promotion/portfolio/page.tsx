@@ -16,7 +16,7 @@ import { getInitials, splitAndJoin } from "@/lib/getInitials";
 const PortfolioPage = () => {
   return (
     <>
-      <div className="w-full px-4 md:px-8 xl:px-35 py-5">
+      <div className="w-full max-w-6xl mx-auto px-4 py-5">
         <Carousel className="w-full">
           <CarouselContent className="px-4">
             {PortfolioGames.map((game, index) => (
@@ -72,7 +72,7 @@ const PortfolioPage = () => {
           <CarouselNext className="hidden md:flex absolute right-1" />
         </Carousel>
       </div>
-      <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10">
+      <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
         <h1 className="font-bold text-3xl">Case Studies</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-4 w-full min-h-screen gap-2">

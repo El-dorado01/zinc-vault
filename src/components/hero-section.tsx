@@ -81,14 +81,14 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 w-[100vw] md:w-[90vw] md:px-3">
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 max-w-6xl mx-auto px-3 hero-section">
       {/* Green Light Background Effect */}
       <div className="absolute inset-0 z-0">
         <div className="green-light"></div>
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-6xl mx-auto p-8 flex flex-col md:flex-row items-center justify-between space-x-3 min-h-[80vh]">
+      <div className="relative z-10 max-w-6xl mx-auto p-3 sm:p-4 md:p-8 flex flex-col md:flex-row items-center justify-between space-x-3 min-h-[80vh]">
         {/* Text Content */}
         <div className="md:w-1/2 mb-8 md:mb-0 min-h-[50vh] flex flex-col space-y-2">
           <div className="flex flex-col gap-3">
@@ -96,7 +96,8 @@ export default function HeroSection() {
               Expert Solutions for Creators and Businesses
             </h1>
             <p className="hero-subtext text-lg md:text-xl text-muted-foreground mb-6">
-              Crafting engaging content, growing YouTube channels and promoting Steam games.
+              Crafting engaging content, growing YouTube channels and promoting
+              Steam games.
             </p>
           </div>
           <Link

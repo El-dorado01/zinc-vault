@@ -1,103 +1,101 @@
-"use client";
-
 import Link from "next/link";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  // navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Separator } from "@/components/ui/separator";
 import { type ListComponent, type NavItem } from "@/types";
 import TeamMenuContent from "./team-menu-content";
-import { Contact, House, Info, Sparkles, Users } from "lucide-react";
-import { useState } from "react";
+import TeamMobile from "./team-mobile-collapsible";
 
 export function Navigation({
   navItems,
   teamNavItems,
+  skillNavItems,
   isMobile,
 }: {
   navItems: NavItem[];
-  teamNavItems?: ListComponent[];
+  teamNavItems: ListComponent[];
+  skillNavItems?: NavItem[];
   isMobile: boolean;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <NavigationMenuList className="flex flex-col items-start justify-start md:flex-row">
-      {navItems.map((item) => (
-        <NavigationMenuItem key={item.key}>
-          {teamNavItems && item.key === "teams" ? (
-            <>
-              {isMobile ? (
-                <>
-                  <Collapsible
-                    open={isOpen}
-                    onOpenChange={setIsOpen}
-                    className="w-full space-y-2"
-                  >
-                    <CollapsibleTrigger asChild>
-                      <NavigationMenuLink
-                        // className={navigationMenuTriggerStyle()}
-                        className="flex flex-row space-x-3 items-center justify-start"
-                      >
-                        {isMobile && (
-                          <div className="flex items-center justify-center px-1.5">
-                            <Users className="size-4" />
-                          </div>
-                        )}
-
-                        <span>{item.title}</span>
-                      </NavigationMenuLink>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
+    <>
+      <NavigationMenuList className="flex flex-col items-start justify-start md:flex-row w-full max-w-sm">
+        {navItems.map(({ key, title, href, icon: Icon }) => (
+          <NavigationMenuItem
+            key={key}
+            className="w-[90vw] flex flex-col items-start justify-center"
+          >
+            {teamNavItems && key === "teams" ? (
+              <>
+                {isMobile ? (
+                  <TeamMobile
+                    isMobile={isMobile}
+                    teamNavItems={teamNavItems}
+                    title={title}
+                  />
+                ) : (
+                  <>
+                    <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
                       <TeamMenuContent teamNavItems={teamNavItems} />
-                    </CollapsibleContent>
-                  </Collapsible>
-                </>
-              ) : (
-                <>
-                  <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <TeamMenuContent teamNavItems={teamNavItems} />
-                  </NavigationMenuContent>
-                </>
-              )}
-            </>
-          ) : (
-            <NavigationMenuLink asChild>
-              <Link
-                href={item.href}
-                className="flex flex-row space-x-3 items-center justify-center"
-              >
-                {isMobile && (
-                  <div className="flex items-center justify-center px-1.5">
-                    {item.key === "home" ? (
-                      <House className="size-4" />
-                    ) : item.key === "about" ? (
-                      <Info className="size-4" />
-                    ) : item.key === "skills" ? (
-                      <Sparkles className="size-4" />
-                    ) : (
-                      <Contact className="size-4" />
-                    )}
-                  </div>
+                    </NavigationMenuContent>
+                  </>
                 )}
+              </>
+            ) : (
+              <NavigationMenuLink asChild>
+                <Link
+                  href={href}
+                  className="flex flex-row space-x-3 items-center justify-center"
+                >
+                  {isMobile && (
+                    <div className="flex items-center justify-center px-1.5">
+                      <Icon className="size-4" />
+                    </div>
+                  )}
 
-                <span>{item.title}</span>
-              </Link>
-            </NavigationMenuLink>
-          )}
-        </NavigationMenuItem>
-      ))}
-    </NavigationMenuList>
+                  <span>{title}</span>
+                </Link>
+              </NavigationMenuLink>
+            )}
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+      {skillNavItems && (
+        <>
+          <Separator className="my-4 w-full" />
+          <NavigationMenuList className="flex flex-col items-start justify-start w-full max-w-sm">
+            <h2 className="font-bold px-3 mb-2">STEAM GAME PROMOTION</h2>
+            {skillNavItems.map(({ key, title, href, icon: Icon }) => (
+              <NavigationMenuItem
+                key={key}
+                className="w-[90vw] flex flex-col items-start justify-center"
+              >
+                <NavigationMenuLink asChild>
+                  <Link
+                    href={href}
+                    className="flex flex-row space-x-3 items-center justify-center"
+                  >
+                    {isMobile && (
+                      <div className="flex items-center justify-center px-1.5">
+                        <Icon className="size-4" />
+                      </div>
+                    )}
+
+                    <span>{title}</span>
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </>
+      )}
+    </>
   );
 }

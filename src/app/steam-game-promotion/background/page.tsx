@@ -30,7 +30,7 @@ const AboutPage = () => {
       </div>
 
       {/* Our Story */}
-      <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10">
+      <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
         <h1 className="font-bold text-3xl">Our Story</h1>
         <div className="flex flex-col md:flex-row space-y-5 items-center justify-center space-x-7 w-full">
           <div className="flex-1/2 w-full rounded-lg self-start">
@@ -64,7 +64,7 @@ const AboutPage = () => {
       </div>
 
       {/* Meet Our Team */}
-      <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10">
+      <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
         <h1 className="font-bold text-3xl">Meet Our Team</h1>
         <div className="flex flex-col md:flex-row space-y-3 items-center justify-center space-x-5 w-full">
           {GameTeams.map((team, index) => (
@@ -87,7 +87,7 @@ const AboutPage = () => {
       </div>
 
       {/* Our Mission */}
-      <div className="flex flex-col md:flex-row items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10">
+      <div className="flex flex-col md:flex-row items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
         <h1 className="font-bold text-3xl flex-1/2">Our Mission</h1>
         <div className="flex-1/2 flex flex-col items-start justify-center space-y-3">
           <p className="font-bold text-muted-foreground">

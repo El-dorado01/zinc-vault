@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Facebook,
   Inbox,
@@ -9,12 +9,13 @@ import {
   X,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from 'next/image';
+import Image from "next/image";
+import CloseGame from "./close-game";
 
 const GameDetails = () => {
   return (
     <Card className="rounded-lg relative w-full shadow-sm dark:border-0">
-      <X className="hidden lg:block absolute top-3 right-3 size-6 text-muted-foreground hover:text-foreground cursor-pointer" />
+      <CloseGame />
       <CardContent className="p-3 lg:p-4 flex flex-col space-y-2">
         <div className="hidden lg:flex items-start justify-start space-x-3">
           <Image
@@ -116,6 +117,6 @@ const GameDetails = () => {
       </CardContent>
     </Card>
   );
-}
+};
 
-export default GameDetails
+export default GameDetails;

@@ -20,9 +20,9 @@ const GameTestimonials = () => {
   );
 
   return (
-    <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-3">
+    <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-3">
       <h1 className="font-bold text-3xl mb-13">Testimonials</h1>
-      <div className="w-full md:px-5">
+      <div className="w-full md:px-10">
         <Carousel
           plugins={[plugin.current]}
           className="w-full"

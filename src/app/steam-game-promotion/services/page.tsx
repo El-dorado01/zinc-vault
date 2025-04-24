@@ -31,7 +31,7 @@ const ServicesPage = () => {
         ({ name, icon: Icon, text, process, extraText }, index) => (
           <div
             key={index}
-            className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-10"
+            className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10"
           >
             <h1 className="font-bold text-3xl">{name}</h1>
             <div className="flex flex-col md:flex-row space-y-5 items-center justify-start space-x-7 w-full">
@@ -42,16 +42,16 @@ const ServicesPage = () => {
                   </div>
                   <p className="leading-snug">{text}</p>
                 </div>
+              </div>
+              <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
                 {process && (
                   <>
-                    <h2 className="text-2xl font-semibold mt-4 md:mt-0">
+                    <h2 className="text-2xl font-semibold">
                       {process.key}
                     </h2>
                     <p className="leading-snug">{process.text}</p>
                   </>
                 )}
-              </div>
-              <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
                 <h2 className="text-2xl font-semibold">{extraText.key}</h2>
                 <p className="leading-snug">{extraText.text}</p>
               </div>

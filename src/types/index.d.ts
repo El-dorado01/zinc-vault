@@ -4,6 +4,7 @@ export interface NavItem {
   title: string;
   key: string;
   href: string;
+  icon: LucideIcon;
 }
 
 export interface ListComponent {

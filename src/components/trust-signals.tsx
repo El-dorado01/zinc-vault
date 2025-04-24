@@ -5,7 +5,7 @@ import { TrendingUp } from 'lucide-react';
 
 export const TrustSignalsComponent = () => {
   return (
-    <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-16 space-y-6 bg-accent-foreground dark:bg-background text-white">
+    <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-16 space-y-6 bg-accent-foreground dark:bg-background text-white">
       <div className="flex items-center justify-between w-full">
         <h1 className="font-bold text-3xl">Trust Signals</h1>
         <Image

@@ -19,7 +19,7 @@ const SuccessStory = () => {
   );
 
   return (
-    <div className="flex flex-col items-start justify-start w-full px-4 md:px-8 xl:px-35 py-10 space-y-3 border-dashed border-t border-b border-r-0 border-l-0">
+    <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-3 border-dashed border-t border-b border-r-0 border-l-0">
       <h1 className="font-bold text-3xl mb-13">
         Success Story: CyberSmith’s BattleForge
       </h1>
@@ -57,7 +57,10 @@ const SuccessStory = () => {
         </div>
         <WishlistChart />
       </div>
-      <Link href={"/"} className="mt-6 text-[#00C4FF] flex items-center justify-center space-x-1 font-semibold">
+      <Link
+        href={"/"}
+        className="mt-6 text-[#00C4FF] flex items-center justify-center space-x-1 font-semibold"
+      >
         <span>View Full Case Study</span> <ChevronRight className="h-5 w-5" />
       </Link>
     </div>

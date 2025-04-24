@@ -24,3 +24,10 @@ export function getInitials(name: string): string {
 export function splitAndJoin(name: string): string {
   return name.split(" ").join("-");
 }
+
+export function splitAndJoinPath(name: string): string {
+  return name
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}

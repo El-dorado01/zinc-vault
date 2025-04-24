@@ -1,4 +1,4 @@
-"use client";
+
 
 import * as React from "react";
 
@@ -16,7 +16,7 @@ export function DesktopNavigation({
   isMobile,
 }: {
   navItems: NavItem[];
-  teamNavItems?: ListComponent[];
+  teamNavItems: ListComponent[];
   isMobile: boolean;
 }) {
   return (

@@ -2,19 +2,12 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { type ListComponent, type NavItem } from "@/types";
@@ -22,44 +15,22 @@ import { Navigation } from "./navigation";
 import { NavigationMenu } from "./ui/navigation-menu";
 import ThemeToggleTab from "./themes";
 import { ScrollArea } from "./ui/scroll-area";
-import { ChevronsUpDown, Facebook, Linkedin, Sparkles, Twitter, Youtube } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
 const MobileNavigation = ({
   navItems,
   teamNavItems,
+  skillNavItems,
   isMobile,
 }: {
   navItems: NavItem[];
-  teamNavItems?: ListComponent[];
+  skillNavItems?: NavItem[];
+  teamNavItems: ListComponent[];
   isMobile: boolean;
 }) => {
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <div className="flex md:hidden items-center justify-center space-x-1 text-muted-foreground rounded-md p-1.5">
-            <Sparkles className="size-4" />
-            <ChevronsUpDown className="size-3" />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Skills</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/youtube-automation">Youtube Automation</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/steam-game-promotion">Steam Game Promotion</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/ecommerce-store-design">Ecommerce Store Design</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/content-writing">Content Writing</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
       <Drawer>
         <DrawerTrigger asChild>
           <button className="block md:hidden p-2 rounded-md hover:bg-zinc-500/10 focus:outline-none focus:ring-2 focus:ring-zinc-500">
@@ -84,10 +55,12 @@ const MobileNavigation = ({
             <div className="mx-auto w-full max-w-sm">
               <DrawerHeader className="mx-4">
                 <DrawerTitle className="text-2xl font-bold">ZV</DrawerTitle>
+                <DrawerDescription className="hidden">Mobile View Drawer</DrawerDescription>
               </DrawerHeader>
-              <NavigationMenu className="px-4 md:hidden">
+              <NavigationMenu className="px-3 md:hidden flex flex-col items-start justify-start w-full max-w-sm">
                 <Navigation
                   navItems={navItems}
+                  skillNavItems={skillNavItems}
                   teamNavItems={teamNavItems}
                   isMobile={isMobile}
                 />
@@ -95,7 +68,7 @@ const MobileNavigation = ({
               <div className="mx-5">
                 <Separator className="my-4" />
               </div>
-              <div className="flex flex-col items-start justify-center space-y-2 my-3 mx-5">
+              <div className="flex flex-col items-start justify-center space-y-2 my-3 mx-5 text-sm text-muted-foreground">
                 <Link
                   href={""}
                   className="flex space-x-3 items-center justify-center"

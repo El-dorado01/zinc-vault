@@ -73,9 +73,12 @@ const RotatingCards = () => {
   }, []);
 
   return (
-    <section id="rotating-cards" className="relative py-8 z-30">
+    <section
+      id="rotating-cards"
+      className="relative py-8 z-30 max-w-6xl mx-auto px-4"
+    >
       <div
-        className="rotating-cards-grid grid grid-cols-1 md:grid-cols-2 md:grid-rows-4 w-[90vw] gap-5 mx-auto"
+        className="rotating-cards-grid grid grid-cols-1 md:grid-cols-2 md:grid-rows-4 w-full gap-5 mx-auto"
         style={{ marginBottom: "-300px" }}
       >
         {skillsData.map(({ id, icon: Icon, title, href }, index) => (

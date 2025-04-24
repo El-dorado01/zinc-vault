@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User, X } from "lucide-react";
+import { Facebook, Inbox, Instagram, Linkedin, Twitter, User, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
 import SingleGameCarousel from "@/components/single-game-carousel";
@@ -7,7 +7,6 @@ import GameDetails from "@/components/game-details";
 import GameProblem from "@/components/game-problem";
 import GameApproach from "@/components/game-approach";
 import GameResult from "@/components/game-result";
-import CloseGame from "@/components/close-game";
 
 const SingleGamePage = () => {
   return (
@@ -15,7 +14,7 @@ const SingleGamePage = () => {
       <div className="w-full max-w-6xl mx-auto px-4 py-5">
         <div className="flex flex-col lg:flex-row gap-4 h-fit">
           <Card className="block lg:hidden rounded-lg relative w-full shadow-sm dark:border-0">
-            <CloseGame />
+            {/* <X className="absolute top-3 right-3 size-4 text-muted-foreground hover:text-foreground cursor-pointer" /> */}
             <CardContent className="p-2 flex flex-col space-y-2">
               <div className="flex items-start justify-start space-x-3">
                 <Image
@@ -45,7 +44,8 @@ const SingleGamePage = () => {
           </Card>
           <SingleGameCarousel />
           <ScrollArea className="flex-1 lg:flex-1/3 flex flex-col items-center justify-start lg:max-h-[80vh] overflow-y-auto lg:mr-2">
-            <GameDetails />
+            <h1>Intercepted</h1>
+            
             <GameProblem />
             <GameApproach />
             <GameResult />

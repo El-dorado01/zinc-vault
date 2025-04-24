@@ -249,3 +249,28 @@ html[data-theme='light'] .glow-effect,
   border: 1px solid oklch(0.65 0.18 172.73 / 0.5); /* Example green border */
   box-shadow: 0 0 10px oklch(0.65 0.18 172.73 / 0.3);
 }
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.breadcrumb-link,
+.breadcrumb-page {
+  display: inline-block;
+  max-width: 100px; /* Adjust based on your design */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumb-ellipsis {
+  flex-shrink: 0;
+  cursor: default;
+}
+
+.breadcrumb-separator {
+  flex-shrink: 0;
+}

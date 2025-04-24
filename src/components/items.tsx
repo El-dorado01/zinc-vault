@@ -1,6 +1,7 @@
 import {
   GameItem,
   ListComponent,
+  NavItem,
   PortfolioGame,
   ServiceOverview,
   SkillItem,
@@ -10,36 +11,47 @@ import {
 import {
   BatteryCharging,
   BookOpenText,
+  Contact,
   Gamepad2,
+  House,
+  Info,
   PiggyBank,
   Rocket,
   ShoppingCart,
+  Sparkles,
+  Users,
   Youtube,
 } from "lucide-react";
 
-const NavItems = [
-  { title: "Home", key: "home", href: "/" },
-  { title: "About", key: "about", href: "/about" },
-  { title: "Skills", key: "skills", href: "/" },
-  { title: "Teams", key: "teams", href: "/" },
-  { title: "Contact", key: "contact", href: "/contact" },
+const NavItems: NavItem[] = [
+  { title: "Home", key: "home", href: "/", icon: House },
+  { title: "About", key: "about", href: "/about", icon: Info },
+  { title: "Skills", key: "skills", href: "/", icon: Sparkles },
+  { title: "Teams", key: "teams", href: "/", icon: Users },
+  { title: "Contact", key: "contact", href: "/contact", icon: Contact },
 ];
 
-const GameNavItems = [
-  { title: "Home", key: "home", href: "//steam-game-promotion" },
-  { title: "About", key: "about", href: "/steam-game-promotion/about" },
+const GameNavItems: NavItem[] = [
+  { title: "Overview", key: "overview", href: "/steam-game-promotion", icon: House },
+  {
+    title: "Background",
+    key: "background",
+    href: "/steam-game-promotion/background",
+    icon: House,
+  },
   {
     title: "Services",
     key: "services",
     href: "/steam-game-promotion/services",
+    icon: House,
   },
   {
     title: "Portfolio",
     key: "portfolio",
     href: "/steam-game-promotion/portfolio",
+    icon: House,
   },
-  // { title: "Blog", key: "blog", href: "/" },
-  { title: "Contact", key: "contact", href: "/steam-game-promotion/contact" },
+  // { title: "Blog", key: "blog", href: "/", icon: House },
 ];
 
 const TeamNavItems = [
