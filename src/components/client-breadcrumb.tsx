@@ -53,14 +53,14 @@ const ClientBreadcrumb = () => {
 
             {/* Last breadcrumb */}
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link
+              <BreadcrumbPage>
+              {splitAndJoinPath(breadcrumbs[breadcrumbs.length - 1])}
+                {/* <Link
                   href={`/${breadcrumbs[breadcrumbs.length - 1]}`}
                   className="breadcrumb-link"
                 >
-                  {splitAndJoinPath(breadcrumbs[breadcrumbs.length - 1])}
-                </Link>
-              </BreadcrumbLink>
+                </Link> */}
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </>
         ) : (

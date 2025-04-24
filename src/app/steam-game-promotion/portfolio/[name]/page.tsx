@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User, X } from "lucide-react";
+import { User } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
 import SingleGameCarousel from "@/components/single-game-carousel";
