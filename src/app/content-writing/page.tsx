@@ -8,7 +8,7 @@ const ContentWritingPage = () => {
         <Construction className="size-12 animate-pulse" />
         <h1 className="font-bold text-3xl"> Under Construction </h1>
         <p className="text-muted-foreground">
-          We're working hard to bring this page to life. Please check back soon!
+          We are working hard to bring this page to life. Please check back soon!
         </p>
       </div>
     </>
