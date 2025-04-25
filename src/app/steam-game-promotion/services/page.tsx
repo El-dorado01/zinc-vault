@@ -6,7 +6,7 @@ const ServicesPage = () => {
   return (
     <>
       {/* Hero */}
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-72px)] overflow-hidden">
         {/* Fixed Hero Text */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white bg-black/30 px-5">
           <p className="hero-subtext text-lg md:text-xl mb-6">
@@ -46,9 +46,7 @@ const ServicesPage = () => {
               <div className="flex flex-col md:flex-1/3 space-y-4 items-start justify-center self-start py-4">
                 {process && (
                   <>
-                    <h2 className="text-2xl font-semibold">
-                      {process.key}
-                    </h2>
+                    <h2 className="text-2xl font-semibold">{process.key}</h2>
                     <p className="leading-snug">{process.text}</p>
                   </>
                 )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowBigRightDash } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { skillsData } from "@/components/items";
 import Link from "next/link";
 import Image from "next/image";
@@ -115,9 +115,9 @@ const RotatingCards = () => {
                 href={href}
                 className="flex items-center justify-center space-x-1 text-center py-2 px-4 rounded-full border border-primary mt-3"
               >
-                <span>Visit</span>
+                <span>Learn More</span>
                 <div className="flex items-center justify-center">
-                  <ArrowBigRightDash className="size-4.5 lg:6" />
+                  <ArrowRight className="size-4.5 lg:6" />
                 </div>
               </Link>
             </div>

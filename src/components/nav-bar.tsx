@@ -6,7 +6,6 @@ import ThemeToggleTab from "@/components/themes";
 import Link from "next/link";
 import { ListComponent, NavItem } from "@/types";
 import { LucideIcon } from "lucide-react";
-import PageBreadcrumbs from "./page-breadcrumbs";
 
 
 type NavBarProps = {
@@ -15,7 +14,6 @@ type NavBarProps = {
   skillNavItems?: NavItem[];
   icon?: LucideIcon;
   iconColor?: string;
-  mainHref?: string;
 };
 
 const NavBar = ({
@@ -24,15 +22,14 @@ const NavBar = ({
   skillNavItems,
   icon: Icon,
   iconColor,
-  mainHref = "/",
 }: NavBarProps) => {
   return (
     <>
-      <header className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-sm shadow-sm text-foreground">
+      <header className="sticky w-full top-0 z-50 bg-background/80 backdrop-blur-sm shadow-sm text-foreground h-18">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link
-            href={mainHref}
-            className="text-2xl font-bold hover:text-blue-500 transition-colors flex items-center justify-center space-x-3"
+            href={"/"}
+            className="text-2xl font-bold transition-colors flex items-center justify-center space-x-3"
           >
             <span>ZV</span>
             {Icon && <Icon className={`-ml-1 h-6 w-6 text-[${iconColor}]`} />}
@@ -54,7 +51,7 @@ const NavBar = ({
           </div>
         </div>
       </header>
-      <PageBreadcrumbs skillNavItems={skillNavItems} iconColor={iconColor} />
+      
     </>
   );
 };

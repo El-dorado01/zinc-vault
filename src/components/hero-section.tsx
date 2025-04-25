@@ -55,15 +55,6 @@ export default function HeroSection() {
       }
     );
 
-    // Bouncing arrow animation
-    gsap.to(".bounce-arrow", {
-      y: 10,
-      duration: 0.4,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut",
-    });
-
     // Hero section fade-out and sink
     gsap.to('.hero-section', {
       opacity: 0,
@@ -81,7 +72,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-background pt-6 max-w-6xl mx-auto px-3 hero-section">
+    <section className="relative min-h-[calc(100vh-72px)] h-fit flex flex-col items-center justify-start overflow-hidden bg-background pt-6 max-w-6xl mx-auto px-3 hero-section">
       {/* Green Light Background Effect */}
       <div className="absolute inset-0 z-0">
         <div className="green-light"></div>
@@ -101,10 +92,10 @@ export default function HeroSection() {
             </p>
           </div>
           <Link
-            href="/contact"
+            href="/skills"
             className="hero-subtext inline-block text-center px-6 py-3 bg-primary text-black font-semibold rounded-md hover:bg-primary/90 transition-colors w-[200px] dark:text-white"
           >
-            Contact Me
+            Explore Skills
           </Link>
         </div>
 
@@ -126,7 +117,7 @@ export default function HeroSection() {
       {/* Bouncing Arrow Button */}
       <div className="w-full flex items-center justify-center">
         <div className="transform -translate-x-1/2 z-20 ml-4">
-          <Link href="#next-section" className="bounce-arrow inline-block">
+          <Link href="#rotating-cards" className="animate-bounce inline-block">
             <ArrowDown
               className="w-8 h-8 text-foreground hover:text-primary transition-colors"
               aria-label="Scroll down"

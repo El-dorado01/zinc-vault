@@ -58,7 +58,7 @@ const SuccessStory = () => {
         <WishlistChart />
       </div>
       <Link
-        href={"/"}
+        href={"/steam-game-promotion/portfolio/cybersmith"}
         className="mt-6 text-[#00C4FF] flex items-center justify-center space-x-1 font-semibold"
       >
         <span>View Full Case Study</span> <ChevronRight className="h-5 w-5" />

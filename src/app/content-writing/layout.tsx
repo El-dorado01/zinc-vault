@@ -2,26 +2,25 @@ import Footer from "@/components/footer";
 import { NavItems, TeamNavItems } from "@/components/items";
 import NavBar from "@/components/nav-bar";
 import PageBreadcrumbs from "@/components/page-breadcrumbs";
-import { GameNavItems } from "@/components/skill-nav-items";
-import { Gamepad2 } from "lucide-react";
+import { BookOpenText } from "lucide-react";
 import { PropsWithChildren } from "react";
 
-const SteamGameLayout = ({ children }: PropsWithChildren) => {
-  const iconColor = "#00C4FF";
+const ContentWritingLayout = ({ children }: PropsWithChildren) => {
+  const iconColor = "#4A90E2";
   return (
     <div className="flex flex-col items-center justify-center">
       <NavBar
         navItems={NavItems}
-        skillNavItems={GameNavItems}
+        // skillNavItems={GameNavItems}
         teamNavItems={TeamNavItems}
-        icon={Gamepad2}
+        icon={BookOpenText}
         iconColor={iconColor}
       />
-      <PageBreadcrumbs skillNavItems={GameNavItems} iconColor={iconColor} />
+      <PageBreadcrumbs iconColor={iconColor} />
       {children}
       <Footer />
     </div>
   );
 };
 
-export default SteamGameLayout;
+export default ContentWritingLayout;

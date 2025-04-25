@@ -14,9 +14,9 @@ import CloseGame from "./close-game";
 const GameDetails = () => {
   return (
     <Card className="rounded-lg relative w-full shadow-sm dark:border-0">
-      <CloseGame />
       <CardContent className="p-3 lg:p-4 flex flex-col space-y-2">
         <div className="hidden lg:flex items-start justify-start space-x-3">
+          <CloseGame />
           <Image
             src={"/games/thumbnail5.jpg"}
             alt=""

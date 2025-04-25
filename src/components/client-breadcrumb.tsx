@@ -30,6 +30,22 @@ const ClientBreadcrumb = () => {
           <BreadcrumbSeparator />
         </BreadcrumbItem>
 
+        {(path.includes("steam-game-promotion") ||
+          path.includes("youtube-automation") ||
+          path.includes("ecommerce-store-design") ||
+          path.includes("content-writing")) && (
+          <>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/skills" className="breadcrumb-link">
+                  Skills
+                </Link>
+              </BreadcrumbLink>
+              <BreadcrumbSeparator />
+            </BreadcrumbItem>
+          </>
+        )}
+
         {/* Check if breadcrumbs need collapsing */}
         {breadcrumbs.length > 2 ? (
           <>
@@ -54,12 +70,7 @@ const ClientBreadcrumb = () => {
             {/* Last breadcrumb */}
             <BreadcrumbItem>
               <BreadcrumbPage>
-              {splitAndJoinPath(breadcrumbs[breadcrumbs.length - 1])}
-                {/* <Link
-                  href={`/${breadcrumbs[breadcrumbs.length - 1]}`}
-                  className="breadcrumb-link"
-                >
-                </Link> */}
+                {splitAndJoinPath(breadcrumbs[breadcrumbs.length - 1])}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </>

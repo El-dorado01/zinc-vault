@@ -19,9 +19,9 @@ export default function GameHero() {
   );
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[calc(100vh-72px)] overflow-hidden">
       {/* Fixed Hero Text */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white bg-black/30 px-5">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white bg-black/30 px-3 md:px-5">
         <h1 className="hero-title text-4xl md:text-5xl font-bold mb-4 leading-tight">
           Revive Your Steam Game with Smart Marketing
         </h1>
@@ -30,8 +30,8 @@ export default function GameHero() {
           budgets and big results.
         </p>
         <Link
-          href={"/steam-game-promotion/about"}
-          className="mt-6 px-6 py-3 bg-[#00C4FF] text-black rounded-full hover:bg-[#00C4FF]/60"
+          href={"/steam-game-promotion/background"}
+          className="mt-4 px-6 py-3 bg-[#00C4FF] text-black rounded-full hover:bg-[#00C4FF]/60"
         >
           Learn More
         </Link>

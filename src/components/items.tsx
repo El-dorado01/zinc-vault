@@ -26,33 +26,12 @@ import {
 const NavItems: NavItem[] = [
   { title: "Home", key: "home", href: "/", icon: House },
   { title: "About", key: "about", href: "/about", icon: Info },
-  { title: "Skills", key: "skills", href: "/", icon: Sparkles },
-  { title: "Teams", key: "teams", href: "/", icon: Users },
+  { title: "Skills", key: "skills", href: "/skills", icon: Sparkles },
+  { title: "Teams", key: "teams", href: "/teams", icon: Users },
   { title: "Contact", key: "contact", href: "/contact", icon: Contact },
 ];
 
-const GameNavItems: NavItem[] = [
-  { title: "Overview", key: "overview", href: "/steam-game-promotion", icon: House },
-  {
-    title: "Background",
-    key: "background",
-    href: "/steam-game-promotion/background",
-    icon: House,
-  },
-  {
-    title: "Services",
-    key: "services",
-    href: "/steam-game-promotion/services",
-    icon: House,
-  },
-  {
-    title: "Portfolio",
-    key: "portfolio",
-    href: "/steam-game-promotion/portfolio",
-    icon: House,
-  },
-  // { title: "Blog", key: "blog", href: "/", icon: House },
-];
+
 
 const TeamNavItems = [
   {
@@ -105,7 +84,7 @@ const skillsData: SkillItem[] = [
     icon: ShoppingCart,
     image: "/ecommerce.png",
     title: "Ecommerce Store Design and Promotion",
-    href: "ecommerce-store-design",
+    href: "/ecommerce-store-design",
   },
   {
     id: 4,
@@ -333,7 +312,6 @@ export {
   NavItems,
   TeamNavItems,
   skillsData,
-  GameNavItems,
   gameBgImages,
   TrustSignals,
   ServicesOverview,

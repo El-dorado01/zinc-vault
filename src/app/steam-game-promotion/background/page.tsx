@@ -9,7 +9,7 @@ const AboutPage = () => {
   return (
     <>
       {/* Hero */}
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-72px)] overflow-hidden">
         {/* Fixed Hero Text */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white bg-black/30 px-5">
           <p className="hero-subtext text-lg md:text-xl mb-6">
