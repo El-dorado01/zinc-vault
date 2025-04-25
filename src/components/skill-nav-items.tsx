@@ -1,32 +1,32 @@
 "use client"
 
 import { NavItem } from "@/types";
-import { House } from "lucide-react";
+import { BookOpen, Briefcase, LayoutDashboard, MonitorCog } from "lucide-react";
 
 const GameNavItems: NavItem[] = [
   {
     title: "Overview",
     key: "overview",
     href: "/steam-game-promotion",
-    icon: House,
+    icon: LayoutDashboard,
   },
   {
     title: "Background",
     key: "background",
     href: "/steam-game-promotion/background",
-    icon: House,
+    icon: BookOpen,
   },
   {
     title: "Services",
     key: "services",
     href: "/steam-game-promotion/services",
-    icon: House,
+    icon: MonitorCog,
   },
   {
     title: "Portfolio",
     key: "portfolio",
     href: "/steam-game-promotion/portfolio",
-    icon: House,
+    icon: Briefcase,
   },
   // { title: "Blog", key: "blog", href: "/", icon: House },
 ];
