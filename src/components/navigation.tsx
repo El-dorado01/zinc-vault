@@ -67,7 +67,7 @@ export function Navigation({
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-      {skillNavItems && (
+      {Array.isArray(skillNavItems) &&
         <>
           <Separator className="my-4 w-full" />
           <NavigationMenuList className="flex flex-col items-start justify-start w-full max-w-sm">
@@ -95,7 +95,7 @@ export function Navigation({
             ))}
           </NavigationMenuList>
         </>
-      )}
+      }
     </>
   );
 }
