@@ -1,3 +1,6 @@
+password: er4EKmwDaibAmCLd
+sbp_9c7edd21b124f48b55254bf6c5bcfbc6587bc2da
+
 ----------------------------------------
 | HEADER                               |
 | [Logo]          [Home | About | ...] |

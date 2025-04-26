@@ -1,12 +1,9 @@
-// "use client"
-
 import React from "react";
 
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { NavItem } from "@/types";
 import ClientBreadcrumb from "./client-breadcrumb";
-// import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Separator } from "./ui/separator";
 
 type BreadcrumbsProps = {
   skillNavItems?: NavItem[];
@@ -14,19 +11,18 @@ type BreadcrumbsProps = {
 };
 
 const PageBreadcrumbs = ({ skillNavItems, iconColor }: BreadcrumbsProps) => {
-  
-  // const path = usePathname();
-
-  // if(path === "/") {
-  //   return null;
-  // }
   return (
     <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between w-full text-foreground border-b">
       <ClientBreadcrumb />
       <div className="hidden md:flex h-5 items-center space-x-4 text-sm">
         {skillNavItems?.map((item, index) => (
           <React.Fragment key={item.key}>
-            <Link href={item.href} className={`hover:text-[${iconColor}] duration-300 transition-colors`}>{item.title}</Link>
+            <Link
+              href={item.href}
+              className={`hover:text-[${iconColor}] duration-300 transition-colors`}
+            >
+              {item.title}
+            </Link>
             {index < skillNavItems.length - 1 && (
               <Separator orientation="vertical" />
             )}
