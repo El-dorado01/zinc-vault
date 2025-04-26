@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import React from "react";
 
@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { NavItem } from "@/types";
 import ClientBreadcrumb from "./client-breadcrumb";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 
 type BreadcrumbsProps = {
   skillNavItems?: NavItem[];
@@ -14,12 +14,12 @@ type BreadcrumbsProps = {
 };
 
 const PageBreadcrumbs = ({ skillNavItems, iconColor }: BreadcrumbsProps) => {
-  const path = usePathname();
+  
+  // const path = usePathname();
 
-  if(path === "/") {
-    return null;
-  }
-
+  // if(path === "/") {
+  //   return null;
+  // }
   return (
     <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between w-full text-foreground border-b">
       <ClientBreadcrumb />

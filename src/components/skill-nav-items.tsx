@@ -1,5 +1,3 @@
-"use client"
-
 import { NavItem } from "@/types";
 import { BookOpen, Briefcase, LayoutDashboard, MonitorCog } from "lucide-react";
 
