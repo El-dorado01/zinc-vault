@@ -9,6 +9,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   basePath: "/api/v1/auth",
   providers: [
     Resend({
+      id: "email", 
       from: process.env.EMAIL_FROM!,
       apiKey: process.env.RESEND_API_KEY!,
       async generateVerificationToken() {
