@@ -1,45 +1,63 @@
+
 // src/actions/sendOTP.ts
 "use server";
 
 import { signIn } from "@/auth";
+import { createClient } from "@supabase/supabase-js";
 
 export async function sendOTP(email: string) {
   try {
     console.log("Verifying email", { email });
 
-    // Check email via API route
-    const response = await fetch(
-      `${
-        process.env.NEXTAUTH_URL || "http://localhost:3000"
-      }/api/v1/verify-email`, // Updated to /api/v1
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      }
+    // Manual Supabase check
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
+    const { data, error } = await supabase
+      .from("approved_users")
+      .select("email")
+      .eq("email", email)
+      .single();
 
-    let errorData = null;
-    try {
-      errorData = await response.json();
-    } catch (jsonError) {
-      console.error("Failed to parse response as JSON", {
-        status: response.status,
-        jsonError,
-      });
-      errorData = { error: "Invalid response from server" };
+    if (error || !data) {
+      console.error("Email not found in approved_users", { error });
+      return { error: "Email not found" };
     }
 
-    if (!response.ok) {
-      console.error("Email verification failed", {
-        status: response.status,
-        error: errorData.error,
-      });
-      return {
-        error:
-          errorData.error || "Email not found. Please use a registered email.",
-      };
-    }
+    // Check email via API route
+    // const response = await fetch(
+    //   `${
+    //     process.env.NEXTAUTH_URL || "http://localhost:3000"
+    //   }/api/v1/verify-email`, // Updated to /api/v1
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ email }),
+    //   }
+    // );
+
+    // let errorData = null;
+    // try {
+    //   errorData = await response.json();
+    // } catch (jsonError) {
+    //   console.error("Failed to parse response as JSON", {
+    //     status: response.status,
+    //     jsonError,
+    //   });
+    //   errorData = { error: "Invalid response from server" };
+    // }
+
+    // if (!response.ok) {
+    //   console.error("Email verification failed", {
+    //     status: response.status,
+    //     error: errorData.error,
+    //   });
+    //   return {
+    //     error:
+    //       errorData.error || "Email not found. Please use a registered email.",
+    //   };
+    // }
 
     console.log("Email verified, sending OTP", { email });
 
@@ -48,6 +66,7 @@ export async function sendOTP(email: string) {
       email,
       redirect: false,
     });
+    console.log("signIn result", { result });
 
     if (result?.error?.includes("rate limit")) {
       console.error("Rate limit error", { email });

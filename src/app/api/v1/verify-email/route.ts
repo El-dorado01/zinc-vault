@@ -1,3 +1,7 @@
+
+
+//app/api/v1/verify-email/route.ts
+
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
