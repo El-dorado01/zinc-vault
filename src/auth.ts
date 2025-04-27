@@ -1,50 +1,34 @@
 // src/auth.ts
 import NextAuth from "next-auth";
-import EmailProvider from "next-auth/providers/email";
+import Resend from "next-auth/providers/resend";
 import { SupabaseAdapter } from "@auth/supabase-adapter";
+import { sendVerificationRequest } from "@/lib/authSendRequest";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  basePath: "/api/v1/auth",
   providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST!,
-        port: Number(process.env.EMAIL_SERVER_PORT!),
-        auth: {
-          user: process.env.EMAIL_SERVER_USER!,
-          pass: process.env.EMAIL_SERVER_PASSWORD!,
-        },
-      },
+    Resend({
       from: process.env.EMAIL_FROM!,
+      apiKey: process.env.RESEND_API_KEY!,
       async generateVerificationToken() {
-        // Generate a 6-digit OTP
-        return Math.floor(100000 + Math.random() * 900000).toString();
+        const token = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log("Generated verification token", { token });
+        return token;
       },
-      async sendVerificationRequest({ identifier: email, token, provider }) {
-        const msg = {
-          to: email,
-          from: provider.from,
-          subject: "Your OTP for Login",
-          text: `Your OTP is ${token}. It expires in 10 minutes.`,
-          html: `<p>Your OTP is <strong>${token}</strong>. It expires in 10 minutes.</p>`,
-        };
-
-        // Use nodemailer to send email
-        const nodemailer = require("nodemailer");
-        const transport = nodemailer.createTransport({
-          host: provider.server.host,
-          port: provider.server.port,
-          auth: {
-            user: provider.server.auth.user,
-            pass: provider.server.auth.pass,
-          },
-        });
-        await transport.sendMail(msg);
+      sendVerificationRequest: async (params) => {
+        console.log("Calling sendVerificationRequest", { identifier: params.identifier });
+        try {
+          await sendVerificationRequest(params);
+        } catch (error) {
+          console.error("sendVerificationRequest failed", { error });
+          throw error;
+        }
       },
     }),
   ],
   adapter: SupabaseAdapter({
     url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    secret: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!, // Use service role key
   }),
   callbacks: {
     async session({ session, user }) {
@@ -52,6 +36,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = user.id;
       }
       return session;
+    },
+    async signIn({ user, account, profile, email }) {
+      console.log("signIn callback", { user, account, profile, email });
+      return true;
     },
   },
   pages: {
@@ -61,4 +49,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
+  debug: true, // Enable debug logs
 });

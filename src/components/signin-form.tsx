@@ -1,8 +1,11 @@
+// app/auth/signin/SigninForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -13,23 +16,26 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-const formSchema = z.object({
-  email: z.string().min(2, {
-    message: "Email must be at least 2 characters.",
-  }),
-});
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SigninOptions from "./signin-options";
+import { sendOTP } from "@/actions/send-otp";
+
+const formSchema = z.object({
+  email: z
+    .string()
+    .min(2, {
+      message: "Email must be at least 2 characters.",
+    })
+    .email("Must be a valid email"),
+});
 
 export function SigninForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  // 1. Define your form.
+  // Form setup
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,10 +43,30 @@ export function SigninForm({
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  // Navigation and loading state
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  // Submit handler with email verification and OTP sending
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    form.clearErrors(); // Clear previous errors
+
+    startTransition(async () => {
+      const result = await sendOTP(values.email);
+
+      if (result.error) {
+        form.setError("email", {
+          type: "manual",
+          message: result.error,
+        });
+        return;
+      }
+
+      if (result.success && result.email) {
+        router.push(`/auth/verify?email=${encodeURIComponent(result.email)}`);
+      }
+    });
+  };
 
   return (
     <Form {...form}>
@@ -67,15 +93,19 @@ export function SigninForm({
                     <Input placeholder="test@example.com" {...field} />
                   </FormControl>
                   <FormDescription>
-                    This is your public display name.
+                    Only the approved email will receive an OTP.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <Button type="submit" className="w-full">
-            Get OTP
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={isPending || form.formState.isSubmitting}
+          >
+            {isPending ? "Sending..." : "Get OTP"}
           </Button>
           <SigninOptions />
         </div>

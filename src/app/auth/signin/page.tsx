@@ -1,6 +1,7 @@
 import { SigninForm } from "@/components/signin-form";
 
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function SigninPage() {
   return (
@@ -11,9 +12,11 @@ export default function SigninPage() {
             <CardContent className="grid p-0 md:grid-cols-2">
               <SigninForm />
               <div className="relative hidden bg-muted md:block">
-                <img
+                <Image
                   src="/placeholder.svg"
                   alt="Image"
+                  width={120}
+                  height={120}
                   className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                 />
               </div>
