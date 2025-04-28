@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React from "react";
 import {
@@ -12,7 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Testimonials } from "./items";
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
-import { getInitials } from "@/lib/getInitials";
+import { getInitials } from "@/utils/getInitials";
 
 const GameTestimonials = () => {
   const plugin = React.useRef(

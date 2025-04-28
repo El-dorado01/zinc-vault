@@ -4,7 +4,7 @@ import { NavigationMenuLink } from "./ui/navigation-menu";
 import Link from "next/link";
 import Image from "next/image";
 import ListTeams from "./list-teams";
-import { getInitials } from "@/lib/getInitials";
+import { getInitials } from "@/utils/getInitials";
 
 const TeamMenuContent = ({
   teamNavItems,
@@ -14,7 +14,10 @@ const TeamMenuContent = ({
   return (
     <ul className="flex flex-col gap-2 md:grid md:gap-3 md:p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
       {teamNavItems.map((teamMember) => (
-        <li className={`${teamMember.leader && "row-span-3"}`} key={teamMember.name}>
+        <li
+          className={`${teamMember.leader && "row-span-3"}`}
+          key={teamMember.name}
+        >
           {teamMember.leader ? (
             <NavigationMenuLink asChild>
               <Link

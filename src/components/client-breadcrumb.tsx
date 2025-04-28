@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
-import { splitAndJoinPath } from "@/lib/getInitials";
+import { splitAndJoinPath } from "@/utils/getInitials";
 import Link from "next/link";
 
 const ClientBreadcrumb = () => {

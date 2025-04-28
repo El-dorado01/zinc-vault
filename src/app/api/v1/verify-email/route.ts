@@ -1,28 +1,43 @@
-
-
-//app/api/v1/verify-email/route.ts
-
+// app/api/v1/verify-email/route.ts
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 export async function POST(request: Request) {
-  const { email } = await request.json();
+  try {
+    const { email } = await request.json();
+    if (!email) {
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    }
 
-  // Initialize Supabase with service role key (server-side)
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY! // Use service role key
-  );
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
-  const { data, error } = await supabase
-    .from("approved_users") // or "your_custom_table"
-    .select("email")
-    .eq("email", email)
-    .single();
+    // Check if email is in approved_users
+    const { data, error } = await supabase
+      .from("approved_users")
+      .select("email")
+      .eq("email", email)
+      .single();
 
-  if (error || !data) {
-    return NextResponse.json({ error: "Email not found" }, { status: 404 });
+    if (error || !data) {
+      console.error("Email not found in approved_users", { email, error });
+      return NextResponse.json(
+        { error: "Email not found. Please use a registered email." },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    console.error("Verify email error", {
+      message: err.message,
+      stack: err.stack,
+    });
+    return NextResponse.json(
+      { error: "An unexpected error occurred" },
+      { status: 500 }
+    );
   }
-
-  return NextResponse.json({ exists: true });
 }

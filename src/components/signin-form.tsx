@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SigninOptions from "./signin-options";
-import { sendOTP } from "@/actions/send-otp";
+import { sendOTP } from "@/lib/auth";
 
 const formSchema = z.object({
   email: z

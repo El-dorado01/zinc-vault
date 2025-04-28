@@ -1,5 +1,5 @@
 import { GameTeams } from "@/components/items";
-import { getInitials } from "@/lib/getInitials";
+import { getInitials } from "@/utils/getInitials";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

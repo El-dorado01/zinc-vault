@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { Games, PortfolioGames } from "@/components/items";
 import Link from "next/link";
-import { getInitials, splitAndJoin } from "@/lib/getInitials";
+import { getInitials, splitAndJoin } from "@/utils/getInitials";
 
 const PortfolioPage = () => {
   return (
