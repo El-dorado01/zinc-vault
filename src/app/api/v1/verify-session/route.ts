@@ -31,12 +31,12 @@ export async function GET(request: Request) {
         message: err.message,
         stack: err.stack,
       });
-      return NextResponse.json(
-        { error: "Internal server error" },
-        { status: 500 }
-      );
     } else {
       console.error("Unexpected error:", err);
     }
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

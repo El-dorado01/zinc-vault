@@ -130,10 +130,10 @@ export async function sendOTP(email: string) {
         message: err.message,
         stack: err.stack,
       });
-      return { error: "An unexpected error occurred. Please try again." };
     } else {
       console.error("Unexpected error:", err);
     }
+    return { error: "An unexpected error occurred. Please try again." };
   }
 }
 
@@ -217,9 +217,9 @@ export async function verifyOTP(email: string, otp: string) {
         message: err.message,
         stack: err.stack,
       });
-      return { error: "An unexpected error occurred. Please try again." };
     } else {
       console.error("Unexpected error:", err);
     }
+    return { error: "An unexpected error occurred. Please try again." };
   }
 }

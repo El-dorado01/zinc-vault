@@ -31,12 +31,12 @@ export async function POST(request: Request) {
         message: err.message,
         stack: err.stack,
       });
-      return NextResponse.json(
-        { error: "Failed to set session" },
-        { status: 500 }
-      );
     } else {
       console.error("Unexpected error:", err);
     }
+    return NextResponse.json(
+      { error: "Failed to set session" },
+      { status: 500 }
+    );
   }
 }

@@ -36,12 +36,12 @@ export async function POST(request: Request) {
         message: err.message,
         stack: err.stack,
       });
-      return NextResponse.json(
-        { error: "An unexpected error occurred" },
-        { status: 500 }
-      );
     } else {
       console.error("Unexpected error:", err);
     }
+    return NextResponse.json(
+      { error: "An unexpected error occurred" },
+      { status: 500 }
+    );
   }
 }
