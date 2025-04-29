@@ -5,7 +5,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  //useSidebar,
 } from "@/components/ui/sidebar";
 
 export function SiteLogo({
@@ -17,7 +17,7 @@ export function SiteLogo({
     plan: string;
   };
 }) {
-  const { isMobile } = useSidebar();
+  //const { isMobile } = useSidebar();
   const LogoIcon = logo.logo
 
   if (!logo) {
