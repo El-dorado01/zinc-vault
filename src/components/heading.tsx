@@ -12,7 +12,7 @@ const Heading = ({ title, description, classname }: Props) => {
     <div className={cn('flex flex-col space-y-1', classname)}>
       <h1 className="font-bold text-xl">{title}</h1>
       <p className="text-muted-foreground text-sm">
-        {description || "No description provided."}
+        {description}
       </p>
     </div>
   );

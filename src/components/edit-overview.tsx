@@ -12,7 +12,6 @@ import {
 import { Button } from "./ui/button";
 import { Edit3 } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
-import { Scrollbar } from "@radix-ui/react-scroll-area";
 import TiptapStandardEditor from "./tiptap-editor";
 
 type Props = {
@@ -24,7 +23,7 @@ const EditOverview = ({ section }: Props) => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="absolute top-4 right-4 z-5">
+          <Button variant="outline" className="absolute top-4 right-4 z-5 hidden" id="editButton">
             <Edit3 className="size-3.5" /> Edit
           </Button>
         </SheetTrigger>
@@ -33,11 +32,11 @@ const EditOverview = ({ section }: Props) => {
             <SheetTitle>Edit {section}</SheetTitle>
             <SheetDescription>
               Make changes to your <strong>{section}</strong> section. Click
-              save when you're done.
+              save when you are done.
             </SheetDescription>
           </SheetHeader>
           <ScrollArea className="overflow-y-auto">
-            <div className="grid gap-4 border border-amber-500 w-full min-h-6">
+            <div className="grid gap-4 w-full min-h-6">
               <TiptapStandardEditor />
             </div>
           </ScrollArea>

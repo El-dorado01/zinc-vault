@@ -5,7 +5,7 @@ import { TrendingUp } from 'lucide-react';
 
 export const TrustSignalsComponent = () => {
   return (
-    <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-16 space-y-6 bg-accent-foreground dark:bg-background text-white">
+    <div className="flex flex-col items-start justify-start w-full max-w-6xl xl:max-w-full mx-auto px-4 xl:px-38 py-16 space-y-6 bg-sidebar">
       <div className="flex items-center justify-between w-full">
         <h1 className="font-bold text-3xl">Trust Signals</h1>
         <Image
@@ -20,7 +20,7 @@ export const TrustSignalsComponent = () => {
         {TrustSignals.map((signal, index) => (
           <div
             key={index}
-            className="flex flex-col flex-1 md:flex-1/3 space-y-2 items-center justify-center border border-foreground dark:border-sidebar-border rounded-sm hover:shadow-sm shadow-foreground p-4 my-3 w-full transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="flex flex-col flex-1 md:flex-1/3 space-y-2 items-center justify-center border border-foreground dark:border-sidebar-border rounded-sm hover:shadow-sm shadow-foreground p-4 my-3 w-full transition-transform duration-300 ease-in-out transform hover:scale-105 bg-sidebar"
           >
             <h2 className="font-semibold text-xl mb-2">{signal.name}</h2>
             <Image

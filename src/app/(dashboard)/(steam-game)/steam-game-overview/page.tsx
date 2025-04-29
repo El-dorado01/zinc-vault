@@ -9,6 +9,10 @@ import Heading from "@/components/heading";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import EditOverview from "@/components/edit-overview";
+import { TrustSignals } from "@/components/items";
+import { TrendingUp } from "lucide-react";
+import WishlistChart from "@/components/wishlist-chart";
+import { ScrollArea } from "@/components/ui/scroll-area";
 const SteamGameOverview = () => {
   return (
     <>
@@ -26,7 +30,7 @@ const SteamGameOverview = () => {
             className="min-h-[200px] rounded-lg border md:min-w-[450px] w-full"
           >
             <ResizablePanel defaultSize={80}>
-              <div className="relative w-full overflow-hidden flex h-full items-center justify-center ">
+              <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editButton]:flex">
                 <EditOverview section="Hero" />
 
                 <div className="absolute inset-0 z-2 flex flex-col items-center justify-center text-center text-white bg-black/30 px-3 md:px-5">
@@ -55,8 +59,83 @@ const SteamGameOverview = () => {
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={20}>
-              <div className="flex h-full items-center justify-center p-6">
-                <span className="font-semibold">Content</span>
+              <div className="h-fit p-6 flex flex-col items-start justify-start w-full max-w-6xl mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
+                <EditOverview section="Trust Signals" />
+                <div className="flex items-center justify-between w-full">
+                  <h1 className="font-bold text-2xl">Trust Signals</h1>
+                  <Image
+                    src={"/game-bg/steam.gif"}
+                    alt="Steam Logo"
+                    width={100}
+                    height={100}
+                    unoptimized
+                  />
+                </div>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+                  {TrustSignals.map((signal, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col flex-1 md:flex-1/3 space-y-2 items-center justify-center border border-foreground dark:border-sidebar-border rounded-sm hover:shadow-sm shadow-foreground p-4 my-3 w-full transition-transform duration-300 ease-in-out transform hover:scale-105 bg-sidebar"
+                    >
+                      <h2 className="font-semibold text-xl mb-2 line-clamp-1">
+                        {signal.name}
+                      </h2>
+                      <Image
+                        src={signal.image}
+                        alt={signal.alt}
+                        width={48}
+                        height={48}
+                        className="h-12 w-12"
+                      />
+                      <div
+                        className={`font-semibold text-md ${
+                          signal.comment && "text-green-500"
+                        }  flex items-center justify-center space-x-2`}
+                      >
+                        <span>
+                          {signal.comment
+                            ? signal.comment
+                            : "Saved our launch!"}
+                        </span>{" "}
+                        {signal.comment && <TrendingUp className="h-5 w-5" />}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={20}>
+              <div className="h-fit p-6 flex flex-col items-start justify-start w-full max-w-6xl mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
+                <EditOverview section="Success Story" />
+                <ScrollArea className="overflow-y-auto">
+                  <h1 className="font-bold text-2xl mb-13">
+                    Success Story: CyberSmith’s BattleForge
+                  </h1>
+                  <div className="flex flex-col w-full xl:flex-row items-center justify-center md:justify-between gap-5">
+                    {/* Carousel */}
+                    <div className="flex-1 md:flex-1/2 w-full flex flex-col space-y-4 items-center justify-center  min-h-[55vh]">
+                      <div className="w-full border rounded-md">
+                        <Image
+                          src={"/games/image1.jpg"}
+                          alt="Image"
+                          width={400}
+                          height={300}
+                          className="w-full min-h-[35vh] object-cover rounded-md"
+                        />
+                      </div>
+                      <div className="w-fit line-clamp-3 leading-snug text-muted-foreground font-semibold">
+                        Struggling with only 300 units sold, we optimized...
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Cupiditate dolor dicta id consequatur pariatur
+                        corporis a, labore repellat illo, omnis voluptates
+                        debitis magni molestiae cumque quia mollitia reiciendis
+                        molestias. Ullam!
+                      </div>
+                    </div>
+                    <WishlistChart />
+                  </div>
+                </ScrollArea>
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
