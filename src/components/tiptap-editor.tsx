@@ -349,7 +349,7 @@ const TiptapStandardEditor = () => {
 
           {/* Editor Content */}
           <div className="border border-gray-200 rounded-lg p-4 prose prose-blue overflow-x-hidden w-full">
-            {/* <EditorContent editor={editor} /> */}
+            <EditorContent editor={editor} />
           </div>
 
           {/* Optional: JSON Output for Debugging */}
