@@ -188,6 +188,9 @@ html, body {
   }
 }
 
+.prose-blue a {
+  @apply text-blue-500 hover:underline;
+}
 
 .green-light {
   position: absolute;
