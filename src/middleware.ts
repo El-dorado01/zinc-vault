@@ -6,7 +6,11 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Define public routes that don't require session verification
-  const publicPaths = ["/auth/signin", "/api/v1/session", "/api/v1/verify-session"];
+  const publicPaths = [
+    "/auth/signin",
+    "/api/v1/session",
+    "/api/v1/verify-session",
+  ];
 
   // If accessing /auth/signin or /auth/verify, check for an active session
   if (pathname === "/auth/signin" || pathname === "/auth/verify") {
@@ -15,9 +19,7 @@ export async function middleware(request: NextRequest) {
         // Ensure NEXTAUTH_URL is defined
         const baseUrl = process.env.NEXTAUTH_URL;
         if (!baseUrl) {
-          console.error(
-            "NEXTAUTH_URL is not defined in environment variables"
-          );
+          console.error("NEXTAUTH_URL is not defined in environment variables");
           throw new Error("Missing NEXTAUTH_URL");
         }
 
@@ -43,11 +45,15 @@ export async function middleware(request: NextRequest) {
         const response = NextResponse.next();
         response.cookies.delete("sessionToken");
         return response;
-      } catch (err: any) {
-        console.error("Error verifying session in middleware:", {
-          message: err.message,
-          stack: err.stack,
-        });
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Error verifying session in middleware:", {
+            message: err.message,
+            stack: err.stack,
+          });
+        } else {
+          console.error("Unexpected error:", err);
+        }
         // Clear cookie on error and proceed
         const response = NextResponse.next();
         response.cookies.delete("sessionToken");
@@ -104,11 +110,16 @@ export async function middleware(request: NextRequest) {
 
     console.log("Session verified via API, allowing access:", { email });
     return NextResponse.next();
-  } catch (err: any) {
-    console.error("Error verifying session in middleware:", {
-      message: err.message,
-      stack: err.stack,
-    });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Error verifying session in middleware:", {
+        message: err.message,
+        stack: err.stack,
+      });
+    } else {
+      console.error("Unexpected error:", err);
+    }
+
     const response = NextResponse.redirect(
       new URL("/auth/signin", request.url)
     );

@@ -30,14 +30,18 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    console.error("Verify email error", {
-      message: err.message,
-      stack: err.stack,
-    });
-    return NextResponse.json(
-      { error: "An unexpected error occurred" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Verify email error", {
+        message: err.message,
+        stack: err.stack,
+      });
+      return NextResponse.json(
+        { error: "An unexpected error occurred" },
+        { status: 500 }
+      );
+    } else {
+      console.error("Unexpected error:", err);
+    }
   }
 }

@@ -25,14 +25,18 @@ export async function POST(request: Request) {
 
     console.log("Session cookie set successfully");
     return response;
-  } catch (err: any) {
-    console.error("Error setting session cookie:", {
-      message: err.message,
-      stack: err.stack,
-    });
-    return NextResponse.json(
-      { error: "Failed to set session" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Error setting session cookie:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      return NextResponse.json(
+        { error: "Failed to set session" },
+        { status: 500 }
+      );
+    } else {
+      console.error("Unexpected error:", err);
+    }
   }
 }

@@ -25,14 +25,18 @@ export async function GET(request: Request) {
 
     console.log("Session verified successfully:", { email: session.email });
     return NextResponse.json({ success: true, email: session.email });
-  } catch (err: any) {
-    console.error("Error verifying session:", {
-      message: err.message,
-      stack: err.stack,
-    });
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Error verifying session:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      return NextResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
+    } else {
+      console.error("Unexpected error:", err);
+    }
   }
 }

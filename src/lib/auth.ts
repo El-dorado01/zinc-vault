@@ -15,19 +15,24 @@ const supabase = createClient(
 // Initialize Resend client
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
-
 export async function generateSessionToken(email: string): Promise<string> {
   return jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "3h" }); // 3-hour expiration
 }
 
-export async function verifySessionToken(token: string): Promise<{ email: string } | null> {
+export async function verifySessionToken(
+  token: string
+): Promise<{ email: string } | null> {
   try {
     return jwt.verify(token, process.env.JWT_SECRET!) as { email: string };
-  } catch (err: any) {
-    console.error("Invalid or expired session token:", {
-      message: err.message,
-      stack: err.stack,
-    });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Invalid or expired session token:", {
+        message: err.message,
+        stack: err.stack,
+      });
+    } else {
+      console.error("Unexpected error:", err);
+    }
     return null;
   }
 }
@@ -114,13 +119,21 @@ export async function sendOTP(email: string) {
     }
 
     console.log("OTP sent successfully to:", { email });
-    return { success: true, email, message: "OTP sent! Please check your email." };
-  } catch (err: any) {
-    console.error("Unexpected error in sendOTP:", {
-      message: err.message,
-      stack: err.stack,
-    });
-    return { error: "An unexpected error occurred. Please try again." };
+    return {
+      success: true,
+      email,
+      message: "OTP sent! Please check your email.",
+    };
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Unexpected error in sendOTP:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      return { error: "An unexpected error occurred. Please try again." };
+    } else {
+      console.error("Unexpected error:", err);
+    }
   }
 }
 
@@ -198,11 +211,15 @@ export async function verifyOTP(email: string, otp: string) {
     console.log("OTP verified successfully for:", { email, sessionToken });
 
     return { success: true, redirect: "/dashboard", sessionToken };
-  } catch (err: any) {
-    console.error("Unexpected error in verifyOTP:", {
-      message: err.message,
-      stack: err.stack,
-    });
-    return { error: "An unexpected error occurred. Please try again." };
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("Unexpected error in verifyOTP:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      return { error: "An unexpected error occurred. Please try again." };
+    } else {
+      console.error("Unexpected error:", err);
+    }
   }
 }
