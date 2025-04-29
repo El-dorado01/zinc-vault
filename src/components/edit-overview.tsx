@@ -12,7 +12,6 @@ import {
 import { Button } from "./ui/button";
 import { Edit3 } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
-//import { Scrollbar } from "@radix-ui/react-scroll-area";
 import TiptapStandardEditor from "./tiptap-editor";
 
 type Props = {
@@ -24,7 +23,7 @@ const EditOverview = ({ section }: Props) => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="absolute top-4 right-4 z-5 hidden" id="editButton">
+          <Button variant="outline" className="absolute top-4 right-4 z-5 md:hidden" id="editButton">
             <Edit3 className="size-3.5" /> Edit
           </Button>
         </SheetTrigger>
