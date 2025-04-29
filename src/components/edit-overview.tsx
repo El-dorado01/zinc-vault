@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import { Edit3 } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
+//import { Scrollbar } from "@radix-ui/react-scroll-area";
 import TiptapStandardEditor from "./tiptap-editor";
 
 type Props = {
