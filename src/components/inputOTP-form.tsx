@@ -36,12 +36,12 @@ const FormSchema = z.object({
   }),
 });
 
-const InputOTPForm = ({
+const InputOTPForm = async ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = await useSearchParams();
   const [isResending, setIsResending] = useState(false);
 
   const email = searchParams.get("email") || "";
