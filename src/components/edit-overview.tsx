@@ -12,7 +12,7 @@ import {
 import { Button } from "./ui/button";
 import { Edit3 } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
-import { Scrollbar } from "@radix-ui/react-scroll-area";
+//import { Scrollbar } from "@radix-ui/react-scroll-area";
 import TiptapStandardEditor from "./tiptap-editor";
 
 type Props = {
@@ -33,7 +33,7 @@ const EditOverview = ({ section }: Props) => {
             <SheetTitle>Edit {section}</SheetTitle>
             <SheetDescription>
               Make changes to your <strong>{section}</strong> section. Click
-              save when you're done.
+              save when you are done.
             </SheetDescription>
           </SheetHeader>
           <ScrollArea className="overflow-y-auto">
