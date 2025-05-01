@@ -25,7 +25,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} header="Platform" />
         <NavPortfolio items={data.navPortfolio} header="Portfolio" />
-        <NavMain items={data.projects} header="Projects" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

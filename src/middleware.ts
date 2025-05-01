@@ -108,7 +108,6 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    console.log("Session verified via API, allowing access:", { email });
     return NextResponse.next();
   } catch (err: unknown) {
     if (err instanceof Error) {
@@ -131,6 +130,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/hero/:path*",
     "/api/v1/protected/:path*",
     "/auth/signin",
     "/auth/verify",

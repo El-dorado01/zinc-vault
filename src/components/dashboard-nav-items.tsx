@@ -55,19 +55,19 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/dashboard/steam-game-overview",
         },
         {
           title: "Background",
-          url: "#",
+          url: "/dashboard/steam-game-background",
         },
         {
           title: "Services",
-          url: "#",
+          url: "/dashboard/steam-game-services",
         },
         {
           title: "Portfolio",
-          url: "#",
+          url: "/dashboard/steam-game-portfolio",
         },
       ],
     },
@@ -139,23 +139,6 @@ const data = {
           url: "#",
         },
       ],
-    },
-  ],
-  projects: [
-    {
-      name: "Site Settings",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 };

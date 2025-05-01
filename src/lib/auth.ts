@@ -1,16 +1,15 @@
 "use server";
 
 import jwt from "jsonwebtoken";
-import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { createHmac } from "crypto";
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { db: { schema: "public" } }
-);
+import { createSupabaseServerClient } from "@/utils/supabase/server";
+
+// Initialize Supabase client (must be called within async functions)
+async function getSupabaseClient() {
+  return await createSupabaseServerClient();
+}
 
 // Initialize Resend client
 const resend = new Resend(process.env.RESEND_API_KEY!);
@@ -57,6 +56,8 @@ function isValidEmail(email: string): boolean {
 
 export async function sendOTP(email: string) {
   try {
+    const supabase = await getSupabaseClient();
+
     // Input validation
     if (!email) {
       console.error("Email is required");
@@ -67,14 +68,18 @@ export async function sendOTP(email: string) {
       return { error: "Please enter a valid email address" };
     }
 
+    // Normalize email
+    const normalizedEmail = email.toLowerCase();
+
     // Check if email is in approved_users
     const { data: approvedUser, error: approvedError } = await supabase
       .from("approved_users")
       .select("email")
-      .eq("email", email)
+      .eq("email", normalizedEmail)
       .single();
+
     if (approvedError || !approvedUser) {
-      console.error("Email not approved:", { email, approvedError });
+      console.error("Email not approved:", { normalizedEmail, approvedError });
       return {
         error: "This email is not authorized. Please use a registered email.",
       };
@@ -89,7 +94,7 @@ export async function sendOTP(email: string) {
     const { error: insertError } = await supabase
       .from("otp_verifications")
       .insert({
-        email,
+        email: normalizedEmail,
         token: hashedOTP,
         expires,
       });
@@ -97,12 +102,16 @@ export async function sendOTP(email: string) {
       console.error("Failed to store OTP:", { insertError });
       return { error: "Failed to generate OTP. Please try again." };
     }
-    console.log("Stored hashed OTP:", { email, hashedOTP, expires });
+    console.log("Stored hashed OTP:", {
+      email: normalizedEmail,
+      hashedOTP,
+      expires,
+    });
 
     // Send OTP via Resend
     const { error: emailError } = await resend.emails.send({
       from: process.env.EMAIL_FROM!, // e.g., onboarding@resend.dev
-      to: email,
+      to: normalizedEmail,
       subject: "Your OTP for Login",
       text: `Your OTP is ${otp}. It expires in 10 minutes.`,
       html: `<p>Your OTP is <strong>${otp}</strong>. It expires in 10 minutes.</p>`,
@@ -113,15 +122,15 @@ export async function sendOTP(email: string) {
       await supabase
         .from("otp_verifications")
         .delete()
-        .eq("email", email)
+        .eq("email", normalizedEmail)
         .eq("token", hashedOTP);
       return { error: "Failed to send OTP email. Please try again." };
     }
 
-    console.log("OTP sent successfully to:", { email });
+    console.log("OTP sent successfully to:", { email: normalizedEmail });
     return {
       success: true,
-      email,
+      email: normalizedEmail,
       message: "OTP sent! Please check your email.",
     };
   } catch (err: unknown) {
@@ -139,6 +148,8 @@ export async function sendOTP(email: string) {
 
 export async function verifyOTP(email: string, otp: string) {
   try {
+    const supabase = await getSupabaseClient();
+
     // Input validation
     if (!email || !otp) {
       console.error("Email and OTP are required");

@@ -27,7 +27,7 @@ const SteamGameOverview = () => {
           />
           <ResizablePanelGroup
             direction="vertical"
-            className="min-h-[200px] rounded-lg border md:min-w-[450px] w-full"
+            className="min-h-[200px] rounded-lg border w-full"
           >
             <ResizablePanel defaultSize={80}>
               <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editButton]:flex">
@@ -57,9 +57,9 @@ const SteamGameOverview = () => {
                 </div>
               </div>
             </ResizablePanel>
-            <ResizableHandle withHandle />
+            {/* <ResizableHandle withHandle />
             <ResizablePanel defaultSize={20}>
-              <div className="h-fit p-6 flex flex-col items-start justify-start w-full max-w-6xl mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
+              <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
                 <EditOverview section="Trust Signals" />
                 <div className="flex items-center justify-between w-full">
                   <h1 className="font-bold text-2xl">Trust Signals</h1>
@@ -103,13 +103,13 @@ const SteamGameOverview = () => {
                   ))}
                 </div>
               </div>
-            </ResizablePanel>
+            </ResizablePanel> */}
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={20}>
-              <div className="h-fit p-6 flex flex-col items-start justify-start w-full max-w-6xl mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
+              <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
                 <EditOverview section="Success Story" />
                 <ScrollArea className="overflow-y-auto">
-                  <h1 className="font-bold text-2xl mb-13">
+                  <h1 className="font-bold text-2xl mb-13 line-clamp-1">
                     Success Story: CyberSmith’s BattleForge
                   </h1>
                   <div className="flex flex-col w-full xl:flex-row items-center justify-center md:justify-between gap-5">

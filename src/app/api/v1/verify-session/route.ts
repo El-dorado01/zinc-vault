@@ -23,7 +23,6 @@ export async function GET(request: Request) {
       );
     }
 
-    console.log("Session verified successfully:", { email: session.email });
     return NextResponse.json({ success: true, email: session.email });
   } catch (err: unknown) {
     if (err instanceof Error) {

@@ -62,3 +62,11 @@ export interface GameItem {
   thumbnail: string;
   name: string;
 }
+
+export interface TiptapJson {
+  type: string;
+  content?: TiptapJson[];
+  text?: string;
+  marks?: { type: string; attrs?: Record<string, any> }[];
+  attrs?: Record<string, any>;
+}

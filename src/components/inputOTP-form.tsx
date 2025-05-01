@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/input-otp";
 import { useRouter, useSearchParams } from "next/navigation";
 import { sendOTP, verifyOTP } from "@/lib/auth";
+import { LoaderCircle } from "lucide-react";
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -43,6 +44,7 @@ const InputOTPForm = ({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isResending, setIsResending] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const email = searchParams.get("email") || "";
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -60,27 +62,32 @@ const InputOTPForm = ({
   }, [email, router]);
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    try {
-      const result = await verifyOTP(email, data.pin);
-      if (result.error) {
-        toast.error(result.error);
-        form.reset();
-      } else if (result.success) {
-        if (result.sessionToken) {
-          // Set HTTP-only cookie
-          await fetch("/api/v1/session", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ sessionToken: result.sessionToken }),
-          });
+    form.clearErrors(); // Clear previous errors
+
+    startTransition(async () => {
+      try {
+        const result = await verifyOTP(email, data.pin);
+        if (result.error) {
+          toast.error(result.error);
+          form.reset();
+        } else if (result.success) {
+          if (result.sessionToken) {
+            // Set HTTP-only cookie
+            await fetch("/api/v1/session", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ sessionToken: result.sessionToken }),
+            });
+          }
+          toast.success("OTP verified! Redirecting...");
+          router.push(result.redirect || "/dashboard");
         }
-        toast.success("OTP verified! Redirecting...");
-        router.push(result.redirect || "/dashboard");
+      } catch (err) {
+        toast.error("An unexpected error occurred. Please try again.");
+        console.error("OTP verification error", { err });
       }
-    } catch (err) {
-      toast.error("An unexpected error occurred. Please try again.");
-      console.error("OTP verification error", { err });
-    }
+    });
+    
   }
 
   async function handleResend() {
@@ -135,18 +142,37 @@ const InputOTPForm = ({
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                Verify OTP
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isPending || form.formState.isSubmitting}
+              >
+                {isPending ? (
+                  <>
+                    {" "}
+                    <LoaderCircle className="animate-spin" /> Verifying{" "}
+                  </>
+                ) : (
+                  "Verify OTP"
+                )}
               </Button>
-              <div className="mt-4 text-center text-sm">
+              <div className="mt-4 text-center text-sm flex items-center justify-center gap-2">
                 Didn&apos;t get the OTP?{" "}
                 <button
                   type="button"
                   onClick={handleResend}
                   disabled={isResending}
-                  className="underline underline-offset-4 disabled:opacity-50"
+                  className="underline underline-offset-4 disabled:opacity-50 flex items-center justify-center gap-1"
                 >
-                  {isResending ? "Resending..." : "Resend"}
+                  {isResending ? (
+                    <>
+                      {" "}
+                      <LoaderCircle className="animate-spin size-3" />{" "}
+                      Resending{" "}
+                    </>
+                  ) : (
+                    "Resend"
+                  )}
                 </button>
               </div>
             </form>

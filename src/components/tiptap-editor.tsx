@@ -1,31 +1,30 @@
-"use client"; // Ensure client-side rendering
+'use client';
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Image from "@tiptap/extension-image";
-import Heading from "@tiptap/extension-heading";
-import Link from "@tiptap/extension-link";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import Heading from '@tiptap/extension-heading';
+import Link from '@tiptap/extension-link';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useState } from 'react';
 import {
   Bold,
   Italic,
   List,
   ListOrdered,
   Link as LinkIcon,
-  Image as ImageIcon,
   Heading1,
   Heading2,
   Heading3,
-} from "lucide-react";
+} from 'lucide-react';
+import { TiptapJson } from '@/types/index';
 
 // Custom Heading extension with Tailwind classes
 const CustomHeading = Heading.extend({
@@ -36,23 +35,11 @@ const CustomHeading = Heading.extend({
         renderHTML: (attributes) => ({
           class:
             attributes.level === 1
-              ? "text-3xl font-bold text-blue-600"
+              ? 'text-3xl font-bold text-blue-600'
               : attributes.level === 2
-                ? "text-2xl font-semibold text-gray-800"
-                : "text-xl font-medium text-gray-700",
+              ? 'text-2xl font-semibold text-gray-800'
+              : 'text-xl font-medium text-gray-700',
         }),
-      },
-    };
-  },
-});
-
-// Custom Image extension with Tailwind classes
-const CustomImage = Image.extend({
-  addAttributes() {
-    return {
-      ...this.parent?.(),
-      class: {
-        default: "border-2 border-gray-200 rounded-lg max-w-full h-auto",
       },
     };
   },
@@ -64,16 +51,21 @@ const CustomLink = Link.extend({
     return {
       ...this.parent?.(),
       class: {
-        default: "text-blue-500 hover:underline",
+        default: 'text-blue-500 hover:underline',
       },
     };
   },
 });
 
-const TiptapStandardEditor = () => {
-  const [imageUrl, setImageUrl] = useState("");
+type TiptapStandardEditorProps = {
+  initialContent?: string | TiptapJson;
+  onUpdate?: (json: TiptapJson) => void;
+};
+
+const TiptapStandardEditor = ({ initialContent, onUpdate }: TiptapStandardEditorProps) => {
+  const [isFocused, setIsFocused] = useState(false);
   const [showLinkInput, setShowLinkInput] = useState(false);
-  const [linkUrl, setLinkUrl] = useState("");
+  const [linkUrl, setLinkUrl] = useState('');
 
   const editor = useEditor({
     extensions: [
@@ -81,44 +73,25 @@ const TiptapStandardEditor = () => {
         heading: false, // Disable default heading
       }),
       CustomHeading,
-      CustomImage,
       CustomLink.configure({
-        openOnClick: false, // Prevent auto-opening links in editor
+        openOnClick: false,
         HTMLAttributes: {
-          class: "text-blue-500 hover:underline",
+          class: 'text-blue-500 hover:underline',
         },
       }),
     ],
-    content: `
-      <h1>Welcome to the Editor</h1>
-      <p>This is a <strong>sample</strong> paragraph with a <a href="https://example.com">link</a>.</p>
-      <h2>Subheading</h2>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-      </ul>
-      <img src="https://example.com/image.jpg" alt="Sample image" />
-    `,
+    content: initialContent || '<p>Start editing...</p>',
     onUpdate: ({ editor }) => {
-      console.log("JSON Output:", editor.getJSON());
+      const json = editor.getJSON() as TiptapJson;
+      onUpdate?.(json);
     },
+    onFocus: () => setIsFocused(true),
+    onBlur: () => setIsFocused(false),
   });
 
   if (!editor) {
     return <div>Loading editor...</div>;
   }
-
-  // Add image handler
-  const addImage = () => {
-    if (imageUrl) {
-      editor
-        .chain()
-        .focus()
-        .setImage({ src: imageUrl, alt: "User image" })
-        .run();
-      setImageUrl("");
-    }
-  };
 
   // Add/edit link handler
   const setLink = () => {
@@ -126,35 +99,35 @@ const TiptapStandardEditor = () => {
       editor
         .chain()
         .focus()
-        .extendMarkRange("link")
+        .extendMarkRange('link')
         .setLink({ href: linkUrl })
         .run();
     } else {
       editor.chain().focus().unsetLink().run();
     }
     setShowLinkInput(false);
-    setLinkUrl("");
+    setLinkUrl('');
   };
 
   // Handle link toggle click
   const handleLinkToggle = () => {
-    if (editor.isActive("link")) {
-      setLinkUrl(editor.getAttributes("link").href || "");
+    if (editor.isActive('link')) {
+      setLinkUrl(editor.getAttributes('link').href || '');
       setShowLinkInput(true);
     } else {
-      setLinkUrl("");
+      setLinkUrl('');
       setShowLinkInput(true);
     }
   };
 
   return (
-    <>
-      <TooltipProvider>
-        <div className="flex flex-col gap-4 px-4 w-full">
-          {/* Toolbar with ToggleGroup and Tooltips */}
+    <TooltipProvider>
+      <div className="flex flex-col gap-4 w-full relative">
+        {/* Toolbar with ToggleGroup and Tooltips, shown only when focused */}
+        {isFocused && (
           <ToggleGroup
             type="multiple"
-            className="flex flex-wrap gap-2 justify-start"
+            className="flex flex-wrap gap-2 justify-start absolute -top-10 z-10 bg-sidebar"
           >
             <Tooltip>
               <TooltipTrigger asChild>
@@ -301,64 +274,37 @@ const TiptapStandardEditor = () => {
               </TooltipContent>
             </Tooltip>
           </ToggleGroup>
+        )}
 
-          {/* Link Input */}
-          {showLinkInput && (
-            <div className="flex gap-2 mb-2">
-              <Input
-                type="text"
-                placeholder="Enter link URL"
-                value={linkUrl}
-                onChange={(e) => setLinkUrl(e.target.value)}
-                
-              />
-              <Button onClick={setLink}>Apply</Button>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  editor.chain().focus().unsetLink().run();
-                  setShowLinkInput(false);
-                  setLinkUrl("");
-                }}
-              >
-                Remove
-              </Button>
-            </div>
-          )}
-
-          {/* Image Input */}
+        {/* Link Input */}
+        {showLinkInput && (
           <div className="flex gap-2 mb-2">
             <Input
               type="text"
-              placeholder="Enter image URL"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              className="w-full"
+              placeholder="Enter link URL"
+              value={linkUrl}
+              onChange={(e) => setLinkUrl(e.target.value)}
             />
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button onClick={addImage}>
-                  <ImageIcon className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Add Image</p>
-              </TooltipContent>
-            </Tooltip>
+            <Button onClick={setLink}>Apply</Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                editor.chain().focus().unsetLink().run();
+                setShowLinkInput(false);
+                setLinkUrl("");
+              }}
+            >
+              Remove
+            </Button>
           </div>
+        )}
 
-          {/* Editor Content */}
-          <div className="border border-gray-200 rounded-lg p-4 prose prose-blue overflow-x-hidden w-full">
-            <EditorContent editor={editor} />
-          </div>
-
-          {/* Optional: JSON Output for Debugging */}
-          {/* <pre className="mt-4 p-4 bg-gray-100 rounded-lg overflow-auto text-sm">
-            {JSON.stringify(editor?.getJSON(), null, 2)}
-          </pre> */}
-        </div>
-      </TooltipProvider>
-    </>
+        {/* Editor Content */}
+          <EditorContent editor={editor} />
+        {/* <div className="border border-gray-200 rounded-lg p-4 prose prose-blue overflow-x-hidden w-full">
+        </div> */}
+      </div>
+    </TooltipProvider>
   );
 };
 

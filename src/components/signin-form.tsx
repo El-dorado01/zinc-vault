@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SigninOptions from "./signin-options";
 import { sendOTP } from "@/lib/auth";
+import { LoaderCircle } from "lucide-react";
 
 const formSchema = z.object({
   email: z
@@ -105,7 +106,7 @@ export function SigninForm({
             className="w-full"
             disabled={isPending || form.formState.isSubmitting}
           >
-            {isPending ? "Sending..." : "Get OTP"}
+            {isPending ? <> <LoaderCircle className="animate-spin" /> Sending </> : "Get OTP"}
           </Button>
           <SigninOptions />
         </div>
