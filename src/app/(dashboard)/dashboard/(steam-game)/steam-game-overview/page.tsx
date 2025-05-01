@@ -57,7 +57,7 @@ const SteamGameOverview = () => {
                 </div>
               </div>
             </ResizablePanel>
-            {/* <ResizableHandle withHandle />
+            <ResizableHandle withHandle />
             <ResizablePanel defaultSize={20}>
               <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
                 <EditOverview section="Trust Signals" />
@@ -103,7 +103,7 @@ const SteamGameOverview = () => {
                   ))}
                 </div>
               </div>
-            </ResizablePanel> */}
+            </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={20}>
               <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">

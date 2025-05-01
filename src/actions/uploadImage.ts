@@ -41,7 +41,7 @@ export async function uploadImage(formData: FormData) {
 
     const fileExt = file.name.split(".").pop();
     const fileName = `${user.email}/${Date.now()}.${fileExt}`;
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("hero-images")
       .upload(fileName, file, {
         cacheControl: "3600",

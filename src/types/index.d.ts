@@ -67,6 +67,6 @@ export interface TiptapJson {
   type: string;
   content?: TiptapJson[];
   text?: string;
-  marks?: { type: string; attrs?: Record<string, any> }[];
-  attrs?: Record<string, any>;
+  marks?: { type: string; attrs?: Record<string, unknown> }[];
+  attrs?: Record<string, unknown>;
 }

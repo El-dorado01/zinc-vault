@@ -98,7 +98,7 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    const { success, email } = await verifyResponse.json();
+    const { success } = await verifyResponse.json();
     if (!success) {
       console.log("Invalid or expired session, redirecting to signin");
       const response = NextResponse.redirect(

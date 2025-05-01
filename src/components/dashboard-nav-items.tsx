@@ -1,12 +1,9 @@
 import {
   BookOpenText,
-  Frame,
   GalleryVerticalEnd,
   Gamepad2,
   House,
   Info,
-  Map,
-  PieChart,
   ShoppingCart,
   Sparkles,
   Users,

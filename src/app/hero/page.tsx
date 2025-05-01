@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import { verifySessionToken } from '@/lib/auth';
+import Image from 'next/image';
 
 export default async function HeroPreview() {
   const supabase = await createSupabaseServerClient();
@@ -57,10 +58,12 @@ export default async function HeroPreview() {
         <h2>Images</h2>
         <div className="grid grid-cols-3 gap-4">
           {imagePaths.map((path, index) => (
-            <img
+            <Image
               key={index}
               src={path}
               alt={`Hero Image ${index + 1}`}
+              width={300}
+              height={200}
               className="w-full h-auto"
             />
           ))}
