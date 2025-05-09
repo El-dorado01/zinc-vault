@@ -87,10 +87,12 @@ export async function handleFileChange(
     setImagePaths([...imagePaths, ...newUrls]);
     setUploadProgress([]);
     toast.success("Images uploaded successfully!");
-  } catch (error: any) {
-    setError(error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      setError(error.message);
+      toast.error(error.message);
+    } 
     setUploadProgress([]);
-    toast.error(error.message);
   } finally {
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // Safely reset if not null
@@ -123,8 +125,10 @@ export async function handleRemoveImage(
     }
     setImagePaths(imagePaths.filter((path) => path !== url));
     toast.success("Image removed successfully!");
-  } catch (error: any) {
-    toast.error(error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      toast.error(error.message);
+    } 
   } finally {
     setRemovingImage(null);
   }
@@ -162,7 +166,7 @@ export async function deleteUnsavedImages(
   }
 
   try {
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("hero-images")
       .remove(filePaths);
 
@@ -171,8 +175,10 @@ export async function deleteUnsavedImages(
     }
 
   } catch (error: any) {
+    if (error instanceof Error) {
+      setError(error.message);
+      toast.error(error.message);
+    } 
     console.error("Error deleting unsaved images:", error);
-    setError(error.message);
-    toast.error(error.message);
   }
 }

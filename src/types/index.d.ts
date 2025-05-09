@@ -74,8 +74,8 @@ export interface TiptapJson {
 export interface HeroContent {
   id: string;
   hero_texts: {
-    main: any; // Tiptap JSON
-    sub: any; // Tiptap JSON
+    main: TiptapJson; // Tiptap JSON
+    sub: TiptapJson; // Tiptap JSON
   };
   image_paths: string[];
   created_at: string;
@@ -87,7 +87,7 @@ export interface UploadProgress {
 };
 
 export interface HeroContentDisplayProps {
-  promise: Promise<HeroContent[]>;
+  promise?: Promise<HeroContent[]>;
   section: string;
   mainTextJson: TiptapJson | null;
   subTextJson: TiptapJson | null;

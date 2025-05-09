@@ -10,7 +10,6 @@ import { HeroContentDisplayProps } from "@/types";
 import { handleRemoveImage } from "@/lib/client/imageHandlers";
 
 export function HeroContentDisplay({
-  promise,
   section,
   mainTextJson,
   subTextJson,
