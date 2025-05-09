@@ -1,9 +1,9 @@
+// src/components/EditOverview.tsx
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -11,17 +11,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-// import { Label } from "@/components/ui/label";
-// import { Input } from "@/components/ui/input";
-import { Edit3 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Edit3, Plus, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { toast } from "sonner";
-// import { uploadImage } from "@/actions/uploadImage";
-import { createSupabaseClientClient } from "@/utils/supabase/client";
 import { TiptapJson } from "@/types";
-// import TiptapStandardEditor from "./tiptap-editor";
-import { SimpleEditor } from "./tiptap-templates/simple/simple-editor";
+import { Progress } from "./ui/progress";
+import { fetchHeroContent } from "@/actions/heroContent";
+import { deleteUnsavedImages, handleFileChange } from "@/lib/client/imageHandlers";
+import { handleSubmit } from "@/lib/client/contentHandlers";
+import { HeroContentDisplay } from "./hero-content-display";
 
 type Props = {
   section: string;
@@ -31,250 +38,260 @@ const EditOverview = ({ section }: Props) => {
   const [mainTextJson, setMainTextJson] = useState<TiptapJson | null>(null);
   const [subTextJson, setSubTextJson] = useState<TiptapJson | null>(null);
   const [imagePaths, setImagePaths] = useState<string[]>([]);
+  const [initialMainTextJson, setInitialMainTextJson] =
+    useState<TiptapJson | null>(null);
+  const [initialSubTextJson, setInitialSubTextJson] =
+    useState<TiptapJson | null>(null);
+  const [initialImagePaths, setInitialImagePaths] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-  // const fileInputRef = useRef<HTMLInputElement>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadProgress, setUploadProgress] = useState<
+    { fileName: string; progress: number }[]
+  >([]);
 
-  // Handle file selection
-  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   if (!files) return;
+  // Memoize the promise to prevent re-creation
+  const heroContentPromise = useMemo(() => fetchHeroContent(), [section]);
 
-  //   const newFiles = Array.from(files);
-  //   if (imagePaths.length + newFiles.length > 5) {
-  //     setError("Cannot upload more than 5 images");
-  //     toast.error("Cannot upload more than 5 images");
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-  //   newFiles.forEach((file) => formData.append("images", file));
-
-  //   const { data, error } = await uploadImage(formData);
-  //   if (error || !data) {
-  //     setError(error || "Failed to upload images");
-  //     toast.error(error || "Failed to upload images");
-  //     return;
-  //   }
-
-  //   setImagePaths([...imagePaths, ...data]);
-  //   setError(null);
-  //   toast.success("Images uploaded successfully");
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.value = ""; // Reset input
-  //   }
-  // };
-
-  // Handle form submission
-  const handleSubmit = async () => {
-    if (section === "Hero" && (!mainTextJson || !subTextJson)) {
-      setError("Please provide main and sub hero text");
-      toast.error("Please provide main and sub hero text");
-      return;
-    }
-
-    // Check user session via API
-    const userResponse = await fetch("/api/v1/verify-session", {
-      headers: {
-        "x-session-token":
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("sessionToken="))
-            ?.split("=")[1] || "",
-      },
-    });
-    if (!userResponse.ok) {
-      setError("Please log in");
-      toast.error("Please log in");
-      return;
-    }
-
-    const { success } = await userResponse.json();
-    if (!success) {
-      setError("Invalid or expired session");
-      toast.error("Invalid or expired session");
-      return;
-    }
-
-    // Save to hero_content if section is Hero
-    if (section === "Hero") {
-      const supabase = createSupabaseClientClient();
-      const { error } = await supabase.from("hero_content").insert({
-        hero_texts: {
-          main: mainTextJson,
-          sub: subTextJson,
-        },
-        image_paths: imagePaths,
+  // Initialize initial state from fetched content
+  useEffect(() => {
+    heroContentPromise
+      .then((heroContents) => {
+        if (heroContents.length > 0) {
+          const latestContent = heroContents[0];
+          setInitialMainTextJson(latestContent.hero_texts.main);
+          setInitialSubTextJson(latestContent.hero_texts.sub);
+          setInitialImagePaths(latestContent.image_paths);
+          setMainTextJson(latestContent.hero_texts.main);
+          setSubTextJson(latestContent.hero_texts.sub);
+          setImagePaths(latestContent.image_paths);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to initialize content:", error);
+        setError("Failed to load content");
       });
+  }, [heroContentPromise]);
 
-      if (error) {
-        setError(error.message);
-        toast.error(error.message);
-        return;
-      }
+  // Check for unsaved changes
+  const hasUnsavedChanges = useMemo(() => {
+    const mainChanged =
+      JSON.stringify(mainTextJson) !== JSON.stringify(initialMainTextJson);
+    const subChanged =
+      JSON.stringify(subTextJson) !== JSON.stringify(initialSubTextJson);
+    const imagesChanged =
+      JSON.stringify(imagePaths) !== JSON.stringify(initialImagePaths);
+    return mainChanged || subChanged || imagesChanged;
+  }, [
+    mainTextJson,
+    subTextJson,
+    imagePaths,
+    initialMainTextJson,
+    initialSubTextJson,
+    initialImagePaths,
+  ]);
 
-      setImagePaths([]);
-      setMainTextJson(null);
-      setSubTextJson(null);
-      setError("Content saved successfully!");
-      toast.success("Content saved successfully!");
+  // Handle sheet open/close
+  const handleOpenChange = (open: boolean) => {
+    if (!open && hasUnsavedChanges && !isSaving) {
+      setIsDialogOpen(true);
     } else {
-      // Handle other sections (e.g., log JSON or save elsewhere)
-      console.log(`Saving ${section} content:`, { mainTextJson, subTextJson });
-      toast.success(`${section} content saved!`);
+      setIsSheetOpen(open);
     }
   };
 
+  // Handle save and close from dialog
+  const handleSaveAndClose = async () => {
+    await handleSubmit({
+      section,
+      mainTextJson,
+      subTextJson,
+      imagePaths,
+      setMainTextJson,
+      setSubTextJson,
+      setImagePaths,
+      setError,
+      setSuccess,
+      setIsSaving,
+      setInitialMainTextJson,
+      setInitialSubTextJson,
+      setInitialImagePaths,
+    });
+    if (!error) {
+      setIsDialogOpen(false);
+      setIsSheetOpen(false);
+    }
+  };
+
+  // Handle discard changes
+  const handleDiscardChanges = async () => {
+    // Delete unsaved images from Supabase
+    await deleteUnsavedImages(imagePaths, initialImagePaths, setError);
+
+    // Revert to initial state
+    setMainTextJson(initialMainTextJson);
+    setSubTextJson(initialSubTextJson);
+    setImagePaths(initialImagePaths);
+    setUploadProgress([]);
+    setError(null);
+    setSuccess(null);
+
+    // Close dialog and sheet
+    setIsDialogOpen(false);
+    setIsSheetOpen(false);
+  };
+
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="outline"
-          className="absolute top-4 right-4 z-5 md:hidden"
-          id="editButton"
-        >
-          <Edit3 className="size-3.5" /> Edit
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-full sm:w-[540px] p-2">
-        <SheetHeader>
-          <SheetTitle className="text-lg">Edit {section}</SheetTitle>
-          <SheetDescription>
-            Make changes to your <strong>{section}</strong> section. Click save
-            when you are done.
-          </SheetDescription>
-        </SheetHeader>
-        <ScrollArea className="overflow-y-auto h-[calc(100vh-120px)]">
-          <div className="grid gap-4 w-full p-4">
-            <div className="flex flex-col relative">
-              <h3 className="font-semibold">Main {section} Text</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                This is the main text that appears in the{" "}
-                <strong>{section.toLowerCase()} </strong>
-                section.
-              </p>
-
-              <SimpleEditor />
-            </div>
-            {/* <div className="flex flex-col gap-2">
-              <h3 className="text-lg font-semibold">Sub {section} Text</h3>
-              <p className="text-sm text-muted-foreground">
-                This is the sub text that appears in the {section.toLowerCase()}{" "}
-                section.
-              </p>
-              <TiptapStandardEditor
-                initialContent={
-                  section === "Hero"
-                    ? "<p>Sub Hero Text</p>"
-                    : "<p>Start editing...</p>"
-                }
-                onUpdate={(json) => setSubTextJson(json)}
-              />
-            </div> */}
-
-            {/* <div className="flex flex-col">
-              <h3 className="font-semibold">Main {section} Text</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                This is the main text that appears in the{" "}
-                {section.toLowerCase()} section.
-              </p>
-              <TiptapStandardEditor
-                initialContent={
-                  section === "Hero"
-                    ? "<h1>Main Hero Text</h1>"
-                    : "<p>Start editing...</p>"
-                }
-                onUpdate={(json) => setMainTextJson(json)}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <h3 className="text-lg font-semibold">Sub {section} Text</h3>
-              <p className="text-sm text-muted-foreground">
-                This is the sub text that appears in the {section.toLowerCase()}{" "}
-                section.
-              </p>
-              <TiptapStandardEditor
-                initialContent={
-                  section === "Hero"
-                    ? "<p>Sub Hero Text</p>"
-                    : "<p>Start editing...</p>"
-                }
-                onUpdate={(json) => setSubTextJson(json)}
-              />
-            </div>
-
-            {section === "Hero" && (
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">
-                  Hero Background Images (Max 5)
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Upload up to 5 images for the hero section background.
-                </p>
-                <Label htmlFor="image-upload">Upload Images</Label>
+    <>
+      <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
+        <SheetTrigger asChild>
+          <Button
+            variant="outline"
+            className="absolute top-4 right-4 z-5 md:hidden"
+            id="editButton"
+          >
+            <Edit3 className="size-3.5" /> Edit
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right" className="w-full sm:w-[540px] p-2">
+          <SheetHeader>
+            <SheetTitle className="text-lg">Edit {section}</SheetTitle>
+            <SheetDescription>
+              Make changes to your <strong>{section}</strong> section. Click
+              save when you are done.
+            </SheetDescription>
+          </SheetHeader>
+          <ScrollArea className="overflow-y-auto h-[calc(100vh-120px)]">
+            <HeroContentDisplay
+              promise={heroContentPromise}
+              section={section}
+              mainTextJson={mainTextJson}
+              subTextJson={subTextJson}
+              imagePaths={imagePaths}
+              setMainTextJson={setMainTextJson}
+              setSubTextJson={setSubTextJson}
+              setImagePaths={setImagePaths}
+            />
+            {imagePaths.length < 5 && (
+              <div className="flex flex-col gap-2 p-4">
+                {uploadProgress.length > 0 && (
+                  <div className="mt-4">
+                    {uploadProgress.map((item) => (
+                      <div key={item.fileName} className="mb-2">
+                        <p className="text-sm">{item.fileName}</p>
+                        <Progress value={item.progress} className="w-full" />
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <Input
                   id="image-upload"
                   type="file"
                   accept="image/*"
                   multiple
                   ref={fileInputRef}
-                  onChange={handleFileChange}
+                  onChange={(e) =>
+                    handleFileChange(
+                      e,
+                      imagePaths,
+                      setImagePaths,
+                      setUploadProgress,
+                      setError,
+                      fileInputRef
+                    )
+                  }
                   disabled={imagePaths.length >= 5}
-                  className="mt-1"
+                  className="mt-5 hidden"
                 />
-                {imagePaths.length < 5 && (
-                  <Button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    variant="outline"
-                    className="mt-2"
-                  >
-                    Add another
-                  </Button>
-                )}
-                {imagePaths.length > 0 && (
-                  <div className="mt-4">
-                    <p>Uploaded Images:</p>
-                    <ul className="list-disc pl-5">
-                      {imagePaths.map((path, index) => (
-                        <li key={index}>
-                          <a
-                            href={path}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Image {index + 1}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <Button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  variant="outline"
+                  className="mt-2"
+                >
+                  <Plus className="h-4 w-4 mr-1" />
+                  {imagePaths.length < 1 ? "Add an image" : "Add another"}
+                </Button>
+
+                {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
+                {/* {success && (
+                  <p className="text-sm text-green-500 mt-2">{success}</p>
+                )} */}
               </div>
             )}
-
-            {error && (
-              <p
-                className={
-                  error.includes("successfully")
-                    ? "text-green-500"
-                    : "text-red-500"
-                }
-              >
-                {error}
-              </p>
-            )} */}
-          </div>
-        </ScrollArea>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="button" onClick={handleSubmit}>
-              Save changes
+          </ScrollArea>
+          <SheetFooter>
+            <Button
+              type="button"
+              onClick={() =>
+                handleSubmit({
+                  section,
+                  mainTextJson,
+                  subTextJson,
+                  imagePaths,
+                  setMainTextJson,
+                  setSubTextJson,
+                  setImagePaths,
+                  setError,
+                  setSuccess,
+                  setIsSaving,
+                  setInitialMainTextJson,
+                  setInitialSubTextJson,
+                  setInitialImagePaths,
+                })
+              }
+              disabled={isSaving}
+            >
+              {isSaving ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                  Saving
+                </>
+              ) : (
+                "Save changes"
+              )}
             </Button>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Unsaved Changes</DialogTitle>
+            <DialogDescription>
+              You have unsaved changes in the {section} section. Do you want to
+              save them before closing?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={handleDiscardChanges}
+              disabled={isSaving}
+            >
+              Discard
+            </Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveAndClose} disabled={isSaving}>
+              {isSaving ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                  Saving
+                </>
+              ) : (
+                "Save Changes"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

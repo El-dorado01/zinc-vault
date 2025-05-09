@@ -70,3 +70,45 @@ export interface TiptapJson {
   marks?: { type: string; attrs?: Record<string, unknown> }[];
   attrs?: Record<string, unknown>;
 }
+
+export interface HeroContent {
+  id: string;
+  hero_texts: {
+    main: any; // Tiptap JSON
+    sub: any; // Tiptap JSON
+  };
+  image_paths: string[];
+  created_at: string;
+}
+
+export interface UploadProgress {
+  fileName: string;
+  progress: number;
+};
+
+export interface HeroContentDisplayProps {
+  promise: Promise<HeroContent[]>;
+  section: string;
+  mainTextJson: TiptapJson | null;
+  subTextJson: TiptapJson | null;
+  imagePaths: string[];
+  setMainTextJson: (json: TiptapJson | null) => void;
+  setSubTextJson: (json: TiptapJson | null) => void;
+  setImagePaths: (paths: string[]) => void;
+}
+
+export interface handleSubmitProps {
+  section: string;
+  mainTextJson: TiptapJson | null;
+  subTextJson: TiptapJson | null;
+  imagePaths: string[];
+  setMainTextJson: (json: TiptapJson | null) => void;
+  setSubTextJson: (json: TiptapJson | null) => void;
+  setImagePaths: (paths: string[]) => void;
+  setError: (error: string | null) => void;
+  setSuccess: (message: string | null) => void;
+  setIsSaving: (isSaving: boolean) => void;
+  setInitialMainTextJson: (json: TiptapJson | null) => void;
+  setInitialSubTextJson: (json: TiptapJson | null) => void;
+  setInitialImagePaths: (paths: string[]) => void;
+};
