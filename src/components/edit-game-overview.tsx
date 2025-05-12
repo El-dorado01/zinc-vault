@@ -1,4 +1,4 @@
-// src/components/EditOverview.tsx
+// src/components/EditGameOverview.tsx
 "use client";
 
 import { useRef, useState, useMemo, useEffect } from "react";
@@ -23,18 +23,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Edit3, Plus, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { TiptapJson } from "@/types";
+import { TiptapJson, Props } from "@/types";
 import { Progress } from "./ui/progress";
 import { fetchHeroContent } from "@/actions/heroContent";
 import { deleteUnsavedImages, handleFileChange } from "@/lib/client/imageHandlers";
 import { handleSubmit } from "@/lib/client/contentHandlers";
 import { HeroContentDisplay } from "./hero-content-display";
 
-type Props = {
-  section: string;
-};
-
-const EditOverview = ({ section }: Props) => {
+const EditGameOverview = ({ section }: Props) => {
   const [mainTextJson, setMainTextJson] = useState<TiptapJson | null>(null);
   const [subTextJson, setSubTextJson] = useState<TiptapJson | null>(null);
   const [imagePaths, setImagePaths] = useState<string[]>([]);
@@ -295,4 +291,4 @@ const EditOverview = ({ section }: Props) => {
   );
 };
 
-export default EditOverview;
+export default EditGameOverview;

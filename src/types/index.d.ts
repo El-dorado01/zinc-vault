@@ -112,3 +112,9 @@ export interface handleSubmitProps {
   setInitialSubTextJson: (json: TiptapJson | null) => void;
   setInitialImagePaths: (paths: string[]) => void;
 };
+
+type Props = {
+  section: string;
+};
+
+

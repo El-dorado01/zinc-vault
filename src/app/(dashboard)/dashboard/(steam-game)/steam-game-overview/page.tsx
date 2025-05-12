@@ -8,11 +8,12 @@ import {
 import Heading from "@/components/heading";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import EditOverview from "@/components/edit-overview";
+import EditGameOverview from "@/components/edit-game-overview";
 import { TrustSignals } from "@/components/items";
 import { TrendingUp } from "lucide-react";
 import WishlistChart from "@/components/wishlist-chart";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import EditTrustSignals from "@/components/edit-trust-signals";
 const SteamGameOverview = () => {
   return (
     <>
@@ -31,7 +32,7 @@ const SteamGameOverview = () => {
           >
             <ResizablePanel defaultSize={80}>
               <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editButton]:flex">
-                <EditOverview section="Hero" />
+                <EditGameOverview section="Hero" />
 
                 <div className="absolute inset-0 z-2 flex flex-col items-center justify-center text-center text-white bg-black/30 px-3 md:px-5">
                   <h1 className="hero-title text-xl md:text-2xl font-bold md:mb-4 leading-tight line-clamp-1">
@@ -58,9 +59,9 @@ const SteamGameOverview = () => {
               </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={20}>
+            <ResizablePanel defaultSize={10}>
               <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
-                <EditOverview section="Trust Signals" />
+                <EditTrustSignals section="Trust Signals" />
                 <div className="flex items-center justify-between w-full">
                   <h1 className="font-bold text-2xl">Trust Signals</h1>
                   <Image
@@ -105,9 +106,9 @@ const SteamGameOverview = () => {
               </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={20}>
+            <ResizablePanel defaultSize={10}>
               <div className="h-fit p-6 flex flex-col items-start justify-start w-full mx-auto space-y-6 bg-sidebar relative hover:[&_#editButton]:flex">
-                <EditOverview section="Success Story" />
+                <EditGameOverview section="Success Story" />
                 <ScrollArea className="overflow-y-auto">
                   <h1 className="font-bold text-2xl mb-13 line-clamp-1">
                     Success Story: CyberSmith’s BattleForge
