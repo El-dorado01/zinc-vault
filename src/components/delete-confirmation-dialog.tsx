@@ -31,8 +31,7 @@ export function DeleteConfirmationDialog({
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete the trust signal "
-            {signalToDelete?.game_name}"? This action cannot be undone.
+            Are you sure you want to delete the trust signal <strong>{signalToDelete?.game_name}</strong>? This action cannot be undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
