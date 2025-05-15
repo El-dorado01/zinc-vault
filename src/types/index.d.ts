@@ -65,10 +65,10 @@ export interface GameItem {
 
 export interface TiptapJson {
   type: string;
+  attrs?: Record<string, any>;
   content?: TiptapJson[];
+  marks?: { type: string; attrs?: Record<string, any> }[];
   text?: string;
-  marks?: { type: string; attrs?: Record<string, unknown> }[];
-  attrs?: Record<string, unknown>;
 }
 
 export interface HeroContent {
@@ -113,8 +113,14 @@ export interface handleSubmitProps {
   setInitialImagePaths: (paths: string[]) => void;
 };
 
-type Props = {
+export interface Props {
   section: string;
+};
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  image: string | null;
 };
 
 
