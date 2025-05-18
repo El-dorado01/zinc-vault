@@ -15,7 +15,7 @@ import CloseGame from "@/components/close-game";
 import { Game } from "@/types";
 import { getSupabaseClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const SingleGamePage = () => {
   const router = useRouter();
