@@ -19,11 +19,10 @@ import { useRouter } from "next/router";
 
 const SingleGamePage = () => {
   const router = useRouter();
-  //const { slug } = router.query;
+  const { slug } = router.query;
   const [game, setGame] = useState<Game | null>(null);
 
   useEffect(() => {
-    const { slug } = router.query;
     if (!slug) return;
 
     const fetchGame = async () => {
