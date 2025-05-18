@@ -2,7 +2,7 @@
 import React from "react";
 import {
   Facebook,
-  Inbox,
+  //Inbox,
   Instagram,
   Linkedin,
   Twitter,
