@@ -1,3 +1,5 @@
+"use client";
+
 // src/components/single-game-page.tsx
 import { useEffect, useState } from "react";
 import Image from "next/image";
