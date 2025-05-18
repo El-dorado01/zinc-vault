@@ -66,7 +66,7 @@ import { useMobile } from "@/hooks/use-mobile";
 import { useWindowSize } from "@/hooks/use-window-size";
 
 // --- Components ---
-import { ThemeToggle } from "@/components/tiptap-templates/simple/theme-toggle";
+// import { ThemeToggle } from "@/components/tiptap-templates/simple/theme-toggle";
 
 // --- Lib ---
 import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
@@ -79,6 +79,8 @@ import { TiptapJson } from "@/types";
 interface SimpleEditorProps {
   initialContent?: TiptapJson | string;
   onUpdate?: (json: TiptapJson) => void;
+  disabled?: boolean;
+  panel?: "Sheet" | "Dialog";
 }
 
 const MainToolbarContent = ({
@@ -135,9 +137,9 @@ const MainToolbarContent = ({
     </ToolbarGroup>
     <Spacer />
     {isMobile && <ToolbarSeparator />}
-    <ToolbarGroup>
+    {/* <ToolbarGroup>
       <ThemeToggle />
-    </ToolbarGroup>
+    </ToolbarGroup> */}
   </>
 );
 
@@ -164,7 +166,7 @@ const MobileToolbarContent = ({
   </>
 );
 
-export function SimpleEditor({ initialContent, onUpdate }: SimpleEditorProps) {
+export function SimpleEditor({ initialContent, onUpdate, panel }: SimpleEditorProps) {
   const isMobile = useMobile();
   const windowSize = useWindowSize();
   const [mobileView, setMobileView] = React.useState<
@@ -284,7 +286,7 @@ export function SimpleEditor({ initialContent, onUpdate }: SimpleEditorProps) {
 
   return (
     <EditorContext.Provider value={{ editor }}>
-      <div className="max-w-[482px]">
+      <div className={panel === "Sheet" ? "max-w-[482px]" : "max-w-[420px]"}>
         <Toolbar ref={toolbarRef}>
           {mobileView === "main" ? (
             <MainToolbarContent

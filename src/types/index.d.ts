@@ -84,7 +84,7 @@ export interface HeroContent {
 export interface UploadProgress {
   fileName: string;
   progress: number;
-};
+}
 
 export interface HeroContentDisplayProps {
   promise?: Promise<HeroContent[]>;
@@ -111,16 +111,33 @@ export interface handleSubmitProps {
   setInitialMainTextJson: (json: TiptapJson | null) => void;
   setInitialSubTextJson: (json: TiptapJson | null) => void;
   setInitialImagePaths: (paths: string[]) => void;
-};
+}
 
 export interface Props {
   section: string;
-};
+}
 
-export interface TeamMember {
+export type TeamMember = {
   name: string;
   role: string;
   image: string | null;
 };
+export interface Game {
+  id: string;
+  name: string;
+  description: TiptapJson | null;
+  thumbnail: string | null;
+  studio: string | null;
+  problem: TiptapJson | null;
+  approach: TiptapJson | null;
+  tools: string[] | null;
+  carousel_images: string[] | null;
+  created_at: string;
+  updated_at: string;
+}
 
-
+export interface SimpleEditorProps {
+  content: TiptapJson | undefined;
+  onChange: (content: TiptapJson) => void;
+  disabled?: boolean;
+}

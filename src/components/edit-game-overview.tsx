@@ -213,9 +213,9 @@ const EditGameOverview = ({ section }: Props) => {
                 </Button>
 
                 {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
-                {success && (
+                {/* {success && (
                   <p className="text-sm text-green-500 mt-2 hidden">{success}</p>
-                )}
+                )} */}
               </div>
             )}
           </ScrollArea>

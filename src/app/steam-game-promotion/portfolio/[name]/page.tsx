@@ -3,9 +3,9 @@ import { User } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
 import SingleGameCarousel from "@/components/single-game-carousel";
-import GameDetails from "@/components/game-details";
-import GameProblem from "@/components/game-problem";
-import GameApproach from "@/components/game-approach";
+import GameDetails from "@/components/game-details-keep";
+import GameProblem from "@/components/game-problem-keep";
+import GameApproach from "@/components/game-approach-keep";
 import GameResult from "@/components/game-result";
 import CloseGame from "@/components/close-game";
 
