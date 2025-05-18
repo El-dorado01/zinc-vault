@@ -16,10 +16,12 @@ import { Game } from "@/types";
 import { getSupabaseClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 const SingleGamePage = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const params = useParams();
+  const slug = params.name;
   const [game, setGame] = useState<Game | null>(null);
 
   useEffect(() => {
