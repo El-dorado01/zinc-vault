@@ -23,7 +23,7 @@ import Pagination from "@/components/steam-game-portfolio/Pagination";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import GameForm from "@/components/steam-game-portfolio/GameForm";
 import DeleteGameModal from "@/components/steam-game-portfolio/DeleteGameModal";
-import AddGameModal from "@/components/steam-game-portfolio/AddGameModal";
+import AddGameModal from "@/components/steam-game-portfolio/AddGameModal"; 
 
 const SteamGamePortfolio = () => {
   const [games, setGames] = useState<Game[]>([]);
