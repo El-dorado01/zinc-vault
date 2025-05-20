@@ -2,7 +2,7 @@
 import React from "react";
 import {
   Facebook,
-  Inbox,
+  //Inbox,
   Instagram,
   Linkedin,
   Twitter,
@@ -32,9 +32,9 @@ const GameDetails = ({ game }: GameDetailsProps) => {
           />
           <div className="flex flex-col items-start justify-start space-y-1">
             <h2 className="text-xl font-bold">{game.name}</h2>
-            <p className="line-clamp-2 text-muted-foreground">
+            {/*<p className="line-clamp-2 text-muted-foreground">
               {game.description || "No description available."}
-            </p>
+            </p>*/}
             <a
               href={""}
               target="_blank"
@@ -48,10 +48,10 @@ const GameDetails = ({ game }: GameDetailsProps) => {
         <h1 className="text-bold text-xl lg:text-2xl mb-5 lg:my-5">
           {game.name} - Noxus Arena
         </h1>
-        <p className="text-muted-foreground">
+        {/*<p className="text-muted-foreground">
           {game.description ||
             "We had the amazing opportunity to work as the 3D Art Director for this game."}
-        </p>
+        </p>*/}
         <p className="underline cursor-pointer">Show more</p>
         <div className="flex flex-wrap items-center justify-between gap-3 my-2">
           <a
