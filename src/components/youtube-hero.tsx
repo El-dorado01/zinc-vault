@@ -37,7 +37,7 @@ export default function YouTubeHero() {
 
     updateCurrentSlide(); // Set initial slide
 
-    const totalSlides = youtubeBgVideos.length;
+    // const totalSlides = youtubeBgVideos.length;
     const updateProgress = () => {
       const elapsed = (Date.now() % 4000) / 4000;
       setProgress(elapsed * 100);

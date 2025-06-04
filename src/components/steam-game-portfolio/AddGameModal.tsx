@@ -117,7 +117,7 @@ const AddGameModal = ({
               least two carousel images must be provided.
             </DialogDescription>
           </DialogHeader>
-          <ScrollArea className="max-h-[60vh] p-4">
+          <ScrollArea className="max-h-[50vh] md:max-h-[60vh] px-2">
             <GameForm
               game={game}
               setGame={setGame}

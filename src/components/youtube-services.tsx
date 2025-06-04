@@ -8,8 +8,9 @@ import {
   CarouselApi,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, House } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { services } from "./items";
+import Image from "next/image";
 
 
 export default function ServicesSection() {
@@ -71,9 +72,11 @@ export default function ServicesSection() {
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 py-6 rounded-lg">
                   {/* Graphic */}
                   <div className="w-full">
-                    <img
+                    <Image
                       src={service.graphic}
                       alt={`${service.title} graphic`}
+                      width={600}
+                      height={300}
                       className="w-full h-[300px] object-cover rounded-md"
                     />
                   </div>
