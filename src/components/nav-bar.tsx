@@ -32,7 +32,11 @@ const NavBar = ({
             className="text-2xl font-bold transition-colors flex items-center justify-center space-x-3"
           >
             <span>ZV</span>
-            {Icon && <Icon className={`-ml-1 h-6 w-6 text-[${iconColor}]`} />}
+            {Icon && (
+              <Icon
+                className={`-ml-1 h-6 w-6 text-[${iconColor == "youTubeColor" ? "#FF0000" : "#00C4FF"}]`}
+              />
+            )}
           </Link>
           <div className="flex items-center justify-center space-x-2">
             <MobileNavigation
@@ -51,7 +55,6 @@ const NavBar = ({
           </div>
         </div>
       </header>
-      
     </>
   );
 };

@@ -34,17 +34,28 @@ const GameCard = ({
           className="w-full h-full object-cover rounded-md"
         />
       </Link>
-      <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-        <Button variant="outline" size="sm" onClick={() => onEdit(game)}>
+      <div className="absolute top-2 right-2 flex space-x-2 ">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onEdit(game)}
+          title="Edit Game"
+        >
           <Edit3 className="h-4 w-4" />
         </Button>
-        <Button variant="destructive" size="sm" onClick={() => onDelete(game)}>
+        <Button
+          variant="destructive"
+          size="sm"
+          onClick={() => onDelete(game)}
+          title="Delete Game"
+        >
           <Trash2 className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => onAddToSpecialList(game.id)}
+          title="Add Game to Special List"
         >
           <Star className="h-4 w-4" />
         </Button>

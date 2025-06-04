@@ -7,7 +7,8 @@ import { Gamepad2 } from "lucide-react";
 import { PropsWithChildren } from "react";
 
 const SteamGameLayout = ({ children }: PropsWithChildren) => {
-  const iconColor = "#00C4FF";
+  const iconColor = "steamGameColor";
+  // const iconColor = "#00C4FF";
   return (
     <div className="flex flex-col items-center justify-center">
       <NavBar

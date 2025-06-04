@@ -60,25 +60,38 @@ export const uploadImage = async (
 
 export const removeImage = async (
   url: string,
-  bucket: string = "steam-background-images"
+  bucket: string = "steam-background-images",
 ): Promise<boolean> => {
-  const filePath = url.split("/").slice(-2).join("/");
-  console.log("Removing image:", filePath);
+  try {
+    // Extract the file path from the URL, starting from the bucket
+    const urlParts = url.split("/storage/v1/object/public/")[1];
+    if (!urlParts) {
+      console.error("Invalid URL format:", url);
+      toast.error("Failed to remove image: Invalid URL format");
+      return false;
+    }
 
-  const { error } = await supabase.storage.from(bucket).remove([filePath]);
+    // The path is everything after the bucket name
+    const filePath = urlParts.split("/").slice(1).join("/");
 
-  if (error) {
-    toast.error("Failed to remove image: " + error.message);
-    console.error("Remove error:", error);
+    const { error } = await supabase.storage.from(bucket).remove([filePath]);
+
+    if (error) {
+      console.error("Remove error:", error);
+      toast.error("Failed to remove image: " + error.message);
+      return false;
+    }
+
+    toast.success("Image removed successfully");
+    return true;
+  } catch (err) {
+    console.error("Unexpected error removing image:", err);
+    toast.error("Unexpected error removing image");
     return false;
   }
-
-  toast.success("Image removed successfully");
-  return true;
 };
 
 export const saveGame = async (game: Partial<Game>): Promise<boolean> => {
-  console.log("Saving game with payload:", JSON.stringify(game, null, 2));
 
   if (game.id) {
     const { error } = await supabase

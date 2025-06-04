@@ -308,6 +308,27 @@ const Games: GameItem[] = [
   },
 ];
 
+const services = [
+  {
+    title: "YouTube Automation",
+    description:
+      "Transform your YouTube channel with cutting-edge automation tools designed to streamline your workflow. From automated video editing and scheduling to seamless posting, our solutions save you time and effort, allowing you to focus on creating compelling content. Experience enhanced efficiency with smart algorithms that optimize uploads and manage repetitive tasks. Grow your audience effortlessly as our automation adapts to your needs, ensuring consistent engagement and a professional presence. Elevate your channel with the power of automation today!",
+    graphic: "/youtube-bg/automation.png",
+  },
+  {
+    title: "YouTube Promotion",
+    description:
+      "Boost your channel's visibility with our expert promotion strategies tailored for YouTube success. We leverage targeted SEO, social media campaigns, and innovative ad placements to drive traffic and attract subscribers fast. Our team optimizes your content for maximum reach, utilizing data-driven insights to amplify your brand. Watch your views soar as we connect you with the right audience, enhancing your growth trajectory. Start promoting smarter and see your channel rise to new heights with our proven techniques!",
+    graphic: "/youtube-bg/automation-2.png",
+  },
+  {
+    title: "YouTube Monetization",
+    description:
+      "Unlock the full earning potential of your YouTube channel with our comprehensive monetization guidance. From maximizing ad revenue to securing lucrative sponsorships and merchandise sales, we pave the way for multiple income streams. Our experts provide strategies to meet monetization thresholds and optimize earnings, ensuring long-term profitability. Turn your passion into profit with tailored advice that enhances your financial success. Begin your journey to monetization mastery and watch your revenue grow steadily!",
+    graphic: "/youtube-bg/automation.png",
+  },
+];
+
 export {
   NavItems,
   TeamNavItems,
@@ -320,4 +341,5 @@ export {
   GameTeams,
   PortfolioGames,
   Games,
+  services
 };

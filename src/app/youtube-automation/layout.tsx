@@ -6,7 +6,8 @@ import { Youtube } from "lucide-react";
 import { PropsWithChildren } from "react";
 
 const YouTubeAutomationLayout = ({ children }: PropsWithChildren) => {
-  const iconColor = "#FF0000";
+  const iconColor = "youTubeColor";
+  // const iconColor = "#FF0000";
   return (
     <div className="flex flex-col items-center justify-center">
       <NavBar

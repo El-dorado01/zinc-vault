@@ -1,95 +1,137 @@
 "use client";
 
-// src/components/single-game-page.tsx
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Image from "next/image";
-import { User } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent } from "@/components/ui/card";
-//import SingleGameCarousel from "@/components/single-game-carousel";
-import GameDetails from "@/components/game-details";
-import GameProblem from "@/components/game-problem";
-import GameApproach from "@/components/game-approach";
-import GameResult from "@/components/game-result";
-import CloseGame from "@/components/close-game";
+import { PortfolioGames } from "@/components/items";
+import Link from "next/link";
+import { getInitials, splitAndJoin } from "@/utils/getInitials";
+import {
+  fetchGames,
+} from "@/lib/games/gameUtils";
+import Pagination from "@/components/steam-game-portfolio/Pagination";
 import { Game } from "@/types";
-import { getSupabaseClient } from "@/utils/supabase/client";
-import { toast } from "sonner";
-import { useParams } from "next/navigation";
 
-const SingleGamePage = () => {
-  const params = useParams();
-  const slug = params.name;
-  const [game, setGame] = useState<Game | null>(null);
+const PortfolioPage = () => {
+  const [games, setGames] = useState<Game[]>([]);
+  const [totalGames, setTotalGames] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 16;
 
+  // Fetch games
   useEffect(() => {
-    if (!slug) return;
-
-    const fetchGame = async () => {
-      const supabase = getSupabaseClient();
-      const { data, error } = await supabase
-        .from("games")
-        .select("*")
-        .eq("name", slug.toString().replace(/-/g, " "))
-        .single();
-
-      if (error) {
-        toast.error("Failed to fetch game: " + error.message);
-        console.error("Fetch game error:", error);
-        return;
-      }
-
-      setGame(data);
+    const loadGames = async () => {
+      const { games, total } = await fetchGames(currentPage, itemsPerPage);
+      setGames(games);
+      setTotalGames(total);
     };
+    loadGames();
+  }, [currentPage]);
 
-    fetchGame();
-  }, [slug]);
-
-  if (!game) {
-    return <div>Loading...</div>;
-  }
-
+  // Pagination
+  const totalPages = Math.ceil(totalGames / itemsPerPage);
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-5">
-      <div className="flex flex-col lg:flex-row gap-4 h-fit">
-        <Card className="block lg:hidden rounded-lg relative w-full shadow-sm dark:border-0">
-          <CloseGame />
-          <CardContent className="p-2 flex flex-col space-y-2">
-            <div className="flex items-start justify-start space-x-3">
-              <Image
-                src={game.thumbnail || "/games/thumbnail5.jpg"}
-                alt={game.name}
-                width={60}
-                height={60}
-                className="h-15 w-15 rounded-full object-cover"
-              />
-              <div className="flex flex-col items-start justify-start space-y-1">
-                <h2 className="text-xl font-bold">{game.name}</h2>
-                <p className="line-clamp-2 text-muted-foreground">
-                  {/* {game.description || "No description available."} */}
-                </p>
-                <a
-                  href={""}
-                  target="_blank"
-                  className="flex items-center justify-center space-x-2 text-sm mt-2 italic font-bold text-[#00C4FF] hover:underline hover:text-[#00C4FF]/50 transition-colors duration-300 ease-in-out"
+    <>
+      <div className="w-full max-w-6xl mx-auto px-4 py-5">
+        <Carousel className="w-full">
+          <CarouselContent className="px-4">
+            {PortfolioGames.map((game, index) => (
+              <CarouselItem
+                key={index}
+                className="sm:basis-1/2 lg:basis-1/3 h-50 pl-2"
+              >
+                <Link
+                  href={`/steam-game-promotion/portfolio/${splitAndJoin(
+                    game.name
+                  )}`}
+                  className="w-full h-full rounded-lg relative overflow-hidden group"
                 >
-                  <User className="size-4" />
-                  <span>{game.studio || "Unknown Studio"}</span>
-                </a>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        {/* <SingleGameCarousel images={game.carousel_images || []} /> */}
-        <ScrollArea className="flex-1 lg:flex-1/3 flex flex-col items-center justify-start lg:max-h-[80vh] overflow-y-auto lg:mr-2">
-          <GameDetails game={game} />
-          <GameProblem content={game.problem} />
-          <GameApproach content={game.approach} />
-          <GameResult />
-        </ScrollArea>
+                  {/* Gradient background with hover effect */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent transition-all duration-300 ease-in-out group-hover:h-3/4 z-0 rounded-bl-lg rounded-br-lg"></div>
+
+                  <Image
+                    src={game.image}
+                    alt={getInitials(game.name)}
+                    width={850}
+                    height={500}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 z-10 flex flex-col items-start justify-between text-muted-foreground">
+                    <div className="flex items-start justify-between w-full p-4">
+                      {game.firstIcon && (
+                        <div className="px-2 py-1 rounded-full bg-background">
+                          Art Blast
+                        </div>
+                      )}
+                      {game.secondIcon && (
+                        <div className="py-1 px-2 rounded-md bg-background">
+                          Ad
+                        </div>
+                      )}
+                    </div>
+                    <div className=" text-white text-shadow-lg p-4 w-full">
+                      <h2 className="line-clamp-2 leading-snug text-xl font-bold">
+                        {game.name}
+                      </h2>
+                      {game.description && (
+                        <p className="line-clamp-2 leading-snug text-lg">
+                          {game.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex absolute left-1" />
+          <CarouselNext className="hidden md:flex absolute right-1" />
+        </Carousel>
       </div>
-    </div>
+      <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
+        <h1 className="font-bold text-3xl">Case Studies</h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-4 w-full min-h-screen gap-2">
+          {games.map((game, index) => (
+            <div key={index} className="border w-full h-full rounded-md">
+              <Link
+                href={`/steam-game-promotion/portfolio/${splitAndJoin(
+                  game.name
+                )}`}
+                className="rounded-md relative group"
+              >
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent transition-all duration-300 ease-in-out group-hover:h-3/4 z-0 rounded-bl-md rounded-br-md"></div>
+                <Image
+                  src={game.thumbnail}
+                  alt={getInitials(game.name)}
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </>
   );
 };
 
-export default SingleGamePage;
+export default PortfolioPage;

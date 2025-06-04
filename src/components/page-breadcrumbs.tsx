@@ -19,7 +19,7 @@ const PageBreadcrumbs = ({ skillNavItems, iconColor }: BreadcrumbsProps) => {
           <React.Fragment key={item.key}>
             <Link
               href={item.href}
-              className={`hover:text-[${iconColor}] duration-300 transition-colors`}
+              className={`hover:text-[${iconColor == "youTubeColor" ? "#FF0000" : "#00C4FF"}] duration-300 transition-colors`}
             >
               {item.title}
             </Link>

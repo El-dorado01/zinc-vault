@@ -125,13 +125,13 @@ export type TeamMember = {
 export interface Game {
   id: string;
   name: string;
-  description: TiptapJson | null;
-  thumbnail: string | null;
-  studio: string | null;
-  problem: TiptapJson | null;
-  approach: TiptapJson | null;
-  tools: string[] | null;
-  carousel_images: string[] | null;
+  description: TiptapJson;
+  thumbnail: string;
+  studio: string;
+  problem: TiptapJson;
+  approach: TiptapJson;
+  tools: string[];
+  carousel_images: string[];
   created_at: string;
   updated_at: string;
 }

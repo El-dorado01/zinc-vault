@@ -1,4 +1,3 @@
-// src/components/steam-game-portfolio.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,7 +6,14 @@ import { DashboardBreadcrumb } from "@/components/dashboard-breadcrumb";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader2, Plus } from "lucide-react";
-import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Sheet,
   SheetContent,
@@ -18,12 +24,13 @@ import {
 } from "@/components/ui/sheet";
 import { Game } from "@/types";
 import { fetchGames, saveGame, deleteGame as deleteAGame, addToSpecialList } from "@/lib/games/gameUtils";
+import { removeImage } from "@/lib/games/gameUtils";
 import GameCard from "@/components/steam-game-portfolio/GameCard";
 import Pagination from "@/components/steam-game-portfolio/Pagination";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import GameForm from "@/components/steam-game-portfolio/GameForm";
 import DeleteGameModal from "@/components/steam-game-portfolio/DeleteGameModal";
-import AddGameModal from "@/components/steam-game-portfolio/AddGameModal"; 
+import AddGameModal from "@/components/steam-game-portfolio/AddGameModal";
 
 const SteamGamePortfolio = () => {
   const [games, setGames] = useState<Game[]>([]);
@@ -36,13 +43,20 @@ const SteamGamePortfolio = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteGame, setDeleteGame] = useState<Game | null>(null);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [newImages, setNewImages] = useState<{
+    thumbnail?: string;
+    carousel: string[];
+  }>({ carousel: [] });
   const [currentGame, setCurrentGame] = useState<Partial<Game>>({
     name: "",
-    description: null,
-    thumbnail: null,
+    description: undefined,
+    thumbnail: "",
     studio: "",
-    problem: null,
-    approach: null,
+    problem: undefined,
+    approach: undefined,
     tools: [],
     carousel_images: [],
   });
@@ -63,41 +77,16 @@ const SteamGamePortfolio = () => {
     setIsEditSheetOpen(true);
   };
 
-  // Handle save game
-  const handleSaveGame = async () => {
-    if (!currentGame.name?.trim()) {
-      toast.error("Game name is required");
-      return;
-    }
-
-    setIsSaving(true);
-    const success = await saveGame(currentGame);
-    if (success) {
-      const { games, total } = await fetchGames(currentPage, itemsPerPage);
-      setGames(games);
-      setTotalGames(total);
-      setIsAddModalOpen(false);
-      setIsEditSheetOpen(false);
-      setCurrentGame({
-        name: "",
-        description: null,
-        thumbnail: null,
-        studio: "",
-        problem: null,
-        approach: null,
-        tools: [],
-        carousel_images: [],
-      });
-    }
-    setIsSaving(false);
-  };
-
   // Handle delete game
   const handleDeleteGame = async () => {
     if (!deleteGame) return;
 
     setIsDeleting(true);
-    const success = await deleteAGame(deleteGame.id, deleteGame.thumbnail, deleteGame.carousel_images);
+    const success = await deleteAGame(
+      deleteGame.id,
+      deleteGame.thumbnail,
+      deleteGame.carousel_images
+    );
     if (success) {
       const { games, total } = await fetchGames(currentPage, itemsPerPage);
       setGames(games);
@@ -121,6 +110,95 @@ const SteamGamePortfolio = () => {
     }
   };
 
+  // Handle save game
+   const handleSaveGame = async () => {
+     if (!isFormValid) {
+       return;
+     }
+
+     setIsSaving(true);
+     const success = await saveGame(currentGame);
+     if (success) {
+       const { games, total } = await fetchGames(currentPage, itemsPerPage);
+       setGames(games);
+       setTotalGames(total);
+       setIsAddModalOpen(false);
+       setIsEditSheetOpen(false);
+       setCurrentGame({
+         name: "",
+         description: undefined,
+         thumbnail: "",
+         studio: "",
+         problem: undefined,
+         approach: undefined,
+         tools: [],
+         carousel_images: [],
+       });
+       setIsFormValid(false);
+       setHasUnsavedChanges(false);
+       setNewImages({ carousel: [] });
+     } else {
+       console.log("Save failed");
+     }
+     setIsSaving(false);
+   };
+
+  const handleSaveAndClose = async () => {
+    if (!isFormValid) {
+      return;
+    }
+    await handleSaveGame();
+    setIsDialogOpen(false);
+    setIsEditSheetOpen(false);
+  };
+
+  const handleDiscardChanges = async () => {
+    if (newImages.thumbnail) {
+      await removeImage(
+        newImages.thumbnail,
+        "steam-background-images"
+      );
+    }
+    for (const url of newImages.carousel) {
+      await removeImage(url, "steam-background-images");
+    }
+
+    setCurrentGame({
+      name: "",
+      description: undefined,
+      thumbnail: "",
+      studio: "",
+      problem: undefined,
+      approach: undefined,
+      tools: [],
+      carousel_images: [],
+    });
+    setIsDialogOpen(false);
+    setIsEditSheetOpen(false);
+    setHasUnsavedChanges(false);
+    setNewImages({ carousel: [] });
+  };
+
+  const handleEditSheetClose = (open: boolean) => {
+    if (!open && hasUnsavedChanges) {
+      setIsDialogOpen(true);
+    } else {
+      setIsEditSheetOpen(false);
+      setCurrentGame({
+        name: "",
+        description: undefined,
+        thumbnail: "",
+        studio: "",
+        problem: undefined,
+        approach: undefined,
+        tools: [],
+        carousel_images: [],
+      });
+      setHasUnsavedChanges(false);
+      setNewImages({ carousel: [] });
+    }
+  };
+
   return (
     <SidebarInset>
       <DashboardBreadcrumb />
@@ -131,11 +209,11 @@ const SteamGamePortfolio = () => {
           classname="mb-4"
         />
 
-        <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
+        <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto py-10 space-y-10">
           <div className="flex justify-between items-center w-full">
-            <h1 className="font-bold text-3xl">Case Studies</h1>
+            <h1 className="font-bold text-xl md:text-2xl">Case Studies</h1>
             <Button onClick={() => setIsAddModalOpen(true)}>
-              <Plus className="h-4 w-4 mr-2" /> Add Game
+              <Plus className="h-4 w-4 mr-1" /> Add Game
             </Button>
           </div>
 
@@ -169,23 +247,41 @@ const SteamGamePortfolio = () => {
         setGame={setCurrentGame}
         onSave={handleSaveGame}
         isSaving={isSaving}
+        isFormValid={isFormValid} // Add these props
+        setIsFormValid={setIsFormValid}
       />
 
-      <Sheet open={isEditSheetOpen} onOpenChange={setIsEditSheetOpen}>
+      <Sheet open={isEditSheetOpen} onOpenChange={handleEditSheetClose}>
         <SheetContent side="right" className="w-full sm:w-[540px] p-2">
           <SheetHeader>
             <SheetTitle className="text-lg">Edit Game</SheetTitle>
             <SheetDescription>
-              Update game details. All fields are optional except the name.
+              Update game details. All fields are required, and at least two
+              carousel images must be provided.
             </SheetDescription>
           </SheetHeader>
           <ScrollArea className="overflow-y-auto h-[calc(100vh-120px)]">
             <div className="p-4">
-              <GameForm game={currentGame} setGame={setCurrentGame} isSaving={isSaving} />
+              <GameForm
+                game={currentGame}
+                setGame={setCurrentGame}
+                isSaving={isSaving}
+                onValidation={setIsFormValid}
+                panel="Sheet"
+                onUnsavedChanges={(hasChanges, images) => {
+                  setHasUnsavedChanges(hasChanges);
+                  setNewImages(images);
+                }}
+              />
             </div>
           </ScrollArea>
           <SheetFooter>
-            <Button onClick={handleSaveGame} disabled={isSaving}>
+            <Button
+              onClick={() => {
+                handleSaveGame();
+              }}
+              disabled={isSaving || !isFormValid}
+            >
               {isSaving ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-1 animate-spin" />
@@ -198,6 +294,40 @@ const SteamGamePortfolio = () => {
           </SheetFooter>
         </SheetContent>
       </Sheet>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Unsaved Changes</DialogTitle>
+            <DialogDescription>
+              You have unsaved changes in the Edit Game section. Do you want to
+              save them before closing?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={handleDiscardChanges}
+              disabled={isSaving}
+            >
+              Discard
+            </Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveAndClose} disabled={isSaving}>
+              {isSaving ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                  Saving
+                </>
+              ) : (
+                "Save Changes"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <DeleteGameModal
         isOpen={isDeleteModalOpen}

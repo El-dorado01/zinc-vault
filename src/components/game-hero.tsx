@@ -1,4 +1,3 @@
-// components/HeroSection.jsx
 "use client";
 
 import * as React from "react";
@@ -11,7 +10,6 @@ import {
 import Image from "next/image";
 import { gameBgImages } from "./items";
 import Link from "next/link";
-
 
 export default function GameHero() {
   const plugin = React.useRef(
