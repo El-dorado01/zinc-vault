@@ -12,7 +12,6 @@ import GameResult from "@/components/game-result";
 import CloseGame from "@/components/close-game";
 import { Game, TiptapJson } from "@/types";
 import { getSupabaseClient } from "@/utils/supabase/client";
-import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import NotFound from "@/components/game-not-found";
 import { generateHTML } from "@tiptap/core";
