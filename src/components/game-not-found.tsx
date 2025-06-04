@@ -8,7 +8,7 @@ const NotFound = ({ errorMessage }: { errorMessage?: string }) => {
         Game Not Found
       </h1>
       <p className="text-muted-foreground mt-2">
-        Sorry, we couldn't find the game you&apos;re looking for.
+        Sorry, we couldn&apos;t find the game you&apos;re looking for.
         <span className="hidden">
           {errorMessage ||
             "Sorry, we couldn't find the game you're looking for."}
