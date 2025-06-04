@@ -15,7 +15,7 @@ import Image from "next/image";
 
 export default function ServicesSection() {
   const [api, setApi] = React.useState<CarouselApi | null>(null);
-  const [current, setCurrent] = React.useState(0);
+  // const [current, setCurrent] = React.useState(0);
   const [isPaused, setIsPaused] = React.useState(false);
   const [expanded, setExpanded] = React.useState<number | null>(null);
 
@@ -23,10 +23,10 @@ export default function ServicesSection() {
     if (!api) return;
 
     const updateCurrentSlide = () => {
-      const scrollSnap =
-        api.selectedScrollSnap?.() ??
-        api.scrollSnapList().indexOf(api.scrollProgress());
-      setCurrent(scrollSnap);
+      // const scrollSnap =
+      //   api.selectedScrollSnap?.() ??
+      //   api.scrollSnapList().indexOf(api.scrollProgress());
+      // setCurrent(scrollSnap);
     };
 
     updateCurrentSlide();
