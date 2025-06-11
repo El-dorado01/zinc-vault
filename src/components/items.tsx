@@ -68,7 +68,7 @@ const skillsData: SkillItem[] = [
   {
     id: 1,
     icon: Youtube,
-    image: "/ecommerce.png",
+    image: "/youtube.png",
     title: "Youtube Automation and Monetization",
     text: "Skyrocket your YouTube channel with automated growth strategies and proven monetization tactics.",
     href: "/youtube-automation",
@@ -76,7 +76,7 @@ const skillsData: SkillItem[] = [
   {
     id: 2,
     icon: Gamepad2,
-    image: "/ecommerce.png",
+    image: "/steam-game.png",
     title: "Steam Game Promotion",
     text: "Boost your Steam game’s success with targeted marketing and indie-friendly promotion.",
     href: "/steam-game-promotion",
