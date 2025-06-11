@@ -29,6 +29,19 @@ const GameNavItems: NavItem[] = [
   // { title: "Blog", key: "blog", href: "/", icon: House },
 ];
 
-const YoutubeNavItems = []
+const YoutubeNavItems: NavItem[] = [
+  {
+    title: "Overview",
+    key: "overview",
+    href: "/youtube-automation",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Channels",
+    key: "channels",
+    href: "/youtube-automation/channels",
+    icon: Briefcase,
+  },
+];
 
 export { GameNavItems, YoutubeNavItems };

@@ -68,7 +68,7 @@ const SteamGameBackground = () => {
           {/* Our Story Section */}
           <ResizablePanel defaultSize={70} minSize={5}>
             <ScrollArea className="h-full w-full p-6">
-              <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editButton]:flex">
+              <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editGameBgButton]:flex">
                 <EditGameBackground section="Background" />
                 <div className="flex flex-col items-start justify-start w-full mx-auto py-5 space-y-10">
                   <h1 className="font-bold text-3xl">Our Story</h1>
@@ -134,7 +134,7 @@ const SteamGameBackground = () => {
           {/* Meet Our Team Section */}
           <ResizablePanel defaultSize={30} minSize={5}>
             <ScrollArea className="h-full w-full p-6">
-              <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editButton]:flex">
+              <div className="relative w-full overflow-hidden flex h-full items-center justify-center hover:[&_#editTeamButton]:flex">
                 <EditGameTeam section="Our Team" />
                 <div className="flex flex-col items-start justify-start w-full max-w-6xl mx-auto px-4 py-10 space-y-10">
                   <h1 className="font-bold text-3xl">Meet Our Team</h1>

@@ -21,6 +21,7 @@ export interface SkillItem {
   title: string;
   image: string;
   href: string;
+  text?: string;
 }
 
 export interface TrustSignal {

@@ -73,22 +73,22 @@ const data = {
       url: "#",
       icon: Youtube,
       items: [
-        {
-          title: "Overview",
-          url: "#",
-        },
-        {
-          title: "Background",
-          url: "#",
-        },
+        // {
+        //   title: "Testimonials",
+        //   url: "/dashboard/youtube-automation-testimonials",
+        // },
         {
           title: "Services",
-          url: "#",
+          url: "/dashboard/youtube-automation-services",
         },
         {
-          title: "Portfolio",
-          url: "#",
+          title: "Channels",
+          url: "/dashboard/youtube-automation-channels",
         },
+        // {
+        //   title: "NewsLetters",
+        //   url: "/dashboard/youtube-automation-newletters",
+        // },
       ],
     },
     {

@@ -74,6 +74,8 @@ export default function TrustSignalsContentDisplay() {
 
   // Handle edit
   const handleEdit = (signal: TrustSignal) => {
+    console.log(signal);
+    
     setEditingSignal(signal);
     setIsDialogOpen(true);
   };

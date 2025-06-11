@@ -24,8 +24,8 @@ const EditTrustSignals = ({ section }: { section: string }) => {
         <SheetTrigger asChild>
           <Button
             variant="outline"
-            className="absolute top-4 right-4 z-5 md:hidden"
-            id="editButton"
+            className="absolute top-4 right-4 z-50"
+            id="editTrustButton"
           >
             <Edit3 className="size-3.5" /> Edit
           </Button>

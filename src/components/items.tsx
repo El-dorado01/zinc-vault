@@ -70,6 +70,7 @@ const skillsData: SkillItem[] = [
     icon: Youtube,
     image: "/ecommerce.png",
     title: "Youtube Automation and Monetization",
+    text: "Skyrocket your YouTube channel with automated growth strategies and proven monetization tactics.",
     href: "/youtube-automation",
   },
   {
@@ -77,6 +78,7 @@ const skillsData: SkillItem[] = [
     icon: Gamepad2,
     image: "/ecommerce.png",
     title: "Steam Game Promotion",
+    text: "Boost your Steam game’s success with targeted marketing and indie-friendly promotion.",
     href: "/steam-game-promotion",
   },
   {
@@ -84,6 +86,7 @@ const skillsData: SkillItem[] = [
     icon: ShoppingCart,
     image: "/ecommerce.png",
     title: "Ecommerce Store Design and Promotion",
+    text: "Stunning ecommerce stores designed to convert, paired with powerful promotion strategies.",
     href: "/ecommerce-store-design",
   },
   {
@@ -91,6 +94,7 @@ const skillsData: SkillItem[] = [
     icon: BookOpenText,
     image: "/writing.png",
     title: "Content Writing",
+    text: "Engaging, SEO-optimized content that captivates audiences and drives results.",
     href: "/content-writing",
   },
 ];
